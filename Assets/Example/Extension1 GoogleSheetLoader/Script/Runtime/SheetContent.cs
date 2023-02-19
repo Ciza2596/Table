@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using DataTable;
 
-namespace DataTable
+namespace GoogleSheetLoader
 {
     public class SheetContent
     {

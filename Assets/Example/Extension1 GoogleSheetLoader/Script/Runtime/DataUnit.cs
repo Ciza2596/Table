@@ -1,8 +1,9 @@
 using System;
 using System.Linq;
+using DataTable;
 using UnityEngine;
 
-namespace DataTable.Implement
+namespace GoogleSheetLoader
 {
     [Serializable]
     public class DataUnit : IDataUnit

@@ -1,12 +1,10 @@
 {
-    "name": "DataTable.Editor",
-    "rootNamespace": "DataTable.Editor",
+    "name": "GoogleSheetLoader",
+    "rootNamespace": "GoogleSheetLoader",
     "references": [
         "DataTable"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
