@@ -111,39 +111,8 @@ namespace DataTable
 
             try
             {
-                if (propertyType == typeof(int))
-                {
-                    var value = string.IsNullOrWhiteSpace(valueString)
-                        ? 0
-                        : int.Parse(valueString, _cultureInfo);
-
-                    propertyInfo.SetValue(tableData, value);
-                    return;
-                }
-
-                if (propertyType == typeof(float))
-                {
-                    var value = string.IsNullOrWhiteSpace(valueString)
-                        ? 0
-                        : float.Parse(valueString, _cultureInfo);
-
-                    propertyInfo.SetValue(tableData, value);
-                    return;
-                }
-
-                if (propertyType == typeof(string))
-                {
-                    var value = string.IsNullOrWhiteSpace(valueString)
-                        ? string.Empty
-                        : valueString;
-
-                    propertyInfo.SetValue(tableData, value);
-                    return;
-                }
-
                 if (propertyType == typeof(bool))
                 {
-                    // ReSharper disable once SimplifyConditionalTernaryExpression
                     var value = string.IsNullOrWhiteSpace(valueString)
                         ? false
                         : bool.Parse(valueString);
@@ -152,11 +121,11 @@ namespace DataTable
                     return;
                 }
 
-                if (propertyType == typeof(long))
+                if (propertyType == typeof(double))
                 {
                     var value = string.IsNullOrWhiteSpace(valueString)
                         ? 0
-                        : long.Parse(valueString, _cultureInfo);
+                        : double.Parse(valueString, _cultureInfo);
 
                     propertyInfo.SetValue(tableData, value);
                     return;
@@ -177,6 +146,46 @@ namespace DataTable
                     }
 
                     propertyInfo.SetValue(tableData, Enum.Parse(propertyType, valueString));
+                    return;
+                }
+
+                if (propertyType == typeof(float))
+                {
+                    var value = string.IsNullOrWhiteSpace(valueString)
+                        ? 0
+                        : float.Parse(valueString, _cultureInfo);
+
+                    propertyInfo.SetValue(tableData, value);
+                    return;
+                }
+
+                if (propertyType == typeof(int))
+                {
+                    var value = string.IsNullOrWhiteSpace(valueString)
+                        ? 0
+                        : int.Parse(valueString, _cultureInfo);
+
+                    propertyInfo.SetValue(tableData, value);
+                    return;
+                }
+                
+                if (propertyType == typeof(long))
+                {
+                    var value = string.IsNullOrWhiteSpace(valueString)
+                        ? 0
+                        : long.Parse(valueString, _cultureInfo);
+
+                    propertyInfo.SetValue(tableData, value);
+                    return;
+                }
+                
+                if (propertyType == typeof(string))
+                {
+                    var value = string.IsNullOrWhiteSpace(valueString)
+                        ? string.Empty
+                        : valueString;
+
+                    propertyInfo.SetValue(tableData, value);
                     return;
                 }
 
@@ -203,6 +212,30 @@ namespace DataTable
                     propertyInfo.SetValue(tableData, value);
                     return;
                 }
+                
+                if (propertyType == typeof(Vector2Int))
+                {
+                    var value = Vector2Int.zero;
+                    if (!string.IsNullOrWhiteSpace(valueString))
+                    {
+                        var valueStrings = valueString.Split(VECTOR_SPLIT_TAG);
+
+                        if (valueString.Length != 2)
+                        {
+                            Debug.LogError(
+                                $"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key} TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString} - Vector2Int's valueString length isnt 2");
+                            return;
+                        }
+
+                        var x = int.Parse(valueStrings[0], _cultureInfo);
+                        var y = int.Parse(valueStrings[1], _cultureInfo);
+
+                        value = new Vector2Int(x, y);
+                    }
+
+                    propertyInfo.SetValue(tableData, value);
+                    return;
+                }
 
                 if (propertyType == typeof(Vector3))
                 {
@@ -223,6 +256,31 @@ namespace DataTable
                         var z = float.Parse(valueStrings[2], _cultureInfo);
 
                         value = new Vector3(x, y, z);
+                    }
+
+                    propertyInfo.SetValue(tableData, value);
+                    return;
+                }
+                
+                if (propertyType == typeof(Vector3Int))
+                {
+                    var value = Vector3Int.zero;
+                    if (!string.IsNullOrWhiteSpace(valueString))
+                    {
+                        var valueStrings = valueString.Split(VECTOR_SPLIT_TAG);
+
+                        if (valueString.Length != 3)
+                        {
+                            Debug.LogError(
+                                $"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key} TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString} - Vector3's valueString length isnt 3");
+                            return;
+                        }
+
+                        var x = int.Parse(valueStrings[0], _cultureInfo);
+                        var y = int.Parse(valueStrings[1], _cultureInfo);
+                        var z = int.Parse(valueStrings[2], _cultureInfo);
+
+                        value = new Vector3Int(x, y, z);
                     }
 
                     propertyInfo.SetValue(tableData, value);
