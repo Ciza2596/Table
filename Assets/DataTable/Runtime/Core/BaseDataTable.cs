@@ -12,7 +12,8 @@ namespace DataTable
     {
         //private variable
         private const string SPACE_TAG = " ";
-        private const string VECTOR_SPLIT_TAG = ":";
+        private const string VECTOR_SPLIT_TAG = ",";
+        private const string FLOAT_TAG = "f";
 
         private static CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
         private Dictionary<string, TTableData> _dataTableMap;
@@ -34,9 +35,9 @@ namespace DataTable
 
         public void Release()
         {
-            if(!IsInitialized)
+            if (!IsInitialized)
                 return;
-            
+
             _dataTableMap.Clear();
             _dataTableMap = null;
         }
@@ -125,7 +126,7 @@ namespace DataTable
                     propertyInfo.SetValue(tableData, value);
                     return;
                 }
-                
+
                 if (propertyType.IsEnum)
                 {
                     if (string.IsNullOrWhiteSpace(valueString))
@@ -155,6 +156,8 @@ namespace DataTable
                     propertyInfo.SetValue(tableData, value);
                     return;
                 }
+                
+                valueString = GetValueStringWithNotFloatTag(valueString);
 
                 if (propertyType == typeof(double))
                 {
@@ -203,7 +206,7 @@ namespace DataTable
                     {
                         var valueStrings = valueString.Split(VECTOR_SPLIT_TAG);
 
-                        if (valueString.Length != 2)
+                        if (valueStrings.Length != 2)
                         {
                             Debug.LogError(
                                 $"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key} TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString} - Vector2's valueString length isnt 2");
@@ -227,7 +230,7 @@ namespace DataTable
                     {
                         var valueStrings = valueString.Split(VECTOR_SPLIT_TAG);
 
-                        if (valueString.Length != 2)
+                        if (valueStrings.Length != 2)
                         {
                             Debug.LogError(
                                 $"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key} TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString} - Vector2Int's valueString length isnt 2");
@@ -251,7 +254,7 @@ namespace DataTable
                     {
                         var valueStrings = valueString.Split(VECTOR_SPLIT_TAG);
 
-                        if (valueString.Length != 3)
+                        if (valueStrings.Length != 3)
                         {
                             Debug.LogError(
                                 $"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key} TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString} - Vector3's valueString length isnt 3");
@@ -276,7 +279,7 @@ namespace DataTable
                     {
                         var valueStrings = valueString.Split(VECTOR_SPLIT_TAG);
 
-                        if (valueString.Length != 3)
+                        if (valueStrings.Length != 3)
                         {
                             Debug.LogError(
                                 $"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key} TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString} - Vector3's valueString length isnt 3");
@@ -305,10 +308,20 @@ namespace DataTable
         private string GetValueStringWithNotSpaceAndLower(string origin)
         {
             var valueString = origin.ToLower(_cultureInfo);
-            
+
             if (valueString.Contains(SPACE_TAG))
                 valueString = valueString.Replace(SPACE_TAG, null);
 
+
+            return valueString;
+        }
+
+        private string GetValueStringWithNotFloatTag(string origin)
+        {
+            var valueString = origin.ToLower(_cultureInfo);
+
+            if (valueString.Contains(FLOAT_TAG))
+                valueString = valueString.Replace(FLOAT_TAG, null);
 
             return valueString;
         }
