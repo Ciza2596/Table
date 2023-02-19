@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 134
+    x: 63
     y: 53
-    width: 1417
+    width: 1657
     height: 921
   m_ShowMode: 4
   m_Title: Project
@@ -39,12 +39,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 913
+    x: 672
     y: 0
-    width: 115
+    width: 269
     height: 425
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 25}
   m_Panes:
   - {fileID: 25}
@@ -67,7 +67,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 202
+    width: 252
     height: 425
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
@@ -91,9 +91,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1028
+    x: 941
     y: 0
-    width: 116
+    width: 299
     height: 425
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
@@ -117,9 +117,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 225
+    x: 677
     y: 0
-    width: 919
+    width: 563
     height: 446
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
@@ -147,12 +147,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 425
-    width: 1144
+    width: 1240
     height: 446
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 137
+  controlID: 132
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,12 +172,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1417
+    width: 1657
     height: 871
   m_MinSize: {x: 500, y: 100}
   m_MaxSize: {x: 40480, y: 16192}
   vertical: 0
-  controlID: 19
+  controlID: 130
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -193,12 +193,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1144
+    x: 1240
     y: 0
-    width: 273
+    width: 417
     height: 871
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -222,7 +222,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 225
+    width: 677
     height: 446
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
@@ -253,7 +253,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1417
+    width: 1657
     height: 921
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -278,7 +278,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1417
+    width: 1657
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -300,7 +300,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 901
-    width: 1417
+    width: 1657
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -323,12 +323,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1144
+    width: 1240
     height: 871
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 20
+  controlID: 131
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -350,12 +350,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1144
+    width: 1240
     height: 425
   m_MinSize: {x: 400, y: 50}
   m_MaxSize: {x: 32384, y: 8096}
   vertical: 0
-  controlID: 21
+  controlID: 48
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -371,9 +371,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 202
+    x: 252
     y: 0
-    width: 711
+    width: 420
     height: 425
   m_MinSize: {x: 802, y: 271}
   m_MaxSize: {x: 4002, y: 4021}
@@ -584,9 +584,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 336
+    x: 315
     y: 83
-    width: 709
+    width: 418
     height: 404
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -653,9 +653,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 134
-    y: 83
-    width: 201
+    x: 0
+    y: 19
+    width: 251
     height: 404
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -722,9 +722,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1000
+    x: 1225
     y: 83
-    width: 595
+    width: 524
     height: 850
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -736,7 +736,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 19376
+    ID: 6704
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -761,15 +761,31 @@ MonoBehaviour:
     oldSplitSize: 0
   m_TestTypeToolbarIndex: 1
   m_PlayModeTestListGUI:
-    m_Window: {fileID: 0}
-    m_NewResultList: []
+    m_Window: {fileID: 20}
+    m_NewResultList:
+    - id: 1005
+      uniqueId: '[DataTable][suite]'
+      name: DataTable
+      fullName: DataTable
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
     m_ResultText: 
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 
+      m_ExpandedIDs: 5671711fffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -793,17 +809,18 @@ MonoBehaviour:
       NotRunHidden: 0
       m_SearchString: 
       selectedCategoryMask: 0
-      availableCategories: []
+      availableCategories:
+      - Uncategorized
     m_SelectedOption: 0
   m_EditModeTestListGUI:
     m_Window: {fileID: 20}
     m_NewResultList:
     - id: 1000
-      uniqueId: '[GenericModule][suite]'
-      name: GenericModule
-      fullName: GenericModule
+      uniqueId: '[DataTable][suite]'
+      name: DataTable
+      fullName: DataTable
       resultStatus: 1
-      duration: 0.2169101
+      duration: 0.5693735
       messages: 
       output: 
       stacktrace: 
@@ -814,13 +831,12 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
-    - id: 1009
-      uniqueId: '[CameraModule.Test][/Users/cizahuang/Documents/Game/Unity/Tool/GenericModule
-        /Library/ScriptAssemblies/CameraModule.Test.dll][suite]'
-      name: CameraModule.Test.dll
-      fullName: /Users/cizahuang/Documents/Game/Unity/Tool/GenericModule /Library/ScriptAssemblies/CameraModule.Test.dll
+    - id: 1011
+      uniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+      name: DataTable.Test.dll
+      fullName: /Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll
       resultStatus: 1
-      duration: 0.0624865
+      duration: 0.5339589
       messages: 
       output: 
       stacktrace: 
@@ -830,13 +846,13 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentId: 1000
-      parentUniqueId: '[GenericModule][suite]'
+      parentUniqueId: '[DataTable][suite]'
     - id: 1001
-      uniqueId: CameraModule.Test.dll/[CameraModule.Test][CameraModuleTest][suite]
-      name: CameraModuleTest
-      fullName: CameraModuleTest
+      uniqueId: DataTable.Test.dll/[DataTable.Test][BoolDataTableTest][suite]
+      name: BoolDataTableTest
+      fullName: BoolDataTableTest
       resultStatus: 1
-      duration: 0.0614871
+      duration: 0.3821151
       messages: 
       output: 
       stacktrace: 
@@ -845,98 +861,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1009
-      parentUniqueId: '[CameraModule.Test][/Users/cizahuang/Documents/Game/Unity/Tool/GenericModule
-        /Library/ScriptAssemblies/CameraModule.Test.dll][suite]'
-    - id: 1008
-      uniqueId: CameraModule.Test.dll/CameraModuleTest/[CameraModule.Test][CameraModuleTest.Should_Success_When_CloseCamera][suite]
-      name: Should_Success_When_CloseCamera
-      fullName: CameraModuleTest.Should_Success_When_CloseCamera
-      resultStatus: 1
-      duration: 0.028038
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1001
-      parentUniqueId: CameraModule.Test.dll/[CameraModule.Test][CameraModuleTest][suite]
-    - id: 1007
-      uniqueId: CameraModule.Test.dll/CameraModuleTest/Should_Success_When_CloseCamera/[CameraModule.Test][CameraModuleTest.Should_Success_When_CloseCamera("123")]
-      name: Should_Success_When_CloseCamera("123")
-      fullName: CameraModuleTest.Should_Success_When_CloseCamera("123")
-      resultStatus: 1
-      duration: 0.0222854
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1008
-      parentUniqueId: CameraModule.Test.dll/CameraModuleTest/[CameraModule.Test][CameraModuleTest.Should_Success_When_CloseCamera][suite]
-    - id: 1006
-      uniqueId: CameraModule.Test.dll/CameraModuleTest/[CameraModule.Test][CameraModuleTest.Should_Success_When_OpenCamera][suite]
-      name: Should_Success_When_OpenCamera
-      fullName: CameraModuleTest.Should_Success_When_OpenCamera
-      resultStatus: 1
-      duration: 0.0160114
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1001
-      parentUniqueId: CameraModule.Test.dll/[CameraModule.Test][CameraModuleTest][suite]
-    - id: 1005
-      uniqueId: CameraModule.Test.dll/CameraModuleTest/Should_Success_When_OpenCamera/[CameraModule.Test][CameraModuleTest.Should_Success_When_OpenCamera("123")]
-      name: Should_Success_When_OpenCamera("123")
-      fullName: CameraModuleTest.Should_Success_When_OpenCamera("123")
-      resultStatus: 1
-      duration: 0.0004599
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1006
-      parentUniqueId: CameraModule.Test.dll/CameraModuleTest/[CameraModule.Test][CameraModuleTest.Should_Success_When_OpenCamera][suite]
-    - id: 1002
-      uniqueId: CameraModule.Test.dll/CameraModuleTest/[CameraModule.Test][CameraModuleTest.Should_Success_When_Register]
-      name: Should_Success_When_Register
-      fullName: CameraModuleTest.Should_Success_When_Register
-      resultStatus: 1
-      duration: 0.0001402
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: CameraModule.Test.dll/[CameraModule.Test][CameraModuleTest][suite]
+      parentId: 1011
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
     - id: 1004
-      uniqueId: CameraModule.Test.dll/CameraModuleTest/[CameraModule.Test][CameraModuleTest.Should_Success_When_SetCameraData][suite]
-      name: Should_Success_When_SetCameraData
-      fullName: CameraModuleTest.Should_Success_When_SetCameraData
+      uniqueId: DataTable.Test.dll/BoolDataTableTest/[DataTable.Test][BoolDataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: BoolDataTableTest._01_Initialize
       resultStatus: 1
-      duration: 0.0056525
+      duration: 0.2862051
       messages: 
       output: 
       stacktrace: 
@@ -946,13 +878,80 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentId: 1001
-      parentUniqueId: CameraModule.Test.dll/[CameraModule.Test][CameraModuleTest][suite]
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][BoolDataTableTest][suite]
     - id: 1003
-      uniqueId: CameraModule.Test.dll/CameraModuleTest/Should_Success_When_SetCameraData/[CameraModule.Test][CameraModuleTest.Should_Success_When_SetCameraData("123",1000)]
-      name: Should_Success_When_SetCameraData("123",1000)
-      fullName: CameraModuleTest.Should_Success_When_SetCameraData("123",1000)
+      uniqueId: DataTable.Test.dll/BoolDataTableTest/_01_Initialize/[DataTable.Test][BoolDataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: BoolDataTableTest._01_Initialize(2,2)
       resultStatus: 1
-      duration: 0.0009794
+      duration: 0.2801743
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1005
+      parentUniqueId: DataTable.Test.dll/BoolDataTableTest/[DataTable.Test][BoolDataTableTest._01_Initialize][suite]
+    - id: 1005
+      uniqueId: DataTable.Test.dll/BoolDataTableTest/[DataTable.Test][BoolDataTableTest._02_Release]
+      name: _02_Release
+      fullName: BoolDataTableTest._02_Release
+      resultStatus: 1
+      duration: 0.0002406
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][BoolDataTableTest][suite]
+    - id: 1006
+      uniqueId: DataTable.Test.dll/BoolDataTableTest/[DataTable.Test][BoolDataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: BoolDataTableTest._03_TryGetTableData
+      resultStatus: 1
+      duration: 0.0015072
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][BoolDataTableTest][suite]
+    - id: 1004
+      uniqueId: DataTable.Test.dll/BoolDataTableTest/[DataTable.Test][BoolDataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: BoolDataTableTest._04_CheckValueIsEqual
+      resultStatus: 1
+      duration: 0.0184717
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1001
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][BoolDataTableTest][suite]
+    - id: 1002
+      uniqueId: DataTable.Test.dll/BoolDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][BoolDataTableTest._04_CheckValueIsEqual(True,"True")]
+      name: _04_CheckValueIsEqual(True,"True")
+      fullName: BoolDataTableTest._04_CheckValueIsEqual(True,"True")
+      resultStatus: 1
+      duration: 0.0013344
       messages: 
       output: 
       stacktrace: 
@@ -963,14 +962,30 @@ MonoBehaviour:
       categories:
       - Uncategorized
       parentId: 1004
-      parentUniqueId: CameraModule.Test.dll/CameraModuleTest/[CameraModule.Test][CameraModuleTest.Should_Success_When_SetCameraData][suite]
-    - id: 1017
-      uniqueId: '[EventModule.Test][/Users/cizahuang/Documents/Game/Unity/Tool/GenericModule
-        /Library/ScriptAssemblies/EventModule.Test.dll][suite]'
-      name: EventModule.Test.dll
-      fullName: /Users/cizahuang/Documents/Game/Unity/Tool/GenericModule /Library/ScriptAssemblies/EventModule.Test.dll
+      parentUniqueId: DataTable.Test.dll/BoolDataTableTest/[DataTable.Test][BoolDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1003
+      uniqueId: DataTable.Test.dll/BoolDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][BoolDataTableTest._04_CheckValueIsEqual(False,"false")]
+      name: _04_CheckValueIsEqual(False,"false")
+      fullName: BoolDataTableTest._04_CheckValueIsEqual(False,"false")
       resultStatus: 1
-      duration: 0.1718153
+      duration: 0.0001279
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1004
+      parentUniqueId: DataTable.Test.dll/BoolDataTableTest/[DataTable.Test][BoolDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1009
+      uniqueId: DataTable.Test.dll/[DataTable.Test][DoubaleDataTableTest][suite]
+      name: DoubaleDataTableTest
+      fullName: DoubaleDataTableTest
+      resultStatus: 1
+      duration: 0.0178946
       messages: 
       output: 
       stacktrace: 
@@ -979,14 +994,149 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1000
-      parentUniqueId: '[GenericModule][suite]'
-    - id: 1010
-      uniqueId: EventModule.Test.dll/[EventModule.Test][EventModuleTest][suite]
-      name: EventModuleTest
-      fullName: EventModuleTest
+      parentId: 1057
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1014
+      uniqueId: DataTable.Test.dll/DoubaleDataTableTest/[DataTable.Test][DoubaleDataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: DoubaleDataTableTest._01_Initialize
       resultStatus: 1
-      duration: 0.1704921
+      duration: 0.0047116
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1009
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][DoubaleDataTableTest][suite]
+    - id: 1013
+      uniqueId: DataTable.Test.dll/DoubaleDataTableTest/_01_Initialize/[DataTable.Test][DoubaleDataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: DoubaleDataTableTest._01_Initialize(2,2)
+      resultStatus: 1
+      duration: 0.0009573
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1014
+      parentUniqueId: DataTable.Test.dll/DoubaleDataTableTest/[DataTable.Test][DoubaleDataTableTest._01_Initialize][suite]
+    - id: 1015
+      uniqueId: DataTable.Test.dll/DoubaleDataTableTest/[DataTable.Test][DoubaleDataTableTest._02_Release]
+      name: _02_Release
+      fullName: DoubaleDataTableTest._02_Release
+      resultStatus: 1
+      duration: 0.0001131
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1009
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][DoubaleDataTableTest][suite]
+    - id: 1016
+      uniqueId: DataTable.Test.dll/DoubaleDataTableTest/[DataTable.Test][DoubaleDataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: DoubaleDataTableTest._03_TryGetTableData
+      resultStatus: 1
+      duration: 0.0001144
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1009
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][DoubaleDataTableTest][suite]
+    - id: 1012
+      uniqueId: DataTable.Test.dll/DoubaleDataTableTest/[DataTable.Test][DoubaleDataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: DoubaleDataTableTest._04_CheckValueIsEqual
+      resultStatus: 1
+      duration: 0.0058497
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1009
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][DoubaleDataTableTest][suite]
+    - id: 1010
+      uniqueId: DataTable.Test.dll/DoubaleDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][DoubaleDataTableTest._04_CheckValueIsEqual(1.1d,"1.
+        1")]
+      name: _04_CheckValueIsEqual(1.1d,"1. 1")
+      fullName: DoubaleDataTableTest._04_CheckValueIsEqual(1.1d,"1. 1")
+      resultStatus: 1
+      duration: 0.000936
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: DataTable.Test.dll/DoubaleDataTableTest/[DataTable.Test][DoubaleDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1011
+      uniqueId: DataTable.Test.dll/DoubaleDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][DoubaleDataTableTest._04_CheckValueIsEqual(8.0d,"8
+        .0")]
+      name: _04_CheckValueIsEqual(8.0d,"8 .0")
+      fullName: DoubaleDataTableTest._04_CheckValueIsEqual(8.0d,"8 .0")
+      resultStatus: 1
+      duration: 0.000126
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: DataTable.Test.dll/DoubaleDataTableTest/[DataTable.Test][DoubaleDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1017
+      uniqueId: DataTable.Test.dll/[DataTable.Test][EnumDataTableTest][suite]
+      name: EnumDataTableTest
+      fullName: EnumDataTableTest
+      resultStatus: 1
+      duration: 0.0141647
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1057
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1022
+      uniqueId: DataTable.Test.dll/EnumDataTableTest/[DataTable.Test][EnumDataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: EnumDataTableTest._01_Initialize
+      resultStatus: 1
+      duration: 0.0043708
       messages: 
       output: 
       stacktrace: 
@@ -996,14 +1146,13 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentId: 1017
-      parentUniqueId: '[EventModule.Test][/Users/cizahuang/Documents/Game/Unity/Tool/GenericModule
-        /Library/ScriptAssemblies/EventModule.Test.dll][suite]'
-    - id: 1015
-      uniqueId: EventModule.Test.dll/EventModuleTest/[EventModule.Test][EventModuleTest.Should_HasntAsyncEventDelegateContainer_When_RemoveAsyncListener]
-      name: Should_HasntAsyncEventDelegateContainer_When_RemoveAsyncListener
-      fullName: EventModuleTest.Should_HasntAsyncEventDelegateContainer_When_RemoveAsyncListener
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][EnumDataTableTest][suite]
+    - id: 1021
+      uniqueId: DataTable.Test.dll/EnumDataTableTest/_01_Initialize/[DataTable.Test][EnumDataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: EnumDataTableTest._01_Initialize(2,2)
       resultStatus: 1
-      duration: 0.080043
+      duration: 0.0006753
       messages: 
       output: 
       stacktrace: 
@@ -1013,14 +1162,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1010
-      parentUniqueId: EventModule.Test.dll/[EventModule.Test][EventModuleTest][suite]
-    - id: 1012
-      uniqueId: EventModule.Test.dll/EventModuleTest/[EventModule.Test][EventModuleTest.Should_HasntSyncEventDelegateContainer_When_RemoveSyncListener]
-      name: Should_HasntSyncEventDelegateContainer_When_RemoveSyncListener
-      fullName: EventModuleTest.Should_HasntSyncEventDelegateContainer_When_RemoveSyncListener
+      parentId: 1022
+      parentUniqueId: DataTable.Test.dll/EnumDataTableTest/[DataTable.Test][EnumDataTableTest._01_Initialize][suite]
+    - id: 1023
+      uniqueId: DataTable.Test.dll/EnumDataTableTest/[DataTable.Test][EnumDataTableTest._02_Release]
+      name: _02_Release
+      fullName: EnumDataTableTest._02_Release
       resultStatus: 1
-      duration: 0.0005469
+      duration: 0.0001153
       messages: 
       output: 
       stacktrace: 
@@ -1030,14 +1179,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1010
-      parentUniqueId: EventModule.Test.dll/[EventModule.Test][EventModuleTest][suite]
-    - id: 1014
-      uniqueId: EventModule.Test.dll/EventModuleTest/[EventModule.Test][EventModuleTest.Should_HasOneAsyncEventDelegateContainer_When_AddAsyncListener]
-      name: Should_HasOneAsyncEventDelegateContainer_When_AddAsyncListener
-      fullName: EventModuleTest.Should_HasOneAsyncEventDelegateContainer_When_AddAsyncListener
+      parentId: 1017
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][EnumDataTableTest][suite]
+    - id: 1024
+      uniqueId: DataTable.Test.dll/EnumDataTableTest/[DataTable.Test][EnumDataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: EnumDataTableTest._03_TryGetTableData
       resultStatus: 1
-      duration: 0.0001233
+      duration: 0.0001202
       messages: 
       output: 
       stacktrace: 
@@ -1047,66 +1196,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1010
-      parentUniqueId: EventModule.Test.dll/[EventModule.Test][EventModuleTest][suite]
-    - id: 1011
-      uniqueId: EventModule.Test.dll/EventModuleTest/[EventModule.Test][EventModuleTest.Should_HasOneSyncEventDelegateContainer_When_AddSyncListener]
-      name: Should_HasOneSyncEventDelegateContainer_When_AddSyncListener
-      fullName: EventModuleTest.Should_HasOneSyncEventDelegateContainer_When_AddSyncListener
+      parentId: 1017
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][EnumDataTableTest][suite]
+    - id: 1020
+      uniqueId: DataTable.Test.dll/EnumDataTableTest/[DataTable.Test][EnumDataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: EnumDataTableTest._04_CheckValueIsEqual
       resultStatus: 1
-      duration: 0.0001163
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1010
-      parentUniqueId: EventModule.Test.dll/[EventModule.Test][EventModuleTest][suite]
-    - id: 1016
-      uniqueId: EventModule.Test.dll/EventModuleTest/[EventModule.Test][EventModuleTest.Should_isTestAsyncActionTriggerBeTrue_When_NotifyAsyncEvent]
-      name: Should_isTestAsyncActionTriggerBeTrue_When_NotifyAsyncEvent
-      fullName: EventModuleTest.Should_isTestAsyncActionTriggerBeTrue_When_NotifyAsyncEvent
-      resultStatus: 1
-      duration: 0.0045131
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1010
-      parentUniqueId: EventModule.Test.dll/[EventModule.Test][EventModuleTest][suite]
-    - id: 1013
-      uniqueId: EventModule.Test.dll/EventModuleTest/[EventModule.Test][EventModuleTest.Should_isTestSyncActionTriggerBeTrue_When_NotifySyncEvent]
-      name: Should_isTestSyncActionTriggerBeTrue_When_NotifySyncEvent
-      fullName: EventModuleTest.Should_isTestSyncActionTriggerBeTrue_When_NotifySyncEvent
-      resultStatus: 1
-      duration: 0.0004312
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1010
-      parentUniqueId: EventModule.Test.dll/[EventModule.Test][EventModuleTest][suite]
-    - id: 1018
-      uniqueId: '[ViewModule.Test][/Users/cizahuang/Documents/Game/Unity/Tool/GenericModule
-        /Library/ScriptAssemblies/ViewModule.Test.dll][suite]'
-      name: ViewModule.Test.dll
-      fullName: /Users/cizahuang/Documents/Game/Unity/Tool/GenericModule /Library/ScriptAssemblies/ViewModule.Test.dll
-      resultStatus: 1
-      duration: 0.2221054
+      duration: 0.0049578
       messages: 
       output: 
       stacktrace: 
@@ -1115,14 +1212,48 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1000
-      parentUniqueId: '[GenericModule][suite]'
-    - id: 1016
-      uniqueId: ViewModule.Test.dll/[ViewModule.Test][ViewModuleTest][suite]
-      name: ViewModuleTest
-      fullName: ViewModuleTest
+      parentId: 1017
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][EnumDataTableTest][suite]
+    - id: 1018
+      uniqueId: DataTable.Test.dll/EnumDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][EnumDataTableTest._04_CheckValueIsEqual(0,"0")]
+      name: _04_CheckValueIsEqual(0,"0")
+      fullName: EnumDataTableTest._04_CheckValueIsEqual(0,"0")
       resultStatus: 1
-      duration: 0.2147049
+      duration: 0.0004027
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1020
+      parentUniqueId: DataTable.Test.dll/EnumDataTableTest/[DataTable.Test][EnumDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1019
+      uniqueId: DataTable.Test.dll/EnumDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][EnumDataTableTest._04_CheckValueIsEqual(0,"Enum1")]
+      name: _04_CheckValueIsEqual(0,"Enum1")
+      fullName: EnumDataTableTest._04_CheckValueIsEqual(0,"Enum1")
+      resultStatus: 1
+      duration: 0.0001276
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1020
+      parentUniqueId: DataTable.Test.dll/EnumDataTableTest/[DataTable.Test][EnumDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1025
+      uniqueId: DataTable.Test.dll/[DataTable.Test][FloatDataTableTest][suite]
+      name: FloatDataTableTest
+      fullName: FloatDataTableTest
+      resultStatus: 1
+      duration: 0.0148414
       messages: 
       output: 
       stacktrace: 
@@ -1131,15 +1262,30 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1018
-      parentUniqueId: '[ViewModule.Test][/Users/cizahuang/Documents/Game/Unity/Tool/GenericModule
-        /Library/ScriptAssemblies/ViewModule.Test.dll][suite]'
-    - id: 1019
-      uniqueId: ViewModule.Test.dll/ViewModuleTest/[ViewModule.Test][ViewModuleTest.Should_Success_When_HideView]
-      name: Should_Success_When_HideView
-      fullName: ViewModuleTest.Should_Success_When_HideView
+      parentId: 1057
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1030
+      uniqueId: DataTable.Test.dll/FloatDataTableTest/[DataTable.Test][FloatDataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: FloatDataTableTest._01_Initialize
       resultStatus: 1
-      duration: 0.2003719
+      duration: 0.0046549
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1025
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][FloatDataTableTest][suite]
+    - id: 1029
+      uniqueId: DataTable.Test.dll/FloatDataTableTest/_01_Initialize/[DataTable.Test][FloatDataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: FloatDataTableTest._01_Initialize(2,2)
+      resultStatus: 1
+      duration: 0.0009134
       messages: 
       output: 
       stacktrace: 
@@ -1149,14 +1295,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1014
-      parentUniqueId: ViewModule.Test.dll/[ViewModule.Test][ViewModuleTest][suite]
-    - id: 1017
-      uniqueId: ViewModule.Test.dll/ViewModuleTest/[ViewModule.Test][ViewModuleTest.Should_Success_When_LoadView]
-      name: Should_Success_When_LoadView
-      fullName: ViewModuleTest.Should_Success_When_LoadView
+      parentId: 1030
+      parentUniqueId: DataTable.Test.dll/FloatDataTableTest/[DataTable.Test][FloatDataTableTest._01_Initialize][suite]
+    - id: 1031
+      uniqueId: DataTable.Test.dll/FloatDataTableTest/[DataTable.Test][FloatDataTableTest._02_Release]
+      name: _02_Release
+      fullName: FloatDataTableTest._02_Release
       resultStatus: 1
-      duration: 0.0079646
+      duration: 0.0001321
       messages: 
       output: 
       stacktrace: 
@@ -1166,14 +1312,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1016
-      parentUniqueId: ViewModule.Test.dll/[ViewModule.Test][ViewModuleTest][suite]
-    - id: 1019
-      uniqueId: ViewModule.Test.dll/ViewModuleTest/[ViewModule.Test][ViewModuleTest.Should_Success_When_ReleaseAllViews]
-      name: Should_Success_When_ReleaseAllViews
-      fullName: ViewModuleTest.Should_Success_When_ReleaseAllViews
+      parentId: 1025
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][FloatDataTableTest][suite]
+    - id: 1032
+      uniqueId: DataTable.Test.dll/FloatDataTableTest/[DataTable.Test][FloatDataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: FloatDataTableTest._03_TryGetTableData
       resultStatus: 1
-      duration: 0.0009108
+      duration: 0.0001371
       messages: 
       output: 
       stacktrace: 
@@ -1183,14 +1329,31 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1016
-      parentUniqueId: ViewModule.Test.dll/[ViewModule.Test][ViewModuleTest][suite]
-    - id: 1018
-      uniqueId: ViewModule.Test.dll/ViewModuleTest/[ViewModule.Test][ViewModuleTest.Should_Success_When_ReleaseView]
-      name: Should_Success_When_ReleaseView
-      fullName: ViewModuleTest.Should_Success_When_ReleaseView
+      parentId: 1025
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][FloatDataTableTest][suite]
+    - id: 1028
+      uniqueId: DataTable.Test.dll/FloatDataTableTest/[DataTable.Test][FloatDataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: FloatDataTableTest._04_CheckValueIsEqual
       resultStatus: 1
-      duration: 0.0006133
+      duration: 0.0051497
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1025
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][FloatDataTableTest][suite]
+    - id: 1026
+      uniqueId: DataTable.Test.dll/FloatDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][FloatDataTableTest._04_CheckValueIsEqual(1.8f,"1  
+        .8")]
+      name: _04_CheckValueIsEqual(1.8f,"1   .8")
+      fullName: FloatDataTableTest._04_CheckValueIsEqual(1.8f,"1   .8")
+      resultStatus: 1
+      duration: 0.0008002
       messages: 
       output: 
       stacktrace: 
@@ -1200,14 +1363,15 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1016
-      parentUniqueId: ViewModule.Test.dll/[ViewModule.Test][ViewModuleTest][suite]
-    - id: 1018
-      uniqueId: ViewModule.Test.dll/ViewModuleTest/[ViewModule.Test][ViewModuleTest.Should_Success_When_ShowView]
-      name: Should_Success_When_ShowView
-      fullName: ViewModuleTest.Should_Success_When_ShowView
+      parentId: 1028
+      parentUniqueId: DataTable.Test.dll/FloatDataTableTest/[DataTable.Test][FloatDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1027
+      uniqueId: DataTable.Test.dll/FloatDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][FloatDataTableTest._04_CheckValueIsEqual(6.1f,"
+        6.1 ")]
+      name: _04_CheckValueIsEqual(6.1f," 6.1 ")
+      fullName: FloatDataTableTest._04_CheckValueIsEqual(6.1f," 6.1 ")
       resultStatus: 1
-      duration: 0.0006936
+      duration: 0.0001223
       messages: 
       output: 
       stacktrace: 
@@ -1217,15 +1381,887 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1014
-      parentUniqueId: ViewModule.Test.dll/[ViewModule.Test][ViewModuleTest][suite]
-    m_ResultText: EventModule.Test.dll (0.172s)
+      parentId: 1028
+      parentUniqueId: DataTable.Test.dll/FloatDataTableTest/[DataTable.Test][FloatDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1033
+      uniqueId: DataTable.Test.dll/[DataTable.Test][IntDataTableTest][suite]
+      name: IntDataTableTest
+      fullName: IntDataTableTest
+      resultStatus: 1
+      duration: 0.0139367
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1057
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1038
+      uniqueId: DataTable.Test.dll/IntDataTableTest/[DataTable.Test][IntDataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: IntDataTableTest._01_Initialize
+      resultStatus: 1
+      duration: 0.0044236
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1033
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][IntDataTableTest][suite]
+    - id: 1037
+      uniqueId: DataTable.Test.dll/IntDataTableTest/_01_Initialize/[DataTable.Test][IntDataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: IntDataTableTest._01_Initialize(2,2)
+      resultStatus: 1
+      duration: 0.0006364
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1038
+      parentUniqueId: DataTable.Test.dll/IntDataTableTest/[DataTable.Test][IntDataTableTest._01_Initialize][suite]
+    - id: 1039
+      uniqueId: DataTable.Test.dll/IntDataTableTest/[DataTable.Test][IntDataTableTest._02_Release]
+      name: _02_Release
+      fullName: IntDataTableTest._02_Release
+      resultStatus: 1
+      duration: 0.0001115
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1033
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][IntDataTableTest][suite]
+    - id: 1040
+      uniqueId: DataTable.Test.dll/IntDataTableTest/[DataTable.Test][IntDataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: IntDataTableTest._03_TryGetTableData
+      resultStatus: 1
+      duration: 0.0001154
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1033
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][IntDataTableTest][suite]
+    - id: 1036
+      uniqueId: DataTable.Test.dll/IntDataTableTest/[DataTable.Test][IntDataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: IntDataTableTest._04_CheckValueIsEqual
+      resultStatus: 1
+      duration: 0.0045591
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1033
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][IntDataTableTest][suite]
+    - id: 1034
+      uniqueId: DataTable.Test.dll/IntDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][IntDataTableTest._04_CheckValueIsEqual(0,"
+        0 ")]
+      name: _04_CheckValueIsEqual(0," 0 ")
+      fullName: IntDataTableTest._04_CheckValueIsEqual(0," 0 ")
+      resultStatus: 1
+      duration: 0.0003234
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1036
+      parentUniqueId: DataTable.Test.dll/IntDataTableTest/[DataTable.Test][IntDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1035
+      uniqueId: DataTable.Test.dll/IntDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][IntDataTableTest._04_CheckValueIsEqual(10,"1 
+        0")]
+      name: _04_CheckValueIsEqual(10,"1  0")
+      fullName: IntDataTableTest._04_CheckValueIsEqual(10,"1  0")
+      resultStatus: 1
+      duration: 0.0001328
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1036
+      parentUniqueId: DataTable.Test.dll/IntDataTableTest/[DataTable.Test][IntDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1041
+      uniqueId: DataTable.Test.dll/[DataTable.Test][LongDataTableTest][suite]
+      name: LongDataTableTest
+      fullName: LongDataTableTest
+      resultStatus: 1
+      duration: 0.0138872
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1057
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1046
+      uniqueId: DataTable.Test.dll/LongDataTableTest/[DataTable.Test][LongDataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: LongDataTableTest._01_Initialize
+      resultStatus: 1
+      duration: 0.0045013
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1041
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][LongDataTableTest][suite]
+    - id: 1045
+      uniqueId: DataTable.Test.dll/LongDataTableTest/_01_Initialize/[DataTable.Test][LongDataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: LongDataTableTest._01_Initialize(2,2)
+      resultStatus: 1
+      duration: 0.000682
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1046
+      parentUniqueId: DataTable.Test.dll/LongDataTableTest/[DataTable.Test][LongDataTableTest._01_Initialize][suite]
+    - id: 1047
+      uniqueId: DataTable.Test.dll/LongDataTableTest/[DataTable.Test][LongDataTableTest._02_Release]
+      name: _02_Release
+      fullName: LongDataTableTest._02_Release
+      resultStatus: 1
+      duration: 0.0001131
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1041
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][LongDataTableTest][suite]
+    - id: 1048
+      uniqueId: DataTable.Test.dll/LongDataTableTest/[DataTable.Test][LongDataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: LongDataTableTest._03_TryGetTableData
+      resultStatus: 1
+      duration: 0.0001125
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1041
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][LongDataTableTest][suite]
+    - id: 1044
+      uniqueId: DataTable.Test.dll/LongDataTableTest/[DataTable.Test][LongDataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: LongDataTableTest._04_CheckValueIsEqual
+      resultStatus: 1
+      duration: 0.0048268
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1041
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][LongDataTableTest][suite]
+    - id: 1042
+      uniqueId: DataTable.Test.dll/LongDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][LongDataTableTest._04_CheckValueIsEqual(1000,"1000")]
+      name: _04_CheckValueIsEqual(1000,"1000")
+      fullName: LongDataTableTest._04_CheckValueIsEqual(1000,"1000")
+      resultStatus: 1
+      duration: 0.0006896
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1044
+      parentUniqueId: DataTable.Test.dll/LongDataTableTest/[DataTable.Test][LongDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1043
+      uniqueId: DataTable.Test.dll/LongDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][LongDataTableTest._04_CheckValueIsEqual(99,"9
+        9 ")]
+      name: _04_CheckValueIsEqual(99,"9 9 ")
+      fullName: LongDataTableTest._04_CheckValueIsEqual(99,"9 9 ")
+      resultStatus: 1
+      duration: 0.0001171
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1044
+      parentUniqueId: DataTable.Test.dll/LongDataTableTest/[DataTable.Test][LongDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1049
+      uniqueId: DataTable.Test.dll/[DataTable.Test][StringDataTableTest][suite]
+      name: StringDataTableTest
+      fullName: StringDataTableTest
+      resultStatus: 1
+      duration: 0.0134502
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1057
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1054
+      uniqueId: DataTable.Test.dll/StringDataTableTest/[DataTable.Test][StringDataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: StringDataTableTest._01_Initialize
+      resultStatus: 1
+      duration: 0.0044189
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1049
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][StringDataTableTest][suite]
+    - id: 1053
+      uniqueId: DataTable.Test.dll/StringDataTableTest/_01_Initialize/[DataTable.Test][StringDataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: StringDataTableTest._01_Initialize(2,2)
+      resultStatus: 1
+      duration: 0.0005759
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1054
+      parentUniqueId: DataTable.Test.dll/StringDataTableTest/[DataTable.Test][StringDataTableTest._01_Initialize][suite]
+    - id: 1055
+      uniqueId: DataTable.Test.dll/StringDataTableTest/[DataTable.Test][StringDataTableTest._02_Release]
+      name: _02_Release
+      fullName: StringDataTableTest._02_Release
+      resultStatus: 1
+      duration: 0.0001166
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1049
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][StringDataTableTest][suite]
+    - id: 1056
+      uniqueId: DataTable.Test.dll/StringDataTableTest/[DataTable.Test][StringDataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: StringDataTableTest._03_TryGetTableData
+      resultStatus: 1
+      duration: 0.0001066
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1049
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][StringDataTableTest][suite]
+    - id: 1052
+      uniqueId: DataTable.Test.dll/StringDataTableTest/[DataTable.Test][StringDataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: StringDataTableTest._04_CheckValueIsEqual
+      resultStatus: 1
+      duration: 0.0044669
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1049
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][StringDataTableTest][suite]
+    - id: 1050
+      uniqueId: DataTable.Test.dll/StringDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][StringDataTableTest._04_CheckValueIsEqual("Hel
+        lo","Hel lo")]
+      name: _04_CheckValueIsEqual("Hel lo","Hel lo")
+      fullName: StringDataTableTest._04_CheckValueIsEqual("Hel lo","Hel lo")
+      resultStatus: 1
+      duration: 0.0004377
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1052
+      parentUniqueId: DataTable.Test.dll/StringDataTableTest/[DataTable.Test][StringDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1051
+      uniqueId: DataTable.Test.dll/StringDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][StringDataTableTest._04_CheckValueIsEqual("1
+        23 ","1 23 ")]
+      name: _04_CheckValueIsEqual("1 23 ","1 23 ")
+      fullName: StringDataTableTest._04_CheckValueIsEqual("1 23 ","1 23 ")
+      resultStatus: 1
+      duration: 0.0001035
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1052
+      parentUniqueId: DataTable.Test.dll/StringDataTableTest/[DataTable.Test][StringDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1057
+      uniqueId: DataTable.Test.dll/[DataTable.Test][Vector2DataTableTest][suite]
+      name: Vector2DataTableTest
+      fullName: Vector2DataTableTest
+      resultStatus: 1
+      duration: 0.0137675
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1089
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1062
+      uniqueId: DataTable.Test.dll/Vector2DataTableTest/[DataTable.Test][Vector2DataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: Vector2DataTableTest._01_Initialize
+      resultStatus: 1
+      duration: 0.0024411
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1057
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector2DataTableTest][suite]
+    - id: 1061
+      uniqueId: DataTable.Test.dll/Vector2DataTableTest/_01_Initialize/[DataTable.Test][Vector2DataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: Vector2DataTableTest._01_Initialize(2,2)
+      resultStatus: 1
+      duration: 0.0009106
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1062
+      parentUniqueId: DataTable.Test.dll/Vector2DataTableTest/[DataTable.Test][Vector2DataTableTest._01_Initialize][suite]
+    - id: 1063
+      uniqueId: DataTable.Test.dll/Vector2DataTableTest/[DataTable.Test][Vector2DataTableTest._02_Release]
+      name: _02_Release
+      fullName: Vector2DataTableTest._02_Release
+      resultStatus: 1
+      duration: 0.0001196
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1057
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector2DataTableTest][suite]
+    - id: 1064
+      uniqueId: DataTable.Test.dll/Vector2DataTableTest/[DataTable.Test][Vector2DataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: Vector2DataTableTest._03_TryGetTableData
+      resultStatus: 1
+      duration: 0.0001281
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1057
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector2DataTableTest][suite]
+    - id: 1060
+      uniqueId: DataTable.Test.dll/Vector2DataTableTest/[DataTable.Test][Vector2DataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: Vector2DataTableTest._04_CheckValueIsEqual
+      resultStatus: 1
+      duration: 0.0049182
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1057
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector2DataTableTest][suite]
+    - id: 1058
+      uniqueId: DataTable.Test.dll/Vector2DataTableTest/_04_CheckValueIsEqual/[DataTable.Test][Vector2DataTableTest._04_CheckValueIsEqual("1.11f,
+        40.65f")]
+      name: _04_CheckValueIsEqual("1.11f, 40.65f")
+      fullName: Vector2DataTableTest._04_CheckValueIsEqual("1.11f, 40.65f")
+      resultStatus: 1
+      duration: 0.0005434
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1059
+      parentUniqueId: DataTable.Test.dll/Vector2DataTableTest/[DataTable.Test][Vector2DataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1065
+      uniqueId: DataTable.Test.dll/[DataTable.Test][Vector2IntDataTableTest][suite]
+      name: Vector2IntDataTableTest
+      fullName: Vector2IntDataTableTest
+      resultStatus: 1
+      duration: 0.0181258
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1089
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1070
+      uniqueId: DataTable.Test.dll/Vector2IntDataTableTest/[DataTable.Test][Vector2IntDataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: Vector2IntDataTableTest._01_Initialize
+      resultStatus: 1
+      duration: 0.0047725
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1065
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector2IntDataTableTest][suite]
+    - id: 1069
+      uniqueId: DataTable.Test.dll/Vector2IntDataTableTest/_01_Initialize/[DataTable.Test][Vector2IntDataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: Vector2IntDataTableTest._01_Initialize(2,2)
+      resultStatus: 1
+      duration: 0.0010528
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1070
+      parentUniqueId: DataTable.Test.dll/Vector2IntDataTableTest/[DataTable.Test][Vector2IntDataTableTest._01_Initialize][suite]
+    - id: 1071
+      uniqueId: DataTable.Test.dll/Vector2IntDataTableTest/[DataTable.Test][Vector2IntDataTableTest._02_Release]
+      name: _02_Release
+      fullName: Vector2IntDataTableTest._02_Release
+      resultStatus: 1
+      duration: 0.0001222
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1065
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector2IntDataTableTest][suite]
+    - id: 1072
+      uniqueId: DataTable.Test.dll/Vector2IntDataTableTest/[DataTable.Test][Vector2IntDataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: Vector2IntDataTableTest._03_TryGetTableData
+      resultStatus: 1
+      duration: 0.0001227
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1065
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector2IntDataTableTest][suite]
+    - id: 1068
+      uniqueId: DataTable.Test.dll/Vector2IntDataTableTest/[DataTable.Test][Vector2IntDataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: Vector2IntDataTableTest._04_CheckValueIsEqual
+      resultStatus: 1
+      duration: 0.0046469
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1065
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector2IntDataTableTest][suite]
+    - id: 1065
+      uniqueId: DataTable.Test.dll/Vector2IntDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][Vector2IntDataTableTest._04_CheckValueIsEqual("1,
+        2")]
+      name: _04_CheckValueIsEqual("1, 2")
+      fullName: Vector2IntDataTableTest._04_CheckValueIsEqual("1, 2")
+      resultStatus: 1
+      duration: 0.0005422
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1066
+      parentUniqueId: DataTable.Test.dll/Vector2IntDataTableTest/[DataTable.Test][Vector2IntDataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1073
+      uniqueId: DataTable.Test.dll/[DataTable.Test][Vector3DataTableTest][suite]
+      name: Vector3DataTableTest
+      fullName: Vector3DataTableTest
+      resultStatus: 1
+      duration: 0.0134912
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1089
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1078
+      uniqueId: DataTable.Test.dll/Vector3DataTableTest/[DataTable.Test][Vector3DataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: Vector3DataTableTest._01_Initialize
+      resultStatus: 1
+      duration: 0.004394
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1073
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector3DataTableTest][suite]
+    - id: 1077
+      uniqueId: DataTable.Test.dll/Vector3DataTableTest/_01_Initialize/[DataTable.Test][Vector3DataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: Vector3DataTableTest._01_Initialize(2,2)
+      resultStatus: 1
+      duration: 0.0006685
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1078
+      parentUniqueId: DataTable.Test.dll/Vector3DataTableTest/[DataTable.Test][Vector3DataTableTest._01_Initialize][suite]
+    - id: 1079
+      uniqueId: DataTable.Test.dll/Vector3DataTableTest/[DataTable.Test][Vector3DataTableTest._02_Release]
+      name: _02_Release
+      fullName: Vector3DataTableTest._02_Release
+      resultStatus: 1
+      duration: 0.0001288
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1073
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector3DataTableTest][suite]
+    - id: 1080
+      uniqueId: DataTable.Test.dll/Vector3DataTableTest/[DataTable.Test][Vector3DataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: Vector3DataTableTest._03_TryGetTableData
+      resultStatus: 1
+      duration: 0.0001267
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1073
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector3DataTableTest][suite]
+    - id: 1076
+      uniqueId: DataTable.Test.dll/Vector3DataTableTest/[DataTable.Test][Vector3DataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: Vector3DataTableTest._04_CheckValueIsEqual
+      resultStatus: 1
+      duration: 0.0043516
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1073
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector3DataTableTest][suite]
+    - id: 1072
+      uniqueId: DataTable.Test.dll/Vector3DataTableTest/_04_CheckValueIsEqual/[DataTable.Test][Vector3DataTableTest._04_CheckValueIsEqual("16.15f,
+        93.2f, 0.56f")]
+      name: _04_CheckValueIsEqual("16.15f, 93.2f, 0.56f")
+      fullName: Vector3DataTableTest._04_CheckValueIsEqual("16.15f, 93.2f, 0.56f")
+      resultStatus: 1
+      duration: 0.0004872
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1073
+      parentUniqueId: DataTable.Test.dll/Vector3DataTableTest/[DataTable.Test][Vector3DataTableTest._04_CheckValueIsEqual][suite]
+    - id: 1081
+      uniqueId: DataTable.Test.dll/[DataTable.Test][Vector3IntDataTableTest][suite]
+      name: Vector3IntDataTableTest
+      fullName: Vector3IntDataTableTest
+      resultStatus: 1
+      duration: 0.0162773
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1089
+      parentUniqueId: '[DataTable.Test][/Users/cizahuang/Documents/Game/Unity/Tool/DataTable/Library/ScriptAssemblies/DataTable.Test.dll][suite]'
+    - id: 1086
+      uniqueId: DataTable.Test.dll/Vector3IntDataTableTest/[DataTable.Test][Vector3IntDataTableTest._01_Initialize][suite]
+      name: _01_Initialize
+      fullName: Vector3IntDataTableTest._01_Initialize
+      resultStatus: 1
+      duration: 0.004552
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1081
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector3IntDataTableTest][suite]
+    - id: 1085
+      uniqueId: DataTable.Test.dll/Vector3IntDataTableTest/_01_Initialize/[DataTable.Test][Vector3IntDataTableTest._01_Initialize(2,2)]
+      name: _01_Initialize(2,2)
+      fullName: Vector3IntDataTableTest._01_Initialize(2,2)
+      resultStatus: 1
+      duration: 0.0007758
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1086
+      parentUniqueId: DataTable.Test.dll/Vector3IntDataTableTest/[DataTable.Test][Vector3IntDataTableTest._01_Initialize][suite]
+    - id: 1087
+      uniqueId: DataTable.Test.dll/Vector3IntDataTableTest/[DataTable.Test][Vector3IntDataTableTest._02_Release]
+      name: _02_Release
+      fullName: Vector3IntDataTableTest._02_Release
+      resultStatus: 1
+      duration: 0.0001187
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1081
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector3IntDataTableTest][suite]
+    - id: 1088
+      uniqueId: DataTable.Test.dll/Vector3IntDataTableTest/[DataTable.Test][Vector3IntDataTableTest._03_TryGetTableData]
+      name: _03_TryGetTableData
+      fullName: Vector3IntDataTableTest._03_TryGetTableData
+      resultStatus: 1
+      duration: 0.000118
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1081
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector3IntDataTableTest][suite]
+    - id: 1084
+      uniqueId: DataTable.Test.dll/Vector3IntDataTableTest/[DataTable.Test][Vector3IntDataTableTest._04_CheckValueIsEqual][suite]
+      name: _04_CheckValueIsEqual
+      fullName: Vector3IntDataTableTest._04_CheckValueIsEqual
+      resultStatus: 1
+      duration: 0.0070326
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1081
+      parentUniqueId: DataTable.Test.dll/[DataTable.Test][Vector3IntDataTableTest][suite]
+    - id: 1079
+      uniqueId: DataTable.Test.dll/Vector3IntDataTableTest/_04_CheckValueIsEqual/[DataTable.Test][Vector3IntDataTableTest._04_CheckValueIsEqual("16,
+        435, 9999")]
+      name: _04_CheckValueIsEqual("16, 435, 9999")
+      fullName: Vector3IntDataTableTest._04_CheckValueIsEqual("16, 435, 9999")
+      resultStatus: 1
+      duration: 0.0007364
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1080
+      parentUniqueId: DataTable.Test.dll/Vector3IntDataTableTest/[DataTable.Test][Vector3IntDataTableTest._04_CheckValueIsEqual][suite]
+    m_ResultText: DataTable (0.569s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 68505699
-      m_LastClickedID: -1722396568
-      m_ExpandedIDs: 26e38490089746aaf3598fe86a5044facea7d10838b395157a53581e20ffa921ff01b93e183e3b7d6975d37dffffff7f
+      m_SelectedIDs: 5671711f
+      m_LastClickedID: 527528278
+      m_ExpandedIDs: 97d7008926e38490089746aafba16ab25a9424baf3598fe8f0ccc9f36a5044facea7d10838b395157a53581e5671711f20ffa921134d0133ff01b93e4723f278183e3b7d6975d37dffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1271,9 +2307,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 359
+    x: 740
     y: 508
-    width: 917
+    width: 561
     height: 425
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1297,23 +2333,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Example
+    - Assets/Example/Extension1 GoogleSheetLoader/Script/Runtime
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Example
+  - Assets/Example/Extension1 GoogleSheetLoader/Script/Runtime
   m_LastFoldersGridSize: 16
   m_LastProjectPath: /Users/cizahuang/Documents/Game/Unity/Tool/DataTable
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 6c620000
-    m_LastClickedID: 25196
-    m_ExpandedIDs: 0000000066620000
+    m_SelectedIDs: a8680000
+    m_LastClickedID: 26792
+    m_ExpandedIDs: 00000000006300000c6300000e6300004263000044630000466300004a63000098630000666800009068000094680000c2680000ee680000f0680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1341,7 +2377,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 
+    m_ExpandedIDs: 0000000000630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1380,7 +2416,7 @@ MonoBehaviour:
         y: 0
         width: 0
         height: 0
-      m_UserData: 25420
+      m_UserData: 26754
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -1396,7 +2432,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 262
+  m_DirectoriesAreaWidth: 259
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1417,9 +2453,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1278
-    y: 83
-    width: 272
+    x: 1241
+    y: 19
+    width: 416
     height: 850
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1463,9 +2499,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1162
-    y: 83
-    width: 114
+    x: 942
+    y: 19
+    width: 297
     height: 404
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1479,9 +2515,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 96e7ffff
+      m_SelectedIDs: 0e630000
       m_LastClickedID: 0
-      m_ExpandedIDs: 1cfbffff
+      m_ExpandedIDs: a822feff9e25feffe62bfeff462ffeff3432feff6233feff544bfefffc4dfeff705cfeffc872feffe474feff8c7ffeffb888feffa08afeff028bfeffea8cfeff0e9bfefffcc2feffb2c5feff18fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1933,9 +2969,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1047
-    y: 83
-    width: 113
+    x: 673
+    y: 19
+    width: 267
     height: 404
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1988,23 +3024,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 113
+      width: 267
       height: 383
-    m_Scale: {x: 0.058854166, y: 0.058854166}
-    m_Translation: {x: 56.5, y: 191.5}
+    m_Scale: {x: 0.1390625, y: 0.1390625}
+    m_Translation: {x: 133.5, y: 191.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -960
-      y: -3253.8054
-      width: 1920
-      height: 6507.611
+      x: -960.00006
+      y: -1377.0787
+      width: 1920.0001
+      height: 2754.1575
     m_MinimalGUI: 1
-  m_defaultScale: 0.058854166
-  m_LastWindowPixelSize: {x: 113, y: 404}
+  m_defaultScale: 0.1390625
+  m_LastWindowPixelSize: {x: 267, y: 404}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -2030,9 +3066,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 134
-    y: 508
-    width: 224
+    x: 0
+    y: 19
+    width: 676
     height: 425
   m_SerializedDataModeController:
     m_DataMode: 0
