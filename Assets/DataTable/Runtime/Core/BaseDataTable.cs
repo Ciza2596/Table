@@ -11,6 +11,7 @@ namespace DataTable
     public abstract class BaseDataTable<TTableData> where TTableData : BaseTableData, new()
     {
         //private variable
+        private const string SPACE_TAG = " ";
         private const string VECTOR_SPLIT_TAG = ":";
 
         private static CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
@@ -18,11 +19,12 @@ namespace DataTable
 
 
         //public variable
-        public bool IsInitialized => _dataTableMap is null;
+        public bool IsInitialized => _dataTableMap != null;
 
+        public IReadOnlyDictionary<string, TTableData> DataTableMap => _dataTableMap;
 
         //public method
-        public void Initialize(IReadOnlyList<IDataUnit> dataUnits)
+        public void Initialize(IDataUnit[] dataUnits)
         {
             Assert.IsNotNull(dataUnits, $"[{GetType().Name}::Initialize] SheetContent is null.");
 
@@ -32,6 +34,9 @@ namespace DataTable
 
         public void Release()
         {
+            if(!IsInitialized)
+                return;
+            
             _dataTableMap.Clear();
             _dataTableMap = null;
         }
@@ -55,7 +60,7 @@ namespace DataTable
             _dataTableMap.Add(key, tableData);
         }
 
-        private void Parser(IReadOnlyList<IDataUnit> dataUnits)
+        private void Parser(IDataUnit[] dataUnits)
         {
             var tableDataPropertyInfoMap = CreateTableDataPropertyInfoMap();
 
@@ -78,7 +83,7 @@ namespace DataTable
                         continue;
                     }
 
-                    var value = dataValue.Value;
+                    var value = dataValue.ValueString;
                     SetValue(tableDataPropertyInfo, value, tableData);
                 }
 
@@ -111,6 +116,36 @@ namespace DataTable
 
             try
             {
+                if (propertyType == typeof(string))
+                {
+                    var value = string.IsNullOrWhiteSpace(valueString)
+                        ? string.Empty
+                        : valueString;
+
+                    propertyInfo.SetValue(tableData, value);
+                    return;
+                }
+                
+                if (propertyType.IsEnum)
+                {
+                    if (string.IsNullOrWhiteSpace(valueString))
+                    {
+                        propertyInfo.SetValue(tableData, Enum.ToObject(propertyType, 0));
+                        return;
+                    }
+
+                    if (valueString.All(char.IsDigit))
+                    {
+                        propertyInfo.SetValue(tableData, Enum.ToObject(propertyType, int.Parse(valueString)));
+                        return;
+                    }
+
+                    propertyInfo.SetValue(tableData, Enum.Parse(propertyType, valueString));
+                    return;
+                }
+
+                valueString = GetValueStringWithNotSpaceAndLower(valueString);
+
                 if (propertyType == typeof(bool))
                 {
                     var value = string.IsNullOrWhiteSpace(valueString)
@@ -128,24 +163,6 @@ namespace DataTable
                         : double.Parse(valueString, _cultureInfo);
 
                     propertyInfo.SetValue(tableData, value);
-                    return;
-                }
-
-                if (propertyType.IsEnum)
-                {
-                    if (string.IsNullOrWhiteSpace(valueString))
-                    {
-                        propertyInfo.SetValue(tableData, Enum.ToObject(propertyType, 0));
-                        return;
-                    }
-
-                    if (valueString.All(char.IsDigit))
-                    {
-                        propertyInfo.SetValue(tableData, Enum.ToObject(propertyType, int.Parse(valueString)));
-                        return;
-                    }
-
-                    propertyInfo.SetValue(tableData, Enum.Parse(propertyType, valueString));
                     return;
                 }
 
@@ -168,22 +185,12 @@ namespace DataTable
                     propertyInfo.SetValue(tableData, value);
                     return;
                 }
-                
+
                 if (propertyType == typeof(long))
                 {
                     var value = string.IsNullOrWhiteSpace(valueString)
                         ? 0
                         : long.Parse(valueString, _cultureInfo);
-
-                    propertyInfo.SetValue(tableData, value);
-                    return;
-                }
-                
-                if (propertyType == typeof(string))
-                {
-                    var value = string.IsNullOrWhiteSpace(valueString)
-                        ? string.Empty
-                        : valueString;
 
                     propertyInfo.SetValue(tableData, value);
                     return;
@@ -212,7 +219,7 @@ namespace DataTable
                     propertyInfo.SetValue(tableData, value);
                     return;
                 }
-                
+
                 if (propertyType == typeof(Vector2Int))
                 {
                     var value = Vector2Int.zero;
@@ -261,7 +268,7 @@ namespace DataTable
                     propertyInfo.SetValue(tableData, value);
                     return;
                 }
-                
+
                 if (propertyType == typeof(Vector3Int))
                 {
                     var value = Vector3Int.zero;
@@ -292,6 +299,18 @@ namespace DataTable
                 Debug.LogError(
                     $"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key} TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString}");
             }
+        }
+
+
+        private string GetValueStringWithNotSpaceAndLower(string origin)
+        {
+            var valueString = origin.ToLower(_cultureInfo);
+            
+            if (valueString.Contains(SPACE_TAG))
+                valueString = valueString.Replace(SPACE_TAG, null);
+
+
+            return valueString;
         }
     }
 }

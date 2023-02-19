@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,30 +8,20 @@ namespace DataTable.Implement
     public class DataUnit : IDataUnit
     {
         //private variable
-        [SerializeField]
-        private string _key;
+        [SerializeField] private string _key;
+        [SerializeField] private DataValue[] _dataValues;
 
-        [SerializeField]
-        private List<DataValue> _dataValues;
 
-        
+        //constructor
+        public DataUnit(string key, DataValue[] dataValues)
+        {
+            _key = key;
+            _dataValues = dataValues;
+        }
+
+
         //public variable
         public string Key => _key;
-        public IReadOnlyList<IDataValue> DataValues => _dataValues.ToList<IDataValue>();
-    }
-
-    [Serializable]
-    public class DataValue: IDataValue
-    {
-        //private variable
-        [SerializeField]
-        private string _name;
-
-        [SerializeField] private string _value;
-
-
-        //public variable
-        public string Name => _name;
-        public string Value => _value;
+        public IDataValue[] DataValues => _dataValues.ToArray<IDataValue>();
     }
 }

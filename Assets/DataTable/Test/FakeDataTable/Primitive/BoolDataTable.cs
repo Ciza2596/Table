@@ -6,5 +6,5 @@ public class BoolDataTable : BaseDataTable<BoolTableData>
 
 public class BoolTableData : BaseTableData
 {
-    public bool BoolValue { get; private set; }
+    public bool Value { get; private set; }
 }
