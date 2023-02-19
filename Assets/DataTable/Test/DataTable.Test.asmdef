@@ -1,7 +1,8 @@
 {
-    "name": "DataTable.Editor",
-    "rootNamespace": "DataTable.Editor",
+    "name": "DataTable.Test",
+    "rootNamespace": "",
     "references": [
+        "UnityEditor.TestRunner",
         "DataTable"
     ],
     "includePlatforms": [
