@@ -14,12 +14,10 @@ namespace GoogleSheetLoader.Editor
 
         private GoogleSheetLoader _googleSheetLoader;
 
-        private string _webService;
-        private string _sheetId;
-        private string _pageId;
-        
-        
         private bool _isBusy;
+        
+        private string _sheetId;
+        private string _subSheetId;
 
 
         //constructor
@@ -33,8 +31,18 @@ namespace GoogleSheetLoader.Editor
 
         //public variable
         public bool IsBusy => _isBusy;
+
+        public string SheetId => _sheetId;
+        public string SubSheetId => _subSheetId;
+
+
         public SubSheetContent SubSheetContent => _subSheetContent;
 
+        
+        //public method
+        public void SetIsBusy(bool isBusy) =>
+            _isBusy = isBusy;
+        
 
         //private method
         [HorizontalGroup("動作")]
@@ -67,5 +75,9 @@ namespace GoogleSheetLoader.Editor
             AssetDatabase.SaveAssets();
             Debug.Log($"[SubSheetContentInfo::Remove] Remove content file : {assetPath}.");
         }
+
+        public void Initialize(string csv) =>
+            _subSheetContent.Initialize(csv);
+        
     }
 }

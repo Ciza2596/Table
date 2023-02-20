@@ -26,19 +26,21 @@ namespace GoogleSheetLoader.Editor
 
 
         //public method
-        public void UpdateSubSheetContent(SubSheetContentInfo subSheetContentInfo)
+        public async Task UpdateSubSheetContent(SubSheetContentInfo subSheetContentInfo)
         {
+            subSheetContentInfo.SetIsBusy(true);
+
+            var webService = _webServices[_currentWebServiceIndex];
+            var sheetId = subSheetContentInfo.SheetId;
+            var subSheetId = subSheetContentInfo.SubSheetId;
+
+            var csv = await GoogleGetCSV(webService, sheetId, subSheetId);
+            subSheetContentInfo.Initialize(csv);
+
+            subSheetContentInfo.SetIsBusy(false);
         }
 
-        public void RemoveSubSheetContent(SubSheetContent subSheetContent)
-        {
-            var assetPath = AssetDatabase.GetAssetPath(subSheetContent);
-            AssetDatabase.DeleteAsset(assetPath);
-            AssetDatabase.SaveAssets();
-            Debug.Log($"[ContentManager:RemoveSubSheetContent] Remove content file : {assetPath}.");
-        }
-        
-        
+
         #region Google Helper
 
         /// <summary>
@@ -63,16 +65,16 @@ namespace GoogleSheetLoader.Editor
         /// 取得CSV
         /// </summary>
         /// <param name="service">服務位址</param>
-        /// <param name="ssid">表單ID</param>
-        /// <param name="gid">分頁ID</param>
+        /// <param name="subSheetId">表單ID</param>
+        /// <param name="sheetId">分頁ID</param>
         /// <returns>pageCSV</returns>
-        public async Task<string> GoogleGetCSV(string service, string ssid, string gid)
+        public async Task<string> GoogleGetCSV(string service, string sheetId, string subSheetId)
         {
             var action = "GetRawCSV";
             var parameters = new Dictionary<string, string>
             {
-                { "key", ssid },
-                { "gid", gid },
+                { "key", sheetId },
+                { "gid", subSheetId },
             };
 
             var requestURL = new RequestURL(service, action, parameters);
@@ -82,17 +84,13 @@ namespace GoogleSheetLoader.Editor
         /// <summary>
         /// 取得分頁名稱
         /// </summary>
-        /// <param name="service">服務位址</param>
-        /// <param name="ssid">表單ID</param>
-        /// <param name="gid">分頁ID</param>
-        /// <returns>分頁名稱</returns>
-        public async Task<string> GoogleGetPageName(string service, string ssid, string gid)
+        public async Task<string> GoogleGetPageName(string service, string sheetId, string subSheetId)
         {
             var action = "GetSheetName";
             var parameters = new Dictionary<string, string>
             {
-                { "key", ssid },
-                { "gid", gid },
+                { "key", sheetId },
+                { "gid", subSheetId },
             };
 
             var requestURL = new RequestURL(service, action, parameters);
@@ -102,15 +100,9 @@ namespace GoogleSheetLoader.Editor
         /// <summary>
         /// 打開指定的表單頁面
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="ssid"></param>
-        /// <param name="gid"></param>
-        /// <param name="row"></param>
-        /// <param name="column"></param>
-        /// <param name="action"></param>
-        public void GoogleOpenURL(string service, string ssid, string gid, int row = 0, int column = 0)
+        public void GoogleOpenURL(string service, string sheetId, string subSheetId, int row = 0, int column = 0)
         {
-            var request = $"{service}?key={ssid}&gid={gid}&action=GetRawCSV";
+            var request = $"{service}?key={sheetId}&gid={subSheetId}&action=GetRawCSV";
 
             if (row > 0 && column > 0)
                 request += string.Format("&row={0}&column={1}", row, column);
