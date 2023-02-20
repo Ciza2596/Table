@@ -19,7 +19,7 @@ namespace GoogleSheetLoader.Editor
         [Title("靜態表設定", "設定需要從雲端下載的表單")] [VerticalGroup("SpreadsheetsSetting")]
         private SheetInfo[] _sheetInfos;
 
-        [TableList(IsReadOnly = true)] private List<SheetContentInfo> _sheetContentInfos;
+        [TableList(IsReadOnly = true)] private  List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
 
 
         private GoogleHelper.GoogleHelper _googleHelper = new GoogleHelper.GoogleHelper();
@@ -38,6 +38,136 @@ namespace GoogleSheetLoader.Editor
             subSheetContentInfo.Initialize(csv);
 
             subSheetContentInfo.SetIsBusy(false);
+        }
+
+
+        //private method
+
+        /*/// <summary>
+        /// 從google更新靜態表
+        /// </summary>
+        [VerticalGroup("SpreadsheetsSetting")]
+        [Button("下載/更新所有表單")]
+        private async void GetSpreadsheets()
+        {
+            if (SpreadsheetPageGids == null || SpreadsheetPageGids.Count <= 0) return;
+
+            Debug.Log("[ContentManager:GetSpreadsheets] Start check Spreadsheets....");
+
+            foreach (PageGID sheet in SpreadsheetPageGids)
+            {
+                string spreadsheetId = sheet.ParentSheet;
+
+                if (string.IsNullOrEmpty(spreadsheetId)) continue;
+
+                string result = await GoogleGetSpreadsheets(WebServices[CurrentWebServiceURL], spreadsheetId);
+                List<object> jsonResult = Json.Deserialize(result) as List<object>;
+
+                foreach (List<object> sheetInfo in jsonResult)
+                {
+                    string sheetName = sheetInfo[0].ToString();
+                    string gid = sheetInfo[1].ToString();
+
+                    InfoGID infoGID = sheet.Sheets.FirstOrDefault(item => item.Gid == gid);
+                    if (infoGID == null)
+                    {
+                        sheet.Sheets.Add(new InfoGID() { Gid = gid, Description = sheetName });
+                        Debug.Log($"[ContentManager:GetSpreadsheets] Add new sheet GID {gid} : {sheetName}.");
+                    }
+                    else
+                    {
+                        if (infoGID.Description != sheetName)
+                        {
+                            infoGID.Description = sheetName;
+                            Debug.Log($"[ContentManager:GetSpreadsheets] Sheet name change {gid} : {sheetName}.");
+                        }
+                    }
+                }
+
+                sheet.Sheets = sheet.Sheets.OrderByDescending(sheetInfo => sheetInfo.IsUsing).ToList();
+            }
+
+            Debug.Log("[ContentManager:GetSpreadsheets] Spreadsheets is update.");
+        }
+
+        /// <summary>
+        /// 更新Scriptable Content
+        /// 讀取SpreadsheetPageGids中 is using 為true的物件
+        /// </summary>
+        [Button("更新Scriptable Content")]
+        [ButtonGroup("ContentList")]
+        [GUIColor(0, 1, 0)]
+        [DisableIf("IsBusy")]
+        private async void UpdateUsedContentList()
+        {
+            if (IsBusy) return;
+
+            IsBusy = true;
+
+            List<Task> updateTasks = new List<Task>();
+
+            foreach (PageGID page in SpreadsheetPageGids)
+            {
+                foreach (InfoGID sheet in page.Sheets)
+                {
+                    if (sheet.IsUsing)
+                    {
+                        SpreadsheetContentInfo contentInfo =
+                            UsedContent.FirstOrDefault(item => item.Content.PageGid == sheet.Gid);
+                        if (contentInfo == null)
+                        {
+                            SpreadsheetContent content =
+                                ScriptableObjectUtility.CreateScriptableObject<SpreadsheetContent>(
+                                    ScriptableContentPath, sheet.Description, true);
+                            content.WebService = WebServices[CurrentWebServiceURL];
+                            content.PageGid = sheet.Gid;
+                            content.SpreadsheetID = page.ParentSheet;
+                            contentInfo = new SpreadsheetContentInfo() { Content = content, _contentManager = this };
+                            UsedContent.Add(contentInfo);
+
+                            EditorUtility.SetDirty(this);
+
+                            Debug.Log(
+                                $"[ContentManager:UpdateUsedContentList] Create new content {sheet.Description}.");
+                        }
+
+                        updateTasks.Add(UpdateContentSheet(contentInfo));
+                    }
+                }
+            }
+
+            await Task.WhenAll(updateTasks);
+
+            EditorUtility.SetDirty(this);
+            AssetDatabase.SaveAssets();
+            IsBusy = false;
+        }*/
+
+        [Button("清除所有Scriptable Content")]
+        [ButtonGroup("ContentList")]
+        [GUIColor(1, 0, 0)]
+        [DisableIf("IsBusy")]
+        private void RemoveAllScriptableContent()
+        {
+            var sheetContentInfos = _sheetContentInfos.ToArray();
+            _sheetContentInfos.Clear();
+
+
+            foreach (var sheetContentInfo in sheetContentInfos)
+                sheetContentInfo.RemoveAll();
+            
+            Debug.Log("[ContentManager:RemoveAllScriptableContent] All content is clear.");
+        }
+
+
+        [GUIColor(0, 1, 1)]
+        [Button("ResetBusy")]
+        private void ResetBusy()
+        {
+            var sheetContentInfos = _sheetContentInfos.ToArray();
+            foreach (var sheetContentInfo in sheetContentInfos)
+            foreach (var subSheetContentInfo in sheetContentInfo.SubSheetContentInfos)
+                subSheetContentInfo.SetIsBusy(false);
         }
 
 
