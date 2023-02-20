@@ -7,7 +7,7 @@ using UnityEngine;
 namespace GoogleSheetLoader
 {
     [Serializable]
-    public class SheetContent : SerializedScriptableObject
+    public class SubSheetContent : SerializedScriptableObject
     {
         //private variable
         [ReadOnly] [SerializeField] private string _webService;
