@@ -10,13 +10,6 @@ namespace GoogleSheetLoader
     public class SubSheetContent : SerializedScriptableObject
     {
         //private variable
-        [ReadOnly] [SerializeField] private string _webService;
-
-        [ReadOnly] [SerializeField] private string _sheetId;
-
-        [ReadOnly] [SerializeField] private string _pageId;
-
-
         [TableList] [SerializeField] private List<DataUnit> _dataUnits;
 
         [Header("已匯入資料(Raw)")] private string[,] _rawData;

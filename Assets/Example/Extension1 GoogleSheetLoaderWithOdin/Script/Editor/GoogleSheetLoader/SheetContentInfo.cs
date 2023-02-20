@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace GoogleSheetLoader.Editor
 {
@@ -23,12 +24,29 @@ namespace GoogleSheetLoader.Editor
 
 
         //public method
+        public void UpdateAll()
+        {
+            var subSheetContentInfos = SubSheetContentInfos;
+
+            foreach (var subSheetContentInfo in subSheetContentInfos)
+                subSheetContentInfo.Update();
+        }
+
+        public void RemoveAll()
+        {
+            var subSheetContentInfos = SubSheetContentInfos;
+
+            foreach (var subSheetContentInfo in subSheetContentInfos)
+            {
+                _subSheetContentInfos.Remove(subSheetContentInfo);
+                subSheetContentInfo.Remove();
+            }
+        }
+
+
         public void SetSheetContentPath(string sheetContentPath) => _sheetContentPath = sheetContentPath;
 
         public void AddSubSheetContentInfo(SubSheetContentInfo subSheetContentInfo) =>
             _subSheetContentInfos.Add(subSheetContentInfo);
-
-        public void RemoveSubSheetContentInfo(SubSheetContentInfo subSheetContentInfo) =>
-            _subSheetContentInfos.Remove(subSheetContentInfo);
     }
 }

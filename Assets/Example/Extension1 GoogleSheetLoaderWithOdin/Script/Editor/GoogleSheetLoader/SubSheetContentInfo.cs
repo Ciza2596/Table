@@ -1,5 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
+using UnityEditor;
+using UnityEngine;
 
 namespace GoogleSheetLoader.Editor
 {
@@ -10,18 +12,21 @@ namespace GoogleSheetLoader.Editor
         [TableColumnWidth(200)] [VerticalGroup("ScriptableObject")] [ReadOnly]
         private SubSheetContent _subSheetContent;
 
-        private SheetContentInfo _sheetContentInfo;
         private GoogleSheetLoader _googleSheetLoader;
 
+        private string _webService;
+        private string _sheetId;
+        private string _pageId;
+        
+        
         private bool _isBusy;
 
 
         //constructor
-        public SubSheetContentInfo(SubSheetContent subSheetContent, SheetContentInfo sheetContentInfo,
+        public SubSheetContentInfo(SubSheetContent subSheetContent,
             GoogleSheetLoader googleSheetLoader)
         {
             _subSheetContent = subSheetContent;
-            _sheetContentInfo = sheetContentInfo;
             _googleSheetLoader = googleSheetLoader;
         }
 
@@ -36,7 +41,7 @@ namespace GoogleSheetLoader.Editor
         [Button("更新")]
         [GUIColor(0, 1, 0)]
         [DisableIf("IsBusy")]
-        private void Update()
+        public void Update()
         {
             try
             {
@@ -52,13 +57,15 @@ namespace GoogleSheetLoader.Editor
         [GUIColor(1, 0, 0)]
         [Button("移除")]
         [DisableIf("IsBusy")]
-        private void Remove()
+        public void Remove()
         {
-            _sheetContentInfo.RemoveSubSheetContentInfo(this);
-
             var subSheetContent = _subSheetContent;
             _subSheetContent = null;
-            _googleSheetLoader.RemoveSubSheetContent(subSheetContent);
+
+            var assetPath = AssetDatabase.GetAssetPath(subSheetContent);
+            AssetDatabase.DeleteAsset(assetPath);
+            AssetDatabase.SaveAssets();
+            Debug.Log($"[SubSheetContentInfo::Remove] Remove content file : {assetPath}.");
         }
     }
 }
