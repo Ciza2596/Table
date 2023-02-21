@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 
 namespace DataTable
 {
-    public abstract class BaseDataTable<TTableData> where TTableData : BaseTableData, new()
+    public abstract class BaseDataTable<TTableData> where TTableData : BaseTableData
     {
         //private variable
         private const string SPACE_TAG = " ";
@@ -67,9 +67,9 @@ namespace DataTable
 
             foreach (var dataUnit in dataUnits)
             {
-                var tableData = new TTableData();
-
                 var key = dataUnit.Key;
+                var tableData = Activator.CreateInstance(typeof(TTableData), key) as TTableData;
+                
                 var dataValues = dataUnit.DataValues;
 
                 foreach (var dataValue in dataValues)

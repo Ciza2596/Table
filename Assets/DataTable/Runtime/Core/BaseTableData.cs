@@ -2,6 +2,10 @@ namespace DataTable
 {
     public abstract class BaseTableData
     {
-        public string Key { get; private set; }
+        //constructor
+        public BaseTableData(string key) => Key = key;
+        
+        //public variable
+        public string Key { get; }
     }
 }

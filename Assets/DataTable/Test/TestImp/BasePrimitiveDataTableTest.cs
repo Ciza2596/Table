@@ -2,7 +2,7 @@ using DataTable;
 using NUnit.Framework;
 
 public abstract class BasePrimitiveDataTableTest<TDataTable, TTableData>
-    where TDataTable : BaseDataTable<TTableData>, new() where TTableData : BaseTableData, new()
+    where TDataTable : BaseDataTable<TTableData>, new() where TTableData : BaseTableData
 
 {
     //private variable
