@@ -22,8 +22,6 @@ namespace DataTable
         //public variable
         public bool IsInitialized => _dataTableMap != null;
 
-        public IReadOnlyDictionary<string, TTableData> DataTableMap => _dataTableMap;
-
         //public method
         public void Initialize(IDataUnit[] dataUnits)
         {
@@ -42,10 +40,45 @@ namespace DataTable
             _dataTableMap = null;
         }
 
+        public bool TryGetKeys(out string[] keys)
+        {
+            keys = _dataTableMap.Keys.ToArray();
+            
+            return keys != null && keys.Length > 0;
+        }
+
+        public bool TryGetValues(out TTableData[] tableDatas)
+        {
+            tableDatas = _dataTableMap.Values.ToArray();
+            return tableDatas != null && tableDatas.Length > 0;
+        }
+
+        public bool TryGetKeyValuePair(out KeyValuePair<string, TTableData>[] keyValuePairs)
+        {
+            keyValuePairs = _dataTableMap.ToArray();
+            return keyValuePairs != null && keyValuePairs.Length > 0;
+        }
+
         public bool TryGetTableData(string key, out TTableData tableData)
         {
             var hasValue = _dataTableMap.TryGetValue(key, out tableData);
             return hasValue;
+        }
+        
+        public bool TryGetFirstTableData(Predicate<TTableData> match, out TTableData tableData)
+        {
+            var tableDataList = _dataTableMap.Values.ToList();
+            tableData = tableDataList.Find(match);
+
+            return tableData != null;
+        }
+
+        public bool TryGetTableDatas(Predicate<TTableData> match, out TTableData[] tableDatas)
+        {
+            var tableDataList = _dataTableMap.Values.ToList();
+            tableDatas = tableDataList.FindAll(match).ToArray();
+            
+            return tableDatas != null && tableDatas.Length > 0;
         }
 
 
@@ -69,7 +102,7 @@ namespace DataTable
             {
                 var key = dataUnit.Key;
                 var tableData = Activator.CreateInstance(typeof(TTableData), key) as TTableData;
-                
+
                 var dataValues = dataUnit.DataValues;
 
                 foreach (var dataValue in dataValues)
@@ -120,8 +153,8 @@ namespace DataTable
                 if (propertyType == typeof(string))
                 {
                     var value = string.IsNullOrWhiteSpace(valueString)
-                        ? string.Empty
-                        : valueString;
+                                    ? string.Empty
+                                    : valueString;
 
                     propertyInfo.SetValue(tableData, value);
                     return;
@@ -150,20 +183,20 @@ namespace DataTable
                 if (propertyType == typeof(bool))
                 {
                     var value = string.IsNullOrWhiteSpace(valueString)
-                        ? false
-                        : bool.Parse(valueString);
+                                    ? false
+                                    : bool.Parse(valueString);
 
                     propertyInfo.SetValue(tableData, value);
                     return;
                 }
-                
+
                 valueString = GetValueStringWithNotFloatTag(valueString);
 
                 if (propertyType == typeof(double))
                 {
                     var value = string.IsNullOrWhiteSpace(valueString)
-                        ? 0
-                        : double.Parse(valueString, _cultureInfo);
+                                    ? 0
+                                    : double.Parse(valueString, _cultureInfo);
 
                     propertyInfo.SetValue(tableData, value);
                     return;
@@ -172,8 +205,8 @@ namespace DataTable
                 if (propertyType == typeof(float))
                 {
                     var value = string.IsNullOrWhiteSpace(valueString)
-                        ? 0
-                        : float.Parse(valueString, _cultureInfo);
+                                    ? 0
+                                    : float.Parse(valueString, _cultureInfo);
 
                     propertyInfo.SetValue(tableData, value);
                     return;
@@ -182,8 +215,8 @@ namespace DataTable
                 if (propertyType == typeof(int))
                 {
                     var value = string.IsNullOrWhiteSpace(valueString)
-                        ? 0
-                        : int.Parse(valueString, _cultureInfo);
+                                    ? 0
+                                    : int.Parse(valueString, _cultureInfo);
 
                     propertyInfo.SetValue(tableData, value);
                     return;
@@ -192,8 +225,8 @@ namespace DataTable
                 if (propertyType == typeof(long))
                 {
                     var value = string.IsNullOrWhiteSpace(valueString)
-                        ? 0
-                        : long.Parse(valueString, _cultureInfo);
+                                    ? 0
+                                    : long.Parse(valueString, _cultureInfo);
 
                     propertyInfo.SetValue(tableData, value);
                     return;

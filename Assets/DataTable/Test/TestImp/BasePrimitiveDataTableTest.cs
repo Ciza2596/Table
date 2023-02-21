@@ -99,7 +99,8 @@ public abstract class BasePrimitiveDataTableTest<TDataTable, TTableData>
 
     protected void Check_DataTable_DataUnitCount(int expectedCount)
     {
-        var count = _dataTable.DataTableMap.Count;
+        _dataTable.TryGetKeys(out var keys);
+        var count = keys.Length;
         Assert.AreEqual(expectedCount, count,
             $"Count doesnt match. DataTableCount: {count}, ExpectedCount: {expectedCount}");
     }
