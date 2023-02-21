@@ -2,31 +2,30 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-namespace GoogleSheetLoader.Editor
+namespace GoogleSpreadsheetLoader.Editor
 {
     [Serializable]
-    public class SheetContentInfo
+    public class SpreadsheetContentInfo
     {
         //private variable
         [LabelText("Sheet Content存放路徑(建立物件時使用)")] [ReadOnly] [SerializeField]
         private string _sheetContentPath;
 
         [ReadOnly] [SerializeField]
-        private List<SubSheetContentInfo> _subSheetContentInfos = new List<SubSheetContentInfo>();
+        private List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
 
 
         //public variable
         public string SheetContentPath => _sheetContentPath;
 
-        public SubSheetContentInfo[] SubSheetContentInfos => _subSheetContentInfos.ToArray();
+        public SheetContentInfo[] SheetContentInfos => _sheetContentInfos.ToArray();
 
 
         //public method
         public void UpdateAll()
         {
-            var subSheetContentInfos = SubSheetContentInfos;
+            var subSheetContentInfos = SheetContentInfos;
 
             foreach (var subSheetContentInfo in subSheetContentInfos)
                 subSheetContentInfo.Update();
@@ -34,11 +33,11 @@ namespace GoogleSheetLoader.Editor
 
         public void RemoveAll()
         {
-            var subSheetContentInfos = SubSheetContentInfos;
+            var subSheetContentInfos = SheetContentInfos;
 
             foreach (var subSheetContentInfo in subSheetContentInfos)
             {
-                _subSheetContentInfos.Remove(subSheetContentInfo);
+                _sheetContentInfos.Remove(subSheetContentInfo);
                 subSheetContentInfo.Remove();
             }
         }
@@ -46,7 +45,7 @@ namespace GoogleSheetLoader.Editor
 
         public void SetSheetContentPath(string sheetContentPath) => _sheetContentPath = sheetContentPath;
 
-        public void AddSubSheetContentInfo(SubSheetContentInfo subSheetContentInfo) =>
-            _subSheetContentInfos.Add(subSheetContentInfo);
+        public void AddSubSheetContentInfo(SheetContentInfo sheetContentInfo) =>
+            _sheetContentInfos.Add(sheetContentInfo);
     }
 }

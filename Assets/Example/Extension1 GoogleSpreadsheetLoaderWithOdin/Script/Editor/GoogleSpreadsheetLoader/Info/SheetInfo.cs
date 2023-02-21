@@ -2,10 +2,10 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace GoogleSheetLoader.Editor
+namespace GoogleSpreadsheetLoader.Editor
 {
     [Serializable]
-    public class SubSheetInfo
+    public class SheetInfo
     {
         //private variable
         [TableColumnWidth(100)] [ReadOnly] [SerializeField]
@@ -16,7 +16,7 @@ namespace GoogleSheetLoader.Editor
         [SerializeField] private bool _isUsing;
 
         //constructor
-        public SubSheetInfo(string id, string description)
+        public SheetInfo(string id, string description)
         {
             _id = id;
             _description = description;

@@ -4,10 +4,10 @@ using DataTable;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace GoogleSheetLoader
+namespace GoogleSpreadsheetLoader
 {
     [Serializable]
-    public class SubSheetContent : SerializedScriptableObject
+    public class SheetContent : SerializedScriptableObject
     {
         //private variable
         [TableList] [SerializeField] private List<DataUnit> _dataUnits;

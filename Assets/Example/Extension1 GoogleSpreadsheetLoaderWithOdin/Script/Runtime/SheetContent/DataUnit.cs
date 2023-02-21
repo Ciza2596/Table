@@ -3,7 +3,7 @@ using System.Linq;
 using DataTable;
 using UnityEngine;
 
-namespace GoogleSheetLoader
+namespace GoogleSpreadsheetLoader
 {
     [Serializable]
     public class DataUnit : IDataUnit

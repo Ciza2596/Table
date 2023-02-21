@@ -2,13 +2,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using GoogleHelper;
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
 
-namespace GoogleSheetLoader.Editor
+namespace GoogleSpreadsheetLoader.Editor
 {
-    [CreateAssetMenu(fileName = "GoogleSheetLoader", menuName = "GoogleSheetLoader")]
-    public class GoogleSheetLoader : ScriptableObject
+    [CreateAssetMenu(fileName = "GoogleSpreadsheetLoader", menuName = "GoogleSpreadsheetLoader")]
+    public class GoogleSpreadsheetLoader : ScriptableObject
     {
         //private variable
         [Title("Google服務設定", "執行Google apps script位置設定")]
@@ -17,27 +16,27 @@ namespace GoogleSheetLoader.Editor
         [SerializeField] private int _currentWebServiceIndex;
 
         [Title("靜態表設定", "設定需要從雲端下載的表單")] [VerticalGroup("SpreadsheetsSetting")]
-        private SheetInfo[] _sheetInfos;
+        private SpreadsheetInfo[] _sheetInfos;
 
-        [TableList(IsReadOnly = true)] private  List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
+        [TableList(IsReadOnly = true)] private  List<SpreadsheetContentInfo> _sheetContentInfos = new List<SpreadsheetContentInfo>();
 
 
         private GoogleHelper.GoogleHelper _googleHelper = new GoogleHelper.GoogleHelper();
 
 
         //public method
-        public async Task UpdateSubSheetContent(SubSheetContentInfo subSheetContentInfo)
+        public async Task UpdateSubSheetContent(SheetContentInfo sheetContentInfo)
         {
-            subSheetContentInfo.SetIsBusy(true);
+            sheetContentInfo.SetIsBusy(true);
 
             var webService = _webServices[_currentWebServiceIndex];
-            var sheetId = subSheetContentInfo.SheetId;
-            var subSheetId = subSheetContentInfo.SubSheetId;
+            var sheetId = sheetContentInfo.SheetId;
+            var subSheetId = sheetContentInfo.SubSheetId;
 
             var csv = await GoogleGetCSV(webService, sheetId, subSheetId);
-            subSheetContentInfo.Initialize(csv);
+            sheetContentInfo.Initialize(csv);
 
-            subSheetContentInfo.SetIsBusy(false);
+            sheetContentInfo.SetIsBusy(false);
         }
 
 
@@ -166,7 +165,7 @@ namespace GoogleSheetLoader.Editor
         {
             var sheetContentInfos = _sheetContentInfos.ToArray();
             foreach (var sheetContentInfo in sheetContentInfos)
-            foreach (var subSheetContentInfo in sheetContentInfo.SubSheetContentInfos)
+            foreach (var subSheetContentInfo in sheetContentInfo.SheetContentInfos)
                 subSheetContentInfo.SetIsBusy(false);
         }
 

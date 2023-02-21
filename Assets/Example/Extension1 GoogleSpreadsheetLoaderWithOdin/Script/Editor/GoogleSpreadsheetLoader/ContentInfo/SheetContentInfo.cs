@@ -3,16 +3,16 @@ using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
-namespace GoogleSheetLoader.Editor
+namespace GoogleSpreadsheetLoader.Editor
 {
     [Serializable]
-    public class SubSheetContentInfo
+    public class SheetContentInfo
     {
         //private variable
         [TableColumnWidth(200)] [VerticalGroup("ScriptableObject")] [ReadOnly]
-        private SubSheetContent _subSheetContent;
+        private SheetContent _sheetContent;
 
-        private GoogleSheetLoader _googleSheetLoader;
+        private GoogleSpreadsheetLoader _googleSpreadsheetLoader;
 
         private bool _isBusy;
         
@@ -21,11 +21,11 @@ namespace GoogleSheetLoader.Editor
 
 
         //constructor
-        public SubSheetContentInfo(SubSheetContent subSheetContent,
-            GoogleSheetLoader googleSheetLoader)
+        public SheetContentInfo(SheetContent sheetContent,
+            GoogleSpreadsheetLoader googleSpreadsheetLoader)
         {
-            _subSheetContent = subSheetContent;
-            _googleSheetLoader = googleSheetLoader;
+            _sheetContent = sheetContent;
+            _googleSpreadsheetLoader = googleSpreadsheetLoader;
         }
 
 
@@ -36,7 +36,7 @@ namespace GoogleSheetLoader.Editor
         public string SubSheetId => _subSheetId;
 
 
-        public SubSheetContent SubSheetContent => _subSheetContent;
+        public SheetContent SheetContent => _sheetContent;
 
         
         //public method
@@ -53,7 +53,7 @@ namespace GoogleSheetLoader.Editor
         {
             try
             {
-                _googleSheetLoader.UpdateSubSheetContent(this);
+                _googleSpreadsheetLoader.UpdateSubSheetContent(this);
             }
             catch (Exception ex)
             {
@@ -67,8 +67,8 @@ namespace GoogleSheetLoader.Editor
         [DisableIf("IsBusy")]
         public void Remove()
         {
-            var subSheetContent = _subSheetContent;
-            _subSheetContent = null;
+            var subSheetContent = _sheetContent;
+            _sheetContent = null;
 
             var assetPath = AssetDatabase.GetAssetPath(subSheetContent);
             AssetDatabase.DeleteAsset(assetPath);
@@ -77,7 +77,7 @@ namespace GoogleSheetLoader.Editor
         }
 
         public void Initialize(string csv) =>
-            _subSheetContent.Initialize(csv);
+            _sheetContent.Initialize(csv);
         
     }
 }

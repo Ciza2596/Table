@@ -2,30 +2,30 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace GoogleSheetLoader.Editor
+namespace GoogleSpreadsheetLoader.Editor
 {
     [Serializable]
-    public class SheetInfo
+    public class SpreadsheetInfo
     {
         //private variable
         [LabelText("Sheet Content存放路徑(建立物件時使用)")]
         public string _sheetContentPath = "Assets/_Project/AAS/ScriptableObjects/Tables/";
 
-        [Space] [LabelText("表單位址")] private string _sheetId;
+        [Space] [LabelText("表單位址")] private string _spreadsheetId;
 
         [TableList(HideToolbar = true, AlwaysExpanded = true)]
-        private SubSheetInfo[] _subSheetInfos;
+        private SheetInfo[] _sheetInfos;
 
         //constructor
-        public SheetInfo(string sheetId, SubSheetInfo[] subSheetInfos)
+        public SpreadsheetInfo(string spreadsheetId, SheetInfo[] sheetInfos)
         {
-            _sheetId = sheetId;
-            _subSheetInfos = subSheetInfos;
+            _spreadsheetId = spreadsheetId;
+            _sheetInfos = sheetInfos;
         }
 
         //public variable
         public string SheetContentPath => _sheetContentPath;
-        public string SheetId => _sheetId;
-        public SubSheetInfo[] SubSheetInfos => _subSheetInfos;
+        public string SpreadsheetId => _spreadsheetId;
+        public SheetInfo[] SheetInfos => _sheetInfos;
     }
 }

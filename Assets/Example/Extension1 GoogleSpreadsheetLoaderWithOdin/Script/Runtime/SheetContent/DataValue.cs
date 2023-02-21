@@ -2,7 +2,7 @@ using System;
 using DataTable;
 using UnityEngine;
 
-namespace GoogleSheetLoader
+namespace GoogleSpreadsheetLoader
 {
     [Serializable]
     public class DataValue : IDataValue

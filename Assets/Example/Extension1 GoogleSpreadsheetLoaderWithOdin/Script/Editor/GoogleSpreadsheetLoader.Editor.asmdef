@@ -1,10 +1,12 @@
 {
-    "name": "GoogleSheetLoader",
-    "rootNamespace": "GoogleSheetLoader",
+    "name": "GoogleSpreadsheetLoader.Editor",
+    "rootNamespace": "GoogleSpreadsheetLoader.Editor",
     "references": [
-        "DataTable"
+        "GoogleSpreadsheetLoader"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
