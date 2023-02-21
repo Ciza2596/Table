@@ -19,7 +19,13 @@ namespace DataTable
         private Dictionary<string, TTableData> _dataTableMap;
 
 
+        //constructor
+        public BaseDataTable() => Name = GetType().Name;
+        
+
         //public variable
+        public string Name { get; }
+
         public bool IsInitialized => _dataTableMap != null;
 
         //public method
