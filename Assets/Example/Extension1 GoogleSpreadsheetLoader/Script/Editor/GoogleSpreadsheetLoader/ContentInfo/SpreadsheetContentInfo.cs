@@ -12,14 +12,22 @@ namespace GoogleSpreadsheetLoader.Editor
         [LabelText("Sheet Content存放路徑(建立物件時使用)")] [ReadOnly] [SerializeField]
         private string _sheetContentPath;
 
-        [ReadOnly] [SerializeField]
-        private List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
+        [ReadOnly] [SerializeField] private List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
+
+        private readonly string _spreadsheetInfoId;
 
 
         //public variable
         public string SheetContentPath => _sheetContentPath;
 
         public SheetContentInfo[] SheetContentInfos => _sheetContentInfos.ToArray();
+
+        public string SpreadsheetInfoId => _spreadsheetInfoId;
+
+
+        //constructor
+        public SpreadsheetContentInfo(string spreadsheetInfoId) =>
+            _spreadsheetInfoId = spreadsheetInfoId;
 
 
         //public method
@@ -45,7 +53,24 @@ namespace GoogleSpreadsheetLoader.Editor
 
         public void SetSheetContentPath(string sheetContentPath) => _sheetContentPath = sheetContentPath;
 
-        public void AddSubSheetContentInfo(SheetContentInfo sheetContentInfo) =>
+        public void AddSheetContentInfo(SheetContentInfo sheetContentInfo) =>
             _sheetContentInfos.Add(sheetContentInfo);
+
+        public SheetContentInfo FindSheetContentInfo(string sheetInfoId)
+        {
+            var sheetContentInfo =
+                _sheetContentInfos.Find(sheetContentInfo => sheetContentInfo.SheetInfoId == sheetInfoId);
+            return sheetContentInfo;
+        }
+
+        public SheetContentInfo CreateSheetContentInfo(string sheetInfoId,
+            GoogleSpreadsheetLoader googleSpreadsheetLoader)
+        {
+            var sheetContent = ScriptableObject.CreateInstance<SheetContent>();
+
+            var sheetContentInfo = new SheetContentInfo(sheetInfoId, sheetContent, googleSpreadsheetLoader);
+            _sheetContentInfos.Add(sheetContentInfo);
+            return sheetContentInfo;
+        }
     }
 }

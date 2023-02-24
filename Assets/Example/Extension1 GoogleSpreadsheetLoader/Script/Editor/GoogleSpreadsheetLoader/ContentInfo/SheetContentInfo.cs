@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
@@ -9,57 +10,63 @@ namespace GoogleSpreadsheetLoader.Editor
     public class SheetContentInfo
     {
         //private variable
-        [TableColumnWidth(200)] [VerticalGroup("ScriptableObject")] [ReadOnly]
+        [TableColumnWidth(200)] [VerticalGroup("ScriptableObject")] [ReadOnly] [SerializeField]
         private SheetContent _sheetContent;
 
         private GoogleSpreadsheetLoader _googleSpreadsheetLoader;
 
-        private bool _isBusy;
+        private string _sheetInfoId;
         
+        private bool _isBusy;
+
+        private string _spreadSheetId;
         private string _sheetId;
-        private string _subSheetId;
 
 
         //constructor
-        public SheetContentInfo(SheetContent sheetContent,
+        public SheetContentInfo(string sheetInfoId, SheetContent sheetContent,
             GoogleSpreadsheetLoader googleSpreadsheetLoader)
         {
+            _sheetInfoId = sheetInfoId;
             _sheetContent = sheetContent;
             _googleSpreadsheetLoader = googleSpreadsheetLoader;
         }
 
 
         //public variable
+        public string SheetInfoId => _sheetInfoId;
+        
+        
         public bool IsBusy => _isBusy;
 
+        public string SpreadSheetId => _spreadSheetId;
         public string SheetId => _sheetId;
-        public string SubSheetId => _subSheetId;
 
 
-        public SheetContent SheetContent => _sheetContent;
-
-        
         //public method
         public void SetIsBusy(bool isBusy) =>
             _isBusy = isBusy;
-        
+
 
         //private method
         [HorizontalGroup("動作")]
         [Button("更新")]
         [GUIColor(0, 1, 0)]
         [DisableIf("IsBusy")]
-        public void Update()
+        public async Task Update()
         {
             try
             {
-                _googleSpreadsheetLoader.UpdateSubSheetContent(this);
+                await _googleSpreadsheetLoader.UpdateSheetContent(this);
             }
-            catch (Exception ex)
+            catch
             {
                 _isBusy = false;
             }
         }
+        
+        public void Update(string sheetName, string csv) =>
+            _sheetContent.Update(sheetName, csv);
 
         [HorizontalGroup("動作")]
         [GUIColor(1, 0, 0)]
@@ -75,9 +82,5 @@ namespace GoogleSpreadsheetLoader.Editor
             AssetDatabase.SaveAssets();
             Debug.Log($"[SubSheetContentInfo::Remove] Remove content file : {assetPath}.");
         }
-
-        public void Initialize(string csv) =>
-            _sheetContent.Initialize(csv);
-        
     }
 }

@@ -16,9 +16,9 @@ namespace GoogleSpreadsheetLoader.Editor
         [SerializeField] private bool _isUsing;
 
         //constructor
-        public SheetInfo(string id, string description)
+        public SheetInfo(string description)
         {
-            _id = id;
+            _id = Guid.NewGuid().ToString();
             _description = description;
         }
 

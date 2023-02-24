@@ -20,13 +20,15 @@ namespace GoogleSpreadsheetLoader
 
 
         //public method
-        public void Initialize(string csvFile)
+        public void Update(string sheetName, string csv)
         {
+            this.name = sheetName;
+            
             //讀入 CSV 檔案，使其分為 string 二維陣列
             var csvParser = new CsvParser.CsvParser();
-            var csvTable = csvParser.Parse(csvFile);
+            var csvTable = csvParser.Parse(csv);
 
-            var data = new List<DataUnit>();
+            var dataUnits = new List<DataUnit>();
             var labels = new List<string>();
             var usedLength = csvTable[0].Length;
             for (var i = 0; i < csvTable[0].Length; i++)
@@ -57,7 +59,7 @@ namespace GoogleSpreadsheetLoader
                 var key = csvTable[i][0];
 
                 var dataUnit = new DataUnit(key, dataValues.ToArray());
-                data.Add(dataUnit);
+                dataUnits.Add(dataUnit);
             }
 
             //Read Raw Data
@@ -66,7 +68,7 @@ namespace GoogleSpreadsheetLoader
             for (var j = 0; j < usedLength; j++)
                 rawData[j, i] = csvTable[i][j];
 
-            _dataUnits = data;
+            _dataUnits = dataUnits;
             _rawData = rawData;
         }
     }

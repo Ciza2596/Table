@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b02af40e448047dba4ff6d70f6ff9d5, type: 3}
+  m_Name: GoogleSpreadsheetLoader
+  m_EditorClassIdentifier: 
+  _webServices:
+  - 
+  - 
+  _currentWebServiceIndex: 0
+  _spreadsheetInfos:
+  - _spreadsheetId: 1-OEMPqWX0tYIUE73yd-06ypI7NgSrdxPAfomqvnCsmQ
+    _sheetContentPath: Assets/Example/Extension1 GoogleSpreadsheetLoader/ScriptableObject/DataTable
+    _sheetInfos: []
+  - _spreadsheetId: 1otiVanTt_GPTgWb75d-3yrptErfZF5nKTDItHfJgCUM
+    _sheetContentPath: Assets/Example/Extension1 GoogleSpreadsheetLoader/ScriptableObject/DataTable
+    _sheetInfos: []
+  _usedSpreadsheetContentInfos: []
