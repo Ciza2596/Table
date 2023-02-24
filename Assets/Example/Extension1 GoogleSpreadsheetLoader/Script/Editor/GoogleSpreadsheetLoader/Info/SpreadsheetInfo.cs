@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -15,23 +17,44 @@ namespace GoogleSpreadsheetLoader.Editor
         private string _sheetContentPath = "Assets/_Project/AAS/ScriptableObjects/Tables/";
 
         [TableList(HideToolbar = true, AlwaysExpanded = true)] [SerializeField]
-        private SheetInfo[] _sheetInfos;
+        private List<SheetInfo> _sheetInfos;
         
         private readonly string _id;
 
         //constructor
-        public SpreadsheetInfo(string spreadsheetId, SheetInfo[] sheetInfos)
+        public SpreadsheetInfo(string spreadsheetId, List<SheetInfo> sheetInfos)
         {
+            _id = Guid.NewGuid().ToString();
+            
             _spreadsheetId = spreadsheetId;
             _sheetInfos = sheetInfos;
-            _id = Guid.NewGuid().ToString();
         }
 
         //public variable
+        public string Id => _id;
+        
+        public IReadOnlyList<SheetInfo> SheetInfos => _sheetInfos;
+
         public string SheetContentPath => _sheetContentPath;
         public string SpreadsheetId => _spreadsheetId;
-        public SheetInfo[] SheetInfos => _sheetInfos;
+        
+        //public method
+        public SheetInfo FindSheetInfo(string sheetId)
+        {
+            var sheetInfo = _sheetInfos.Find(sheetInfo => sheetInfo.SheetId == sheetId);
+            return sheetInfo;
+        }
 
-        public string Id => _id;
+        public SheetInfo CreateSheetInfo(string sheetId)
+        {
+            var sheetInfo = new SheetInfo(sheetId);
+            _sheetInfos.Add(sheetInfo);
+
+            return sheetInfo;
+        }
+
+        public void OrderByIsUsing() =>
+            _sheetInfos = _sheetInfos.OrderByDescending(sheetInfo => sheetInfo.IsUsing).ToList();
+        
     }
 }

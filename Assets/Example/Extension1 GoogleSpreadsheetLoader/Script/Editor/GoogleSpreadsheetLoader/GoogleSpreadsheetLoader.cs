@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GoogleHelper;
@@ -18,7 +17,7 @@ namespace GoogleSpreadsheetLoader.Editor
         [SerializeField] private int _currentWebServiceIndex;
 
         [Title("靜態表設定", "設定需要從雲端下載的表單")] [VerticalGroup("SpreadsheetsSetting")] [SerializeField]
-        private SpreadsheetInfo[] _spreadsheetInfos;
+        private List<SpreadsheetInfo> _spreadsheetInfos;
 
         [TableList(IsReadOnly = true)] [SerializeField]
         private List<SpreadsheetContentInfo> _usedSpreadsheetContentInfos = new List<SpreadsheetContentInfo>();
@@ -29,7 +28,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         //public method
-        public async Task UpdateSheetContent(SheetContentInfo sheetContentInfo)
+        public async Task UpdateSheetContentInfo(SheetContentInfo sheetContentInfo)
         {
             sheetContentInfo.SetIsBusy(true);
 
@@ -46,11 +45,52 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         //private method
+        [VerticalGroup("SpreadsheetsSetting")]
+        [Button("下載/更新所有表單GID")]
+        private async void UpdateSpreadsheets()
+        {
+            if (_spreadsheetInfos is null || _spreadsheetInfos.Count <= 0) return;
+
+            Debug.Log("[ContentManager:GetSpreadsheets] Start check Spreadsheets....");
+
+            foreach (var spreadsheetInfo in _spreadsheetInfos)
+            {
+                var spreadsheetId = spreadsheetInfo.SpreadsheetId;
+
+                if (string.IsNullOrEmpty(spreadsheetId)) 
+                    continue;
+
+                var result = await GoogleGetSheets(_webServices[_currentWebServiceIndex], spreadsheetId);
+                var sheets = MiniJson.Deserialize(result) as List<object>;
+
+                foreach (List<object> sheet in sheets)
+                {
+                    var sheetName = sheet[0].ToString();
+                    var sheetId = sheet[1].ToString();
+                    
+                    var sheetInfo = spreadsheetInfo.FindSheetInfo(sheetId);
+
+                    if (sheetInfo is null)
+                        sheetInfo = spreadsheetInfo.CreateSheetInfo(sheetId);
+
+                    if (sheetInfo.Name != sheetName)
+                        sheetInfo.SetName(sheetName);
+
+                }
+
+                spreadsheetInfo.OrderByIsUsing();
+            }
+
+            Debug.Log("[ContentManager:GetSpreadsheets] Spreadsheets is update.");
+        }
+        
+        
+        
         [Button("更新Scriptable Content")]
         [ButtonGroup("ContentList")]
         [GUIColor(0, 1, 0)]
         [DisableIf("_isBusy")]
-        private async void UpdateUsedContentList()
+        private async void UpdateAllUsedContentInfos()
         {
             if (_isBusy) return;
 
@@ -98,7 +138,7 @@ namespace GoogleSpreadsheetLoader.Editor
         [ButtonGroup("ContentList")]
         [GUIColor(1, 0, 0)]
         [DisableIf("_isBusy")]
-        private void RemoveAllSheetContents()
+        private void RemoveAllUsedContentInfos()
         {
             var sheetContentInfos = _usedSpreadsheetContentInfos.ToArray();
             _usedSpreadsheetContentInfos.Clear();
@@ -144,7 +184,7 @@ namespace GoogleSpreadsheetLoader.Editor
         /// <param name="service"></param>
         /// <param name="spreadsheet"></param>
         /// <returns>Json結構GID:SheetName</returns>
-        public async Task<string> GoogleGetSpreadsheets(string service, string spreadsheet)
+        public async Task<string> GoogleGetSheets(string service, string spreadsheet)
         {
             var action = "GetSpreadsheets";
             var parameters = new Dictionary<string, string>

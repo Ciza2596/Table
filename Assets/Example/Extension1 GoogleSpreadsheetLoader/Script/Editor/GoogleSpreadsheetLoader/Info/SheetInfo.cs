@@ -9,23 +9,33 @@ namespace GoogleSpreadsheetLoader.Editor
     {
         //private variable
         [TableColumnWidth(100)] [ReadOnly] [SerializeField]
-        private string _id;
+        private string _sheetId;
 
-        [ReadOnly] [SerializeField] private string _description;
+        [ReadOnly] [SerializeField] private string _name;
 
         [SerializeField] private bool _isUsing;
 
+        private string _id;
+
+        
         //constructor
-        public SheetInfo(string description)
+        public SheetInfo(string sheetId)
         {
             _id = Guid.NewGuid().ToString();
-            _description = description;
+            _sheetId = sheetId;
         }
 
 
         //public variable
         public string Id => _id;
-        public string Description => _description;
+        
+        public string SheetId => _sheetId;
+        public string Name => _name;
         public bool IsUsing => _isUsing;
+
+        
+        //public method
+        public void SetName(string name) =>
+            _name = name;
     }
 }
