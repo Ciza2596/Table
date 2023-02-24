@@ -17,9 +17,7 @@ namespace GoogleSpreadsheetLoader.Editor
         [Title("Spreadsheet preview")] [VerticalGroup("SpreadsheetPreview")] [SerializeField]
         private List<SpreadsheetInfo> _spreadsheetInfos;
 
-        [Title("Used Sheet Content")]
-        [ReadOnly]
-        [SerializeField]
+        [Title("Used Sheet Content")] [ReadOnly] [SerializeField]
         private List<SpreadsheetContentInfo> _usedSpreadsheetContentInfos = new List<SpreadsheetContentInfo>();
 
 
@@ -32,12 +30,11 @@ namespace GoogleSpreadsheetLoader.Editor
         {
             sheetContentInfo.SetIsBusy(true);
 
-            var webService = _webAppUrl;
             var spreadSheetId = sheetContentInfo.SpreadSheetId;
             var sheetId = sheetContentInfo.SheetId;
 
-            var sheetName = await GoogleGetSheetName(webService, spreadSheetId, sheetId);
-            var csv = await GoogleGetCsv(webService, spreadSheetId, sheetId);
+            var sheetName = await GoogleGetSheetName(_webAppUrl, spreadSheetId, sheetId);
+            var csv = await GoogleGetCsv(_webAppUrl, spreadSheetId, sheetId);
             sheetContentInfo.Update(sheetName, csv);
 
             sheetContentInfo.SetIsBusy(false);
@@ -45,7 +42,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         //private method
-        [Title("Google Web Service")] 
+        [Title("Google Web Service")]
         [PropertyOrder(-100)]
         [Button("Open Google App Script Web.")]
         [VerticalGroup("Service")]
@@ -68,8 +65,7 @@ namespace GoogleSpreadsheetLoader.Editor
                 if (string.IsNullOrEmpty(spreadsheetId))
                     continue;
 
-                var result = await GoogleGetSheets(_webAppUrl, spreadsheetId);
-                var sheets = MiniJson.Deserialize(result) as List<object>;
+                var sheets = await GoogleGetSheets(_webAppUrl, spreadsheetId);
 
                 foreach (List<object> sheet in sheets)
                 {
@@ -111,23 +107,28 @@ namespace GoogleSpreadsheetLoader.Editor
 
                 if (spreadsheetContentInfo is null)
                     spreadsheetContentInfo = CreateUsedSpreadSheetContentInfo(spreadsheetInfoId);
-    
+
                 var sheetContentPath = spreadsheetInfo.SheetContentPath;
 
-                if(sheetContentPath != spreadsheetContentInfo.SheetContentPath)
+                if (sheetContentPath != spreadsheetContentInfo.SheetContentPath)
                     spreadsheetContentInfo.SetSheetContentPath(sheetContentPath);
+
+                var spreadsheetId = spreadsheetInfo.SpreadsheetId;
 
                 foreach (var sheetInfo in spreadsheetInfo.SheetInfos)
                 {
                     var sheetInfoId = sheetInfo.Id;
+                    var sheetId = sheetInfo.SheetId;
 
                     var sheetContentInfo = spreadsheetContentInfo.FindSheetContentInfo(sheetInfoId);
                     if (sheetInfo.IsUsing)
                     {
                         if (sheetContentInfo is null)
-                            sheetContentInfo = spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId, this);
+                            sheetContentInfo =
+                                spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId, spreadsheetId, sheetId, "",
+                                    this);
 
-                        sheetContentInfoUpdates.Add(sheetContentInfo.Update());
+                        sheetContentInfoUpdates.Add(UpdateSheetContentInfo(sheetContentInfo));
                         continue;
                     }
 
@@ -195,7 +196,7 @@ namespace GoogleSpreadsheetLoader.Editor
         /// <param name="service"></param>
         /// <param name="spreadsheetId"></param>
         /// <returns>Json結構GID:SheetName</returns>
-        private async Task<string> GoogleGetSheets(string service, string spreadsheetId)
+        private async Task<List<object>> GoogleGetSheets(string service, string spreadsheetId)
         {
             var action = "GetSpreadsheets";
             var parameters = new Dictionary<string, string>
@@ -204,7 +205,9 @@ namespace GoogleSpreadsheetLoader.Editor
             };
 
             var requestURL = new RequestURL(service, action, parameters);
-            return await _googleHelper.StartDownload(requestURL);
+            var result = await _googleHelper.StartDownload(requestURL);
+            var deserialize = MiniJson.Deserialize(result) as List<object>;
+            return deserialize;
         }
 
         /// <summary>
@@ -227,20 +230,48 @@ namespace GoogleSpreadsheetLoader.Editor
             return await _googleHelper.StartDownload(requestURL);
         }
 
+        // /// <summary>
+        // /// 取得表單名稱
+        // /// </summary>
+        // private async Task<string> GoogleGetSpreadSheetName(string service, string spreadsheetId)
+        // {
+        //     var action = "GetSpreadSheetName";
+        //     var parameters = new Dictionary<string, string>
+        //     {
+        //         { "key", spreadsheetId },
+        //         { "gid", sheetId },
+        //     };
+        //
+        //     var requestURL = new RequestURL(service, action, parameters);
+        //     return await _googleHelper.StartDownload(requestURL);
+        // }
+
+
         /// <summary>
         /// 取得分頁名稱
         /// </summary>
         private async Task<string> GoogleGetSheetName(string service, string spreadsheetId, string sheetId)
         {
-            var action = "GetSheetName";
-            var parameters = new Dictionary<string, string>
-            {
-                { "key", spreadsheetId },
-                { "gid", sheetId },
-            };
+            var sheets = await GoogleGetSheets(service, spreadsheetId);
 
-            var requestURL = new RequestURL(service, action, parameters);
-            return await _googleHelper.StartDownload(requestURL);
+            var sheet = sheets.Find(sheet =>
+            {
+                var sheetData = sheet as List<object>;
+                return sheetData[1].ToString() == sheetId;
+            });
+            
+            
+            var sheetData = sheet as List<object>;
+            return sheetData[0].ToString();
+            // var action = "GetSheetName";
+            // var parameters = new Dictionary<string, string>
+            // {
+            //     { "key", spreadsheetId },
+            //     { "gid", sheetId },
+            // };
+            //
+            // var requestURL = new RequestURL(service, action, parameters);
+            // return await _googleHelper.StartDownload(requestURL);
         }
 
         /// <summary>

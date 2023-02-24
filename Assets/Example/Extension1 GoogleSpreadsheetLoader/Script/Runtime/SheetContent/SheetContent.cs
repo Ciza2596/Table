@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DataTable;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace GoogleSpreadsheetLoader
@@ -12,7 +13,7 @@ namespace GoogleSpreadsheetLoader
         //private variable
         [TableList] [SerializeField] private DataUnit[] _dataUnits;
 
-        [Header("已匯入資料(Raw)")] private string[,] _rawData;
+        [Header("已匯入資料(Raw)")] [OdinSerialize] private string[,] _rawData;
 
 
         //public variable
@@ -20,9 +21,8 @@ namespace GoogleSpreadsheetLoader
 
 
         //public method
-        public void Update(string sheetName, DataUnit[] dataUnits, string[,] rawData)
+        public void UpdateContent(DataUnit[] dataUnits, string[,] rawData)
         {
-            name = sheetName;
             _dataUnits = dataUnits;
             _rawData = rawData;
         }

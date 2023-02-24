@@ -19,10 +19,10 @@ MonoBehaviour:
     _sheetInfos:
     - _sheetId: 0
       _name: Spreadsheet1-1
-      _isUsing: 0
+      _isUsing: 1
     - _sheetId: 717478892
       _name: Spreadsheet1-2
-      _isUsing: 0
+      _isUsing: 1
   - _spreadsheetId: 1otiVanTt_GPTgWb75d-3yrptErfZF5nKTDItHfJgCUM
     _sheetContentPath: Assets/Table
     _sheetInfos:
@@ -32,4 +32,10 @@ MonoBehaviour:
     - _sheetId: 717478892
       _name: Spreadsheet2-2
       _isUsing: 0
-  _usedSpreadsheetContentInfos: []
+  _usedSpreadsheetContentInfos:
+  - _sheetContentPath: Assets/Table
+    _sheetContentInfos:
+    - _sheetContent: {fileID: 11400000, guid: 84d91f695a56747d9b76e93c73b6276f, type: 2}
+    - _sheetContent: {fileID: 11400000, guid: 40af0dde6c1a344bda4da443f8d21c20, type: 2}
+  - _sheetContentPath: Assets/Table
+    _sheetContentInfos: []

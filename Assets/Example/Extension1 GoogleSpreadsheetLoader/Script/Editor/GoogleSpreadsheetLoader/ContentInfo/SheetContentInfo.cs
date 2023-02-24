@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sirenix.OdinInspector;
+using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,24 +12,28 @@ namespace GoogleSpreadsheetLoader.Editor
     public class SheetContentInfo
     {
         //private variable
-        [TableColumnWidth(200)] [VerticalGroup("ScriptableObject")] [ReadOnly] [SerializeField]
+        [TableColumnWidth(200)] [VerticalGroup("ScriptableObject")] [Sirenix.OdinInspector.ReadOnly] [SerializeField]
         private SheetContent _sheetContent;
 
         private GoogleSpreadsheetLoader _googleSpreadsheetLoader;
 
         private string _sheetInfoId;
 
-        private bool _isBusy;
-
         private string _spreadSheetId;
         private string _sheetId;
 
+        private bool _isBusy;
+
 
         //constructor
-        public SheetContentInfo(string sheetInfoId, SheetContent sheetContent,
+        public SheetContentInfo(string sheetInfoId, string spreadSheetId, string sheetId, SheetContent sheetContent,
             GoogleSpreadsheetLoader googleSpreadsheetLoader)
         {
             _sheetInfoId = sheetInfoId;
+
+            _spreadSheetId = spreadSheetId;
+            _sheetId = sheetId;
+
             _sheetContent = sheetContent;
             _googleSpreadsheetLoader = googleSpreadsheetLoader;
         }
@@ -49,33 +54,21 @@ namespace GoogleSpreadsheetLoader.Editor
             _isBusy = isBusy;
 
 
-        //private method
-        [HorizontalGroup("動作")]
-        [Button("更新")]
-        [GUIColor(0, 1, 0)]
-        [DisableIf("IsBusy")]
-        public async Task Update()
-        {
-            try
-            {
-                await _googleSpreadsheetLoader.UpdateSheetContentInfo(this);
-            }
-            catch
-            {
-                _isBusy = false;
-            }
-        }
-
         public void Update(string sheetName, string csv)
         {
+            var instanceId = _sheetContent.GetInstanceID();
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(instanceId, out string guid, out long localId);
+            var assetPath = AssetDatabase.GUIDToAssetPath(guid);
+            AssetDatabase.RenameAsset(assetPath, sheetName);
+            
             CreateDataUnitsAndRawData(csv, out var dataUnits, out var rawData);
-            _sheetContent.Update(sheetName, dataUnits.ToArray(), rawData);
+            _sheetContent.UpdateContent(dataUnits.ToArray(), rawData);
         }
 
         [HorizontalGroup("動作")]
         [GUIColor(1, 0, 0)]
         [Button("移除")]
-        [DisableIf("IsBusy")]
+        [DisableIf("_isBusy")]
         public void Remove()
         {
             var subSheetContent = _sheetContent;
@@ -85,6 +78,23 @@ namespace GoogleSpreadsheetLoader.Editor
             AssetDatabase.DeleteAsset(assetPath);
             AssetDatabase.SaveAssets();
             Debug.Log($"[SubSheetContentInfo::Remove] Remove content file : {assetPath}.");
+        }
+
+        //private method
+        [HorizontalGroup("動作")]
+        [Button("更新")]
+        [GUIColor(0, 1, 0)]
+        [DisableIf("_isBusy")]
+        private void Update()
+        {
+            try
+            {
+                _googleSpreadsheetLoader.UpdateSheetContentInfo(this);
+            }
+            catch
+            {
+                _isBusy = false;
+            }
         }
 
         private void CreateDataUnitsAndRawData(string csv, out List<DataUnit> dataUnits, out string[,] rawData)
