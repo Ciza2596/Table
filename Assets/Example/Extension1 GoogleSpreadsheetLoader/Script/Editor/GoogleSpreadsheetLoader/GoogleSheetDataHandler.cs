@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using GoogleHelper;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace GoogleSpreadsheetLoader.Editor
 {
@@ -17,6 +16,40 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         //public method
+
+        public async Task<string> GetSpreadsheetName(string service, string spreadsheetId)
+        {
+            var action = "GetSpreadsheetName";
+            var parameters = new Dictionary<string, string>
+            {
+                { "key", spreadsheetId },
+            };
+
+            var requestURL = new RequestURL(service, action, parameters);
+            return await _googleHelper.StartDownload(requestURL);
+        }
+        
+        public async Task<string> GetSheetName(string service, string spreadsheetId, string sheetId)
+        {
+            var action = "GetSheetName";
+            var parameters = new Dictionary<string, string>
+            {
+                { "key", spreadsheetId },
+            };
+
+            var requestURL = new RequestURL(service, action, parameters);
+            return await _googleHelper.StartDownload(requestURL);
+        }
+
+        public async Task<GoogleSheetInfo[]> GetGoogleSheetInfos(string service, string spreadsheetId)
+        {
+            var googleSheetDatas = new List<GoogleSheetInfo>();
+
+            await GoogleGetSheets(service, spreadsheetId, googleSheetDatas);
+
+            return googleSheetDatas.ToArray();
+        }
+
         public async Task<GoogleSheetInfo[]> GetGoogleSheetInfos(string service, string[] spreadsheetIds)
         {
             var googleSheetDatas = new List<GoogleSheetInfo>();
@@ -28,9 +61,17 @@ namespace GoogleSpreadsheetLoader.Editor
         }
 
 
-        public Task UpdateAllGoogleSheetCsvs(string service, string[] spreadsheetIds)
+        public async Task<string> GetGoogleSheetCsv(string service, string spreadSheetId, string sheetId)
         {
-            return Task.CompletedTask;
+            var action = "GetRawCsv";
+            var parameters = new Dictionary<string, string>
+            {
+                { "key", spreadSheetId },
+                { "gid", sheetId },
+            };
+
+            var requestURL = new RequestURL(service, action, parameters);
+            return await _googleHelper.StartDownload(requestURL);
         }
 
 
@@ -45,17 +86,16 @@ namespace GoogleSpreadsheetLoader.Editor
 
             var requestURL = new RequestURL(service, action, parameters);
             var result = await _googleHelper.StartDownload(requestURL);
-            var deserializeResults= MiniJson.Deserialize(result) as List<object>;
+            var deserializeResults = MiniJson.Deserialize(result) as List<object>;
 
             foreach (var deserializeResult in deserializeResults)
             {
-                var sheetData = deserializeResult as List<Object>;
+                var sheetData = deserializeResult as List<object>;
 
-                var spreadSheetName = sheetData[0].ToString();
+                var sheetId = sheetData[0].ToString();
                 var sheetName = sheetData[1].ToString();
-                var sheetId = sheetData[2].ToString();
 
-                var googleSheetInfo = new GoogleSheetInfo(spreadSheetName, sheetName, sheetId);
+                var googleSheetInfo = new GoogleSheetInfo(sheetId, sheetName);
                 googleSheetDatas.Add(googleSheetInfo);
             }
         }
@@ -65,21 +105,17 @@ namespace GoogleSpreadsheetLoader.Editor
     [Serializable]
     public class GoogleSheetInfo
     {
-        [SerializeField] private string _spreadSheetName;
-        [SerializeField] private string _sheetName;
         [SerializeField] private string _sheetId;
+        [SerializeField] private string _sheetName;
 
-
-        public GoogleSheetInfo(string spreadSheetName, string sheetName, string sheetId)
+        public GoogleSheetInfo(string sheetId, string sheetName)
         {
-            _spreadSheetName = spreadSheetName;
-            _sheetName = sheetName;
             _sheetId = sheetId;
+            _sheetName = sheetName;
         }
 
-        public string SpreadSheetName => _spreadSheetName;
-        public string SheetName => _sheetName;
         public string SheetId => _sheetId;
+        public string SheetName => _sheetName;
     }
 
     [Serializable]

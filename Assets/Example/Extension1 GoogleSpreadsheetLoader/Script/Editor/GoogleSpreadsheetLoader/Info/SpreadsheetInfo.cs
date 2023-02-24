@@ -15,7 +15,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
         [SerializeField] private string _sheetContentPath = "Assets/Table";
 
-        [Space] [ReadOnly] [SerializeField] private string _spreadSpreadSheetName;
+        [Space] [ReadOnly] [SerializeField] private string _spreadSheetName;
 
         [Space]
         [TableList(HideToolbar = true, AlwaysExpanded = true)] [SerializeField]
@@ -25,7 +25,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
         //public variable
 
-        public string SpreadSheetName => _spreadSpreadSheetName;
+        public string SpreadSheetName => _spreadSheetName;
 
         public IReadOnlyList<SheetInfo> SheetInfos => _sheetInfos;
 
@@ -60,6 +60,6 @@ namespace GoogleSpreadsheetLoader.Editor
             _sheetInfos = _sheetInfos.OrderByDescending(sheetInfo => sheetInfo.IsUsing).ToList();
 
         public void SetSpreadSheetName(string spreadSheetName) =>
-            _spreadSpreadSheetName = spreadSheetName;
+            _spreadSheetName = spreadSheetName;
     }
 }

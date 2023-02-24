@@ -22,9 +22,8 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         private bool _isBusy;
-        private GoogleHelper.GoogleHelper _googleHelper = new GoogleHelper.GoogleHelper();
-
-
+        private GoogleSheetDataHandler _googleSheetDataHandler = new GoogleSheetDataHandler();
+        
         //public method
         public async Task UpdateSheetContentInfo(SheetContentInfo sheetContentInfo)
         {
@@ -33,11 +32,11 @@ namespace GoogleSpreadsheetLoader.Editor
             var spreadSheetId = sheetContentInfo.SpreadSheetId;
             var sheetId = sheetContentInfo.SheetId;
 
-            var sheetName = await GoogleGetSheetName(_webAppUrl, spreadSheetId, sheetId);
+            var sheetName = await _googleSheetDataHandler.GetSheetName(_webAppUrl, spreadSheetId, sheetId);
             var spreadsheetInfos =
                 _spreadsheetInfos.Find(spreadsheetInfo => spreadsheetInfo.SpreadsheetId == spreadSheetId);
             var assetPath = spreadsheetInfos.SheetContentPath + '/' + $"{sheetName}.asset";
-            var csv = await GoogleGetCsv(_webAppUrl, spreadSheetId, sheetId);
+            var csv = await _googleSheetDataHandler.GetGoogleSheetCsv(_webAppUrl, spreadSheetId, sheetId);
             sheetContentInfo.Update(sheetName, assetPath, csv);
 
             sheetContentInfo.SetIsBusy(false);
@@ -67,15 +66,16 @@ namespace GoogleSpreadsheetLoader.Editor
 
                 if (string.IsNullOrEmpty(spreadsheetId))
                     continue;
-                var spreadSheetName = await GoogleGetSpreadSheetName(_webAppUrl, spreadsheetId);
+
+                var spreadSheetName = await _googleSheetDataHandler.GetSpreadsheetName(_webAppUrl, spreadsheetId);
                 spreadsheetInfo.SetSpreadSheetName(spreadSheetName);
                 
-                var sheets = await GoogleGetSheets(_webAppUrl, spreadsheetId);
+                var googleSheetInfos = await _googleSheetDataHandler.GetGoogleSheetInfos(_webAppUrl, spreadsheetId);
 
-                foreach (List<object> sheet in sheets)
+                foreach (var googleSheetInfo in googleSheetInfos)
                 {
-                    var sheetName = sheet[0].ToString();
-                    var sheetId = sheet[1].ToString();
+                    var sheetName = googleSheetInfo.SheetName;
+                    var sheetId = googleSheetInfo.SheetId;
 
                     var sheetInfo = spreadsheetInfo.FindSheetInfo(sheetId);
 
@@ -192,93 +192,8 @@ namespace GoogleSpreadsheetLoader.Editor
         private SpreadsheetContentInfo FindUsedSpreadSheetContentInfo(string spreadsheetInfoId) =>
             _usedSpreadsheetContentInfos.Find(spreadsheetContentInfo =>
                 spreadsheetContentInfo.SpreadsheetInfoId == spreadsheetInfoId);
-
-
-        #region Google Helper
         
 
-        /// <summary>
-        /// 取的指定表單全部分頁資料
-        /// </summary>
-        /// <param name="service"></param>
-        /// <param name="spreadsheetId"></param>
-        /// <returns>Json結構GID:SheetName</returns>
-        private async Task<List<object>> GoogleGetSheets(string service, string spreadsheetId)
-        {
-            var action = "GetSpreadsheets";
-            var parameters = new Dictionary<string, string>
-            {
-                { "key", spreadsheetId }
-            };
-
-            var requestURL = new RequestURL(service, action, parameters);
-            var result = await _googleHelper.StartDownload(requestURL);
-            var deserialize = MiniJson.Deserialize(result) as List<object>;
-            return deserialize;
-        }
-
-        /// <summary>
-        /// 取得CSV
-        /// </summary>
-        /// <param name="service">服務位址</param>
-        /// <param name="sheetId">表單ID</param>
-        /// <param name="spreadSheetId">分頁ID</param>
-        /// <returns>pageCSV</returns>
-        private async Task<string> GoogleGetCsv(string service, string spreadSheetId, string sheetId)
-        {
-            var action = "GetRawCsv";
-            var parameters = new Dictionary<string, string>
-            {
-                { "key", spreadSheetId },
-                { "gid", sheetId },
-            };
-
-            var requestURL = new RequestURL(service, action, parameters);
-            return await _googleHelper.StartDownload(requestURL);
-        }
-
-        // /// <summary>
-        // /// 取得表單名稱
-        // /// </summary>
-        private async Task<string> GoogleGetSpreadSheetName(string service, string spreadsheetId)
-        {
-            var action = "GetSpreadSheetName";
-            var parameters = new Dictionary<string, string>
-            {
-                { "key", spreadsheetId },
-            };
-        
-            var requestURL = new RequestURL(service, action, parameters);
-            return await _googleHelper.StartDownload(requestURL);
-        }
-
-
-        /// <summary>
-        /// 取得分頁名稱
-        /// </summary>
-        private async Task<string> GoogleGetSheetName(string service, string spreadsheetId, string sheetId)
-        {
-            var sheets = await GoogleGetSheets(service, spreadsheetId);
-
-            var sheet = sheets.Find(sheet =>
-            {
-                var sheetData = sheet as List<object>;
-                return sheetData[1].ToString() == sheetId;
-            });
-
-
-            var sheetData = sheet as List<object>;
-            return sheetData[0].ToString();
-            // var action = "GetSheetName";
-            // var parameters = new Dictionary<string, string>
-            // {
-            //     { "key", spreadsheetId },
-            //     { "gid", sheetId },
-            // };
-            //
-            // var requestURL = new RequestURL(service, action, parameters);
-            // return await _googleHelper.StartDownload(requestURL);
-        }
 
         /// <summary>
         /// 打開指定的表單頁面
@@ -292,7 +207,5 @@ namespace GoogleSpreadsheetLoader.Editor
 
             Application.OpenURL(request);
         }
-
-        #endregion
     }
 }
