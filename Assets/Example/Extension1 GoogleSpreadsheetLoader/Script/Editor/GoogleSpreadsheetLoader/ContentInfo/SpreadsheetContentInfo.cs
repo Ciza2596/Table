@@ -60,9 +60,10 @@ namespace GoogleSpreadsheetLoader.Editor
             GoogleSpreadsheetLoader googleSpreadsheetLoader)
         {
             var sheetContent = CreateScriptableObjectToAssets<SheetContent>(spreadSheetName);
-
+            
             var sheetContentInfo = new SheetContentInfo(sheetInfoId, spreadSheetId, sheetId, sheetContent,
                 googleSpreadsheetLoader);
+
             _sheetContentInfos.Add(sheetContentInfo);
             return sheetContentInfo;
         }
@@ -71,9 +72,7 @@ namespace GoogleSpreadsheetLoader.Editor
         //private method
         private T CreateScriptableObjectToAssets<T>(string spreadSheetName) where T : ScriptableObject
         {
-            var fileName = $"{Guid.NewGuid().ToString()}.asset";
-
-            var fullPath = _sheetContentPath + '/' + spreadSheetName + fileName;
+            var fullPath = PathHelper.GetFullPath(_sheetContentPath, Guid.NewGuid().ToString(), spreadSheetName);
 
             if (!Directory.Exists(_sheetContentPath))
                 Directory.CreateDirectory(_sheetContentPath);

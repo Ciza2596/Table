@@ -34,8 +34,11 @@ namespace GoogleSpreadsheetLoader.Editor
             var sheetId = sheetContentInfo.SheetId;
 
             var sheetName = await GoogleGetSheetName(_webAppUrl, spreadSheetId, sheetId);
+            var spreadsheetInfos =
+                _spreadsheetInfos.Find(spreadsheetInfo => spreadsheetInfo.SpreadsheetId == spreadSheetId);
+            var assetPath = spreadsheetInfos.SheetContentPath + '/' + $"{sheetName}.asset";
             var csv = await GoogleGetCsv(_webAppUrl, spreadSheetId, sheetId);
-            sheetContentInfo.Update(sheetName, csv);
+            sheetContentInfo.Update(sheetName, assetPath, csv);
 
             sheetContentInfo.SetIsBusy(false);
         }
@@ -64,7 +67,9 @@ namespace GoogleSpreadsheetLoader.Editor
 
                 if (string.IsNullOrEmpty(spreadsheetId))
                     continue;
-
+                var spreadSheetName = await GoogleGetSpreadSheetName(_webAppUrl, spreadsheetId);
+                spreadsheetInfo.SetSpreadSheetName(spreadSheetName);
+                
                 var sheets = await GoogleGetSheets(_webAppUrl, spreadsheetId);
 
                 foreach (List<object> sheet in sheets)
@@ -114,6 +119,7 @@ namespace GoogleSpreadsheetLoader.Editor
                     spreadsheetContentInfo.SetSheetContentPath(sheetContentPath);
 
                 var spreadsheetId = spreadsheetInfo.SpreadsheetId;
+                var spreadSheetName = spreadsheetInfo.SpreadSheetName;
 
                 foreach (var sheetInfo in spreadsheetInfo.SheetInfos)
                 {
@@ -125,7 +131,7 @@ namespace GoogleSpreadsheetLoader.Editor
                     {
                         if (sheetContentInfo is null)
                             sheetContentInfo =
-                                spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId, spreadsheetId, sheetId, "",
+                                spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId, spreadsheetId, sheetId, spreadSheetName,
                                     this);
 
                         sheetContentInfoUpdates.Add(UpdateSheetContentInfo(sheetContentInfo));
@@ -189,6 +195,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         #region Google Helper
+        
 
         /// <summary>
         /// 取的指定表單全部分頁資料
@@ -233,18 +240,17 @@ namespace GoogleSpreadsheetLoader.Editor
         // /// <summary>
         // /// 取得表單名稱
         // /// </summary>
-        // private async Task<string> GoogleGetSpreadSheetName(string service, string spreadsheetId)
-        // {
-        //     var action = "GetSpreadSheetName";
-        //     var parameters = new Dictionary<string, string>
-        //     {
-        //         { "key", spreadsheetId },
-        //         { "gid", sheetId },
-        //     };
-        //
-        //     var requestURL = new RequestURL(service, action, parameters);
-        //     return await _googleHelper.StartDownload(requestURL);
-        // }
+        private async Task<string> GoogleGetSpreadSheetName(string service, string spreadsheetId)
+        {
+            var action = "GetSpreadSheetName";
+            var parameters = new Dictionary<string, string>
+            {
+                { "key", spreadsheetId },
+            };
+        
+            var requestURL = new RequestURL(service, action, parameters);
+            return await _googleHelper.StartDownload(requestURL);
+        }
 
 
         /// <summary>
@@ -259,8 +265,8 @@ namespace GoogleSpreadsheetLoader.Editor
                 var sheetData = sheet as List<object>;
                 return sheetData[1].ToString() == sheetId;
             });
-            
-            
+
+
             var sheetData = sheet as List<object>;
             return sheetData[0].ToString();
             // var action = "GetSheetName";

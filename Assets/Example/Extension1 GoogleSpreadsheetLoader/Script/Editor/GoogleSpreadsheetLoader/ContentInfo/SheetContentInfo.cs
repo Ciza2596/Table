@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Sirenix.OdinInspector;
-using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,7 +10,7 @@ namespace GoogleSpreadsheetLoader.Editor
     public class SheetContentInfo
     {
         //private variable
-        [TableColumnWidth(200)] [VerticalGroup("ScriptableObject")] [Sirenix.OdinInspector.ReadOnly] [SerializeField]
+        [TableColumnWidth(200)] [VerticalGroup("ScriptableObject")] [ReadOnly] [SerializeField]
         private SheetContent _sheetContent;
 
         private GoogleSpreadsheetLoader _googleSpreadsheetLoader;
@@ -23,7 +21,7 @@ namespace GoogleSpreadsheetLoader.Editor
         private string _sheetId;
 
         private bool _isBusy;
-
+        
 
         //constructor
         public SheetContentInfo(string sheetInfoId, string spreadSheetId, string sheetId, SheetContent sheetContent,
@@ -52,15 +50,20 @@ namespace GoogleSpreadsheetLoader.Editor
         //public method
         public void SetIsBusy(bool isBusy) =>
             _isBusy = isBusy;
+        
 
-
-        public void Update(string sheetName, string csv)
+        public void Update(string sheetName, string assetPath, string csv)
         {
             var instanceId = _sheetContent.GetInstanceID();
             AssetDatabase.TryGetGUIDAndLocalFileIdentifier(instanceId, out string guid, out long localId);
-            var assetPath = AssetDatabase.GUIDToAssetPath(guid);
-            AssetDatabase.RenameAsset(assetPath, sheetName);
+            var currentAssetPath = AssetDatabase.GUIDToAssetPath(guid);
             
+            AssetDatabase.RenameAsset(currentAssetPath, sheetName);
+            
+            if (currentAssetPath != assetPath)
+                AssetDatabase.MoveAsset(currentAssetPath, assetPath);
+
+
             CreateDataUnitsAndRawData(csv, out var dataUnits, out var rawData);
             _sheetContent.UpdateContent(dataUnits.ToArray(), rawData);
         }
