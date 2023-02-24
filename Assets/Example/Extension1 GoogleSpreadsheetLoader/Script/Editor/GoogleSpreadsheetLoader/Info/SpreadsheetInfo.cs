@@ -10,35 +10,33 @@ namespace GoogleSpreadsheetLoader.Editor
     public class SpreadsheetInfo
     {
         //private variable
-        [Space] [LabelText("表單位址")] [SerializeField]
+        [SerializeField]
         private string _spreadsheetId;
         
-        [LabelText("Sheet Content存放路徑(建立物件時使用)")] [SerializeField]
-        private string _sheetContentPath = "Assets/_Project/AAS/ScriptableObjects/Tables/";
+        [SerializeField]
+        private string _sheetContentPath = "Assets/Table";
 
         [TableList(HideToolbar = true, AlwaysExpanded = true)] [SerializeField]
         private List<SheetInfo> _sheetInfos;
         
-        private readonly string _id;
-
-        //constructor
-        public SpreadsheetInfo(string spreadsheetId, List<SheetInfo> sheetInfos)
-        {
-            _id = Guid.NewGuid().ToString();
-            
-            _spreadsheetId = spreadsheetId;
-            _sheetInfos = sheetInfos;
-        }
+        private string _id;
 
         //public variable
-        public string Id => _id;
-        
+
         public IReadOnlyList<SheetInfo> SheetInfos => _sheetInfos;
 
         public string SheetContentPath => _sheetContentPath;
         public string SpreadsheetId => _spreadsheetId;
         
         //public method
+        public string GetId()
+        {
+            if(string.IsNullOrWhiteSpace(_id))
+                _id = Guid.NewGuid().ToString();
+
+            return _id;
+        }
+
         public SheetInfo FindSheetInfo(string sheetId)
         {
             var sheetInfo = _sheetInfos.Find(sheetInfo => sheetInfo.SheetId == sheetId);

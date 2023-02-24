@@ -11,15 +11,15 @@ namespace GoogleSpreadsheetLoader.Editor
     public class GoogleSpreadsheetLoader : ScriptableObject
     {
         //private variable
-        [Title("Google服務設定", "執行Google apps script位置設定")] [SerializeField]
-        private string[] _webServices;
+        [VerticalGroup("Service")] [SerializeField]
+        private string _webAppUrl;
 
-        [SerializeField] private int _currentWebServiceIndex;
-
-        [Title("靜態表設定", "設定需要從雲端下載的表單")] [VerticalGroup("SpreadsheetsSetting")] [SerializeField]
+        [Title("Spreadsheet preview")] [VerticalGroup("SpreadsheetPreview")] [SerializeField]
         private List<SpreadsheetInfo> _spreadsheetInfos;
 
-        [TableList(IsReadOnly = true)] [SerializeField]
+        [Title("Used Sheet Content")]
+        [ReadOnly]
+        [SerializeField]
         private List<SpreadsheetContentInfo> _usedSpreadsheetContentInfos = new List<SpreadsheetContentInfo>();
 
 
@@ -32,11 +32,11 @@ namespace GoogleSpreadsheetLoader.Editor
         {
             sheetContentInfo.SetIsBusy(true);
 
-            var webService = _webServices[_currentWebServiceIndex];
+            var webService = _webAppUrl;
             var spreadSheetId = sheetContentInfo.SpreadSheetId;
             var sheetId = sheetContentInfo.SheetId;
 
-            var sheetName =  await GoogleGetSheetName(webService, spreadSheetId, sheetId);
+            var sheetName = await GoogleGetSheetName(webService, spreadSheetId, sheetId);
             var csv = await GoogleGetCsv(webService, spreadSheetId, sheetId);
             sheetContentInfo.Update(sheetName, csv);
 
@@ -45,8 +45,16 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         //private method
-        [VerticalGroup("SpreadsheetsSetting")]
-        [Button("下載/更新所有表單GID")]
+        [Title("Google Web Service")] 
+        [PropertyOrder(-100)]
+        [Button("Open Google App Script Web.")]
+        [VerticalGroup("Service")]
+        private void OpenGoogleScriptPage() =>
+            Application.OpenURL("https://www.google.com/script/start/");
+
+
+        [VerticalGroup("SpreadsheetPreview")]
+        [Button("Update Spreadsheet Preview")]
         private async void UpdateSpreadsheets()
         {
             if (_spreadsheetInfos is null || _spreadsheetInfos.Count <= 0) return;
@@ -57,17 +65,17 @@ namespace GoogleSpreadsheetLoader.Editor
             {
                 var spreadsheetId = spreadsheetInfo.SpreadsheetId;
 
-                if (string.IsNullOrEmpty(spreadsheetId)) 
+                if (string.IsNullOrEmpty(spreadsheetId))
                     continue;
 
-                var result = await GoogleGetSheets(_webServices[_currentWebServiceIndex], spreadsheetId);
+                var result = await GoogleGetSheets(_webAppUrl, spreadsheetId);
                 var sheets = MiniJson.Deserialize(result) as List<object>;
 
                 foreach (List<object> sheet in sheets)
                 {
                     var sheetName = sheet[0].ToString();
                     var sheetId = sheet[1].ToString();
-                    
+
                     var sheetInfo = spreadsheetInfo.FindSheetInfo(sheetId);
 
                     if (sheetInfo is null)
@@ -75,7 +83,6 @@ namespace GoogleSpreadsheetLoader.Editor
 
                     if (sheetInfo.Name != sheetName)
                         sheetInfo.SetName(sheetName);
-
                 }
 
                 spreadsheetInfo.OrderByIsUsing();
@@ -83,14 +90,13 @@ namespace GoogleSpreadsheetLoader.Editor
 
             Debug.Log("[ContentManager:GetSpreadsheets] Spreadsheets is update.");
         }
-        
-        
-        
-        [Button("更新Scriptable Content")]
+
+
+        [Button("Update All Used Sheet Content")]
         [ButtonGroup("ContentList")]
         [GUIColor(0, 1, 0)]
         [DisableIf("_isBusy")]
-        private async void UpdateAllUsedContentInfos()
+        private async void UpdateAllUsedSheetContentInfos()
         {
             if (_isBusy) return;
 
@@ -100,11 +106,16 @@ namespace GoogleSpreadsheetLoader.Editor
 
             foreach (var spreadsheetInfo in _spreadsheetInfos)
             {
-                var spreadsheetInfoId = spreadsheetInfo.Id;
+                var spreadsheetInfoId = spreadsheetInfo.GetId();
                 var spreadsheetContentInfo = FindUsedSpreadSheetContentInfo(spreadsheetInfoId);
 
                 if (spreadsheetContentInfo is null)
                     spreadsheetContentInfo = CreateUsedSpreadSheetContentInfo(spreadsheetInfoId);
+    
+                var sheetContentPath = spreadsheetInfo.SheetContentPath;
+
+                if(sheetContentPath != spreadsheetContentInfo.SheetContentPath)
+                    spreadsheetContentInfo.SetSheetContentPath(sheetContentPath);
 
                 foreach (var sheetInfo in spreadsheetInfo.SheetInfos)
                 {
@@ -114,7 +125,7 @@ namespace GoogleSpreadsheetLoader.Editor
                     if (sheetInfo.IsUsing)
                     {
                         if (sheetContentInfo is null)
-                            sheetContentInfo = spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId,this);
+                            sheetContentInfo = spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId, this);
 
                         sheetContentInfoUpdates.Add(sheetContentInfo.Update());
                         continue;
@@ -129,16 +140,16 @@ namespace GoogleSpreadsheetLoader.Editor
 
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
-            
+
             _isBusy = false;
         }
 
 
-        [Button("清除所有Scriptable Content")]
+        [Button("Remove All Used Sheet Content")]
         [ButtonGroup("ContentList")]
         [GUIColor(1, 0, 0)]
         [DisableIf("_isBusy")]
-        private void RemoveAllUsedContentInfos()
+        private void RemoveAllUsedSheetContentInfos()
         {
             var sheetContentInfos = _usedSpreadsheetContentInfos.ToArray();
             _usedSpreadsheetContentInfos.Clear();
@@ -182,14 +193,14 @@ namespace GoogleSpreadsheetLoader.Editor
         /// 取的指定表單全部分頁資料
         /// </summary>
         /// <param name="service"></param>
-        /// <param name="spreadsheet"></param>
+        /// <param name="spreadsheetId"></param>
         /// <returns>Json結構GID:SheetName</returns>
-        public async Task<string> GoogleGetSheets(string service, string spreadsheet)
+        private async Task<string> GoogleGetSheets(string service, string spreadsheetId)
         {
             var action = "GetSpreadsheets";
             var parameters = new Dictionary<string, string>
             {
-                { "key", spreadsheet }
+                { "key", spreadsheetId }
             };
 
             var requestURL = new RequestURL(service, action, parameters);
@@ -200,16 +211,16 @@ namespace GoogleSpreadsheetLoader.Editor
         /// 取得CSV
         /// </summary>
         /// <param name="service">服務位址</param>
-        /// <param name="subSheetId">表單ID</param>
-        /// <param name="sheetId">分頁ID</param>
+        /// <param name="sheetId">表單ID</param>
+        /// <param name="spreadSheetId">分頁ID</param>
         /// <returns>pageCSV</returns>
-        public async Task<string> GoogleGetCsv(string service, string sheetId, string subSheetId)
+        private async Task<string> GoogleGetCsv(string service, string spreadSheetId, string sheetId)
         {
-            var action = "GetRawCSV";
+            var action = "GetRawCsv";
             var parameters = new Dictionary<string, string>
             {
-                { "key", sheetId },
-                { "gid", subSheetId },
+                { "key", spreadSheetId },
+                { "gid", sheetId },
             };
 
             var requestURL = new RequestURL(service, action, parameters);
@@ -219,7 +230,7 @@ namespace GoogleSpreadsheetLoader.Editor
         /// <summary>
         /// 取得分頁名稱
         /// </summary>
-        public async Task<string> GoogleGetSheetName(string service, string spreadsheetId, string sheetId)
+        private async Task<string> GoogleGetSheetName(string service, string spreadsheetId, string sheetId)
         {
             var action = "GetSheetName";
             var parameters = new Dictionary<string, string>
@@ -235,7 +246,7 @@ namespace GoogleSpreadsheetLoader.Editor
         /// <summary>
         /// 打開指定的表單頁面
         /// </summary>
-        public void GoogleOpenUrl(string service, string spreadsheetId, string sheetId, int row = 0, int column = 0)
+        private void GoogleOpenUrl(string service, string spreadsheetId, string sheetId, int row = 0, int column = 0)
         {
             var request = $"{service}?key={spreadsheetId}&gid={sheetId}&action=GetRawCSV";
 

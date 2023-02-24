@@ -12,7 +12,8 @@ namespace GoogleSpreadsheetLoader.Editor
         [LabelText("Sheet Content存放路徑(建立物件時使用)")] [ReadOnly] [SerializeField]
         private string _sheetContentPath;
 
-        [ReadOnly] [SerializeField] private List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
+        [TableList(IsReadOnly = true)] [SerializeField]
+        private List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
 
         private readonly string _spreadsheetInfoId;
 
@@ -28,7 +29,7 @@ namespace GoogleSpreadsheetLoader.Editor
         //constructor
         public SpreadsheetContentInfo(string spreadsheetInfoId) =>
             _spreadsheetInfoId = spreadsheetInfoId;
-
+    
 
         //public method
         public void UpdateAll()
@@ -52,9 +53,6 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         public void SetSheetContentPath(string sheetContentPath) => _sheetContentPath = sheetContentPath;
-
-        public void AddSheetContentInfo(SheetContentInfo sheetContentInfo) =>
-            _sheetContentInfos.Add(sheetContentInfo);
 
         public SheetContentInfo FindSheetContentInfo(string sheetInfoId)
         {

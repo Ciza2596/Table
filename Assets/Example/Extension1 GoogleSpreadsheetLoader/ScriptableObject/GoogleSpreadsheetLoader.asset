@@ -12,15 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b02af40e448047dba4ff6d70f6ff9d5, type: 3}
   m_Name: GoogleSpreadsheetLoader
   m_EditorClassIdentifier: 
-  _webServices:
-  - 
-  - 
-  _currentWebServiceIndex: 0
+  _webAppUrl: https://script.google.com/macros/s/AKfycbw-qN9DhcN-M8qSYGc4kropSS2Tf0Rle_cluAmoiF2eOOKHuMo_ThiF5nZlrAVjAIUX/exec
   _spreadsheetInfos:
   - _spreadsheetId: 1-OEMPqWX0tYIUE73yd-06ypI7NgSrdxPAfomqvnCsmQ
-    _sheetContentPath: Assets/Example/Extension1 GoogleSpreadsheetLoader/ScriptableObject/DataTable
-    _sheetInfos: []
+    _sheetContentPath: Assets/Table
+    _sheetInfos:
+    - _sheetId: 0
+      _name: Spreadsheet1-1
+      _isUsing: 0
+    - _sheetId: 717478892
+      _name: Spreadsheet1-2
+      _isUsing: 0
   - _spreadsheetId: 1otiVanTt_GPTgWb75d-3yrptErfZF5nKTDItHfJgCUM
-    _sheetContentPath: Assets/Example/Extension1 GoogleSpreadsheetLoader/ScriptableObject/DataTable
-    _sheetInfos: []
+    _sheetContentPath: Assets/Table
+    _sheetInfos:
+    - _sheetId: 0
+      _name: Spreadsheet2-1
+      _isUsing: 0
+    - _sheetId: 717478892
+      _name: Spreadsheet2-2
+      _isUsing: 0
   _usedSpreadsheetContentInfos: []
