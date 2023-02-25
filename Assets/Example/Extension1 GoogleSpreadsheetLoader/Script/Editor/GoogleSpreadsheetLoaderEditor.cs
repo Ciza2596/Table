@@ -54,9 +54,18 @@ namespace GoogleSpreadsheetLoader.Editor
 
             if (_googleSpreadsheetLoaderEditor is null)
                 return;
+
+            EditorGUILayout.BeginHorizontal();
+            
+            EditorGUILayout.Space(15);
+            
             _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
             _googleSpreadsheetLoaderEditor.OnInspectorGUI();
             EditorGUILayout.EndScrollView();
+            
+            EditorGUILayout.Space(15);
+            
+            EditorGUILayout.EndHorizontal();
         }
 
 
