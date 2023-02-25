@@ -71,7 +71,7 @@ namespace DataTable
             return hasValue;
         }
         
-        public bool TryGetFirstTableData(Predicate<TTableData> match, out TTableData tableData)
+        public bool TryGetTableData(Predicate<TTableData> match, out TTableData tableData)
         {
             var tableDataList = _dataTableMap.Values.ToList();
             tableData = tableDataList.Find(match);

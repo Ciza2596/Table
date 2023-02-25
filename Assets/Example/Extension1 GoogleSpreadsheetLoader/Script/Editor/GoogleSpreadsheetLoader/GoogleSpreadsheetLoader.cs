@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GoogleHelper;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
@@ -17,13 +16,13 @@ namespace GoogleSpreadsheetLoader.Editor
         [Title("Spreadsheet preview")] [VerticalGroup("SpreadsheetPreview")] [SerializeField]
         private List<SpreadsheetInfo> _spreadsheetInfos;
 
-        [Title("Used Sheet Content")] [ReadOnly] [SerializeField]
+        [Title("Used Sheet Content")] [SerializeField]
         private List<SpreadsheetContentInfo> _usedSpreadsheetContentInfos = new List<SpreadsheetContentInfo>();
 
 
         private bool _isBusy;
         private GoogleSheetDataHandler _googleSheetDataHandler = new GoogleSheetDataHandler();
-        
+
         //public method
         public async Task UpdateSheetContentInfo(SheetContentInfo sheetContentInfo)
         {
@@ -32,12 +31,18 @@ namespace GoogleSpreadsheetLoader.Editor
             var spreadSheetId = sheetContentInfo.SpreadSheetId;
             var sheetId = sheetContentInfo.SheetId;
 
+            var spreadsheetName = await _googleSheetDataHandler.GetSpreadsheetName(_webAppUrl, spreadSheetId);
             var sheetName = await _googleSheetDataHandler.GetSheetName(_webAppUrl, spreadSheetId, sheetId);
-            var spreadsheetInfos =
+
+            var spreadsheetInfo =
                 _spreadsheetInfos.Find(spreadsheetInfo => spreadsheetInfo.SpreadsheetId == spreadSheetId);
-            var assetPath = spreadsheetInfos.SheetContentPath + '/' + $"{sheetName}.asset";
+
+            var sheetContentPath = spreadsheetInfo.SheetContentPath;
+            var folderPath = PathHelper.GetFolderPath(sheetContentPath, spreadsheetName);
+
             var csv = await _googleSheetDataHandler.GetGoogleSheetCsv(_webAppUrl, spreadSheetId, sheetId);
-            sheetContentInfo.Update(sheetName, assetPath, csv);
+
+            sheetContentInfo.Update(sheetName, folderPath, csv);
 
             sheetContentInfo.SetIsBusy(false);
         }
@@ -58,7 +63,7 @@ namespace GoogleSpreadsheetLoader.Editor
         {
             if (_spreadsheetInfos is null || _spreadsheetInfos.Count <= 0) return;
 
-            Debug.Log("[ContentManager:GetSpreadsheets] Start check Spreadsheets....");
+            Debug.Log("[GoogleSpreadsheetLoader::UpdateSpreadsheets] Start update spreadsheets....");
 
             foreach (var spreadsheetInfo in _spreadsheetInfos)
             {
@@ -69,7 +74,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
                 var spreadSheetName = await _googleSheetDataHandler.GetSpreadsheetName(_webAppUrl, spreadsheetId);
                 spreadsheetInfo.SetSpreadSheetName(spreadSheetName);
-                
+
                 var googleSheetInfos = await _googleSheetDataHandler.GetGoogleSheetInfos(_webAppUrl, spreadsheetId);
 
                 foreach (var googleSheetInfo in googleSheetInfos)
@@ -89,11 +94,11 @@ namespace GoogleSpreadsheetLoader.Editor
                 spreadsheetInfo.OrderByIsUsing();
             }
 
-            Debug.Log("[ContentManager:GetSpreadsheets] Spreadsheets is update.");
+            Debug.Log("[GoogleSpreadsheetLoader::UpdateSpreadsheets] Spreadsheets is updated.");
         }
 
 
-        [Button("Update All Used Sheet Content")]
+        [Button("Update All Used Sheet Contents")]
         [ButtonGroup("ContentList")]
         [GUIColor(0, 1, 0)]
         [DisableIf("_isBusy")]
@@ -101,6 +106,8 @@ namespace GoogleSpreadsheetLoader.Editor
         {
             if (_isBusy) return;
 
+            Debug.Log("[GoogleSpreadsheetLoader::UpdateAllUsedSheetContentInfos] Start update all used sheet contents....");
+            
             _isBusy = true;
 
             var sheetContentInfoUpdates = new List<Task>();
@@ -131,7 +138,8 @@ namespace GoogleSpreadsheetLoader.Editor
                     {
                         if (sheetContentInfo is null)
                             sheetContentInfo =
-                                spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId, spreadsheetId, sheetId, spreadSheetName,
+                                spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId, spreadsheetId, sheetId,
+                                    spreadSheetName,
                                     this);
 
                         sheetContentInfoUpdates.Add(UpdateSheetContentInfo(sheetContentInfo));
@@ -147,8 +155,11 @@ namespace GoogleSpreadsheetLoader.Editor
 
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
 
             _isBusy = false;
+            
+            Debug.Log("[GoogleSpreadsheetLoader::UpdateAllUsedSheetContentInfos] update all used sheet contents is updated.");
         }
 
 
@@ -164,8 +175,6 @@ namespace GoogleSpreadsheetLoader.Editor
 
             foreach (var sheetContentInfo in sheetContentInfos)
                 sheetContentInfo.RemoveAll();
-
-            Debug.Log("[ContentManager:RemoveAllScriptableContent] All content is clear.");
         }
 
 
@@ -192,7 +201,6 @@ namespace GoogleSpreadsheetLoader.Editor
         private SpreadsheetContentInfo FindUsedSpreadSheetContentInfo(string spreadsheetInfoId) =>
             _usedSpreadsheetContentInfos.Find(spreadsheetContentInfo =>
                 spreadsheetContentInfo.SpreadsheetInfoId == spreadsheetInfoId);
-        
 
 
         /// <summary>

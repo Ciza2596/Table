@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
@@ -13,11 +14,20 @@ namespace GoogleSpreadsheetLoader.Editor
         [TableColumnWidth(200)] [VerticalGroup("ScriptableObject")] [ReadOnly] [SerializeField]
         private SheetContent _sheetContent;
 
+        [HideInInspector]
+        [SerializeField]
         private GoogleSpreadsheetLoader _googleSpreadsheetLoader;
 
+        [HideInInspector]
+        [SerializeField]
         private string _sheetInfoId;
 
+        [HideInInspector]
+        [SerializeField]
         private string _spreadSheetId;
+        
+        [HideInInspector]
+        [SerializeField]
         private string _sheetId;
 
         private bool _isBusy;
@@ -52,17 +62,24 @@ namespace GoogleSpreadsheetLoader.Editor
             _isBusy = isBusy;
         
 
-        public void Update(string sheetName, string assetPath, string csv)
+        public void Update(string sheetName, string folderPath, string csv)
         {
             var instanceId = _sheetContent.GetInstanceID();
             AssetDatabase.TryGetGUIDAndLocalFileIdentifier(instanceId, out string guid, out long localId);
             var currentAssetPath = AssetDatabase.GUIDToAssetPath(guid);
             
             AssetDatabase.RenameAsset(currentAssetPath, sheetName);
-            
-            if (currentAssetPath != assetPath)
-                AssetDatabase.MoveAsset(currentAssetPath, assetPath);
 
+
+            var assetPath = PathHelper.GetFullPath(folderPath, sheetName);
+
+            if (currentAssetPath != assetPath)
+            {
+                if (!Directory.Exists(folderPath))
+                    Directory.CreateDirectory(folderPath);
+                
+                AssetDatabase.MoveAsset(currentAssetPath, assetPath);
+            }
 
             CreateDataUnitsAndRawData(csv, out var dataUnits, out var rawData);
             _sheetContent.UpdateContent(dataUnits.ToArray(), rawData);
@@ -72,6 +89,7 @@ namespace GoogleSpreadsheetLoader.Editor
         [GUIColor(1, 0, 0)]
         [Button("移除")]
         [DisableIf("_isBusy")]
+        
         public void Remove()
         {
             var subSheetContent = _sheetContent;

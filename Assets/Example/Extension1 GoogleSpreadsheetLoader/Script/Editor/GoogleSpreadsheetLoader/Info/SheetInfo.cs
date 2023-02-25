@@ -15,6 +15,8 @@ namespace GoogleSpreadsheetLoader.Editor
 
         [SerializeField] private bool _isUsing;
 
+        [HideInInspector]
+        [SerializeField]
         private string _id;
 
         

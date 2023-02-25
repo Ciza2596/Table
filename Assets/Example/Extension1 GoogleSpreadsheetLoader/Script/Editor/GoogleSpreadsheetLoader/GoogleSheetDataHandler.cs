@@ -35,6 +35,7 @@ namespace GoogleSpreadsheetLoader.Editor
             var parameters = new Dictionary<string, string>
             {
                 { "key", spreadsheetId },
+                { "gid", sheetId },
             };
 
             var requestURL = new RequestURL(service, action, parameters);
@@ -49,17 +50,6 @@ namespace GoogleSpreadsheetLoader.Editor
 
             return googleSheetDatas.ToArray();
         }
-
-        public async Task<GoogleSheetInfo[]> GetGoogleSheetInfos(string service, string[] spreadsheetIds)
-        {
-            var googleSheetDatas = new List<GoogleSheetInfo>();
-
-            foreach (var spreadsheetId in spreadsheetIds)
-                await GoogleGetSheets(service, spreadsheetId, googleSheetDatas);
-
-            return googleSheetDatas.ToArray();
-        }
-
 
         public async Task<string> GetGoogleSheetCsv(string service, string spreadSheetId, string sheetId)
         {

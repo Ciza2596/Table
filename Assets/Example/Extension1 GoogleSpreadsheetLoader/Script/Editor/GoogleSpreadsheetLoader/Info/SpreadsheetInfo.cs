@@ -11,14 +11,15 @@ namespace GoogleSpreadsheetLoader.Editor
     {
         //private variable
 
-        [SerializeField] private string _spreadsheetId;
+        [VerticalGroup("Web")] [PropertyOrder(0)] [SerializeField]
+        private string _spreadsheetId;
 
-        [SerializeField] private string _sheetContentPath = "Assets/Table";
+        [VerticalGroup("Web")] [PropertyOrder(10)] [SerializeField]
+        private string _sheetContentPath = "Assets/Table";
 
         [Space] [ReadOnly] [SerializeField] private string _spreadSheetName;
 
-        [Space]
-        [TableList(HideToolbar = true, AlwaysExpanded = true)] [SerializeField]
+        [Space] [TableList(HideToolbar = true, AlwaysExpanded = true)] [SerializeField]
         private List<SheetInfo> _sheetInfos;
 
         [HideInInspector] [SerializeField] private string _id;
@@ -61,5 +62,13 @@ namespace GoogleSpreadsheetLoader.Editor
 
         public void SetSpreadSheetName(string spreadSheetName) =>
             _spreadSheetName = spreadSheetName;
+
+        //private method
+        [PropertyOrder(20)]
+        [VerticalGroup("Web")]
+        [Button("Open Spreadsheet Web.")]
+        private void OpenSpreadsheetWeb() =>
+            Application.OpenURL($"https://docs.google.com/spreadsheets/d/{_spreadsheetId}/edit#gid=0");
+        
     }
 }

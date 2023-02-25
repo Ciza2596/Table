@@ -17,7 +17,9 @@ namespace GoogleSpreadsheetLoader.Editor
         [TableList(IsReadOnly = true)] [SerializeField]
         private List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
 
-        private readonly string _spreadsheetInfoId;
+        [HideInInspector]
+        [SerializeField]
+        private string _spreadsheetInfoId;
 
 
         //public variable
@@ -71,11 +73,12 @@ namespace GoogleSpreadsheetLoader.Editor
 
         //private method
         private T CreateScriptableObjectToAssets<T>(string spreadSheetName) where T : ScriptableObject
-        {
-            var fullPath = PathHelper.GetFullPath(_sheetContentPath, Guid.NewGuid().ToString(), spreadSheetName);
+        {   
+            var folderPath = PathHelper.GetFolderPath(_sheetContentPath,spreadSheetName);
+            var fullPath = PathHelper.GetFullPath(folderPath, Guid.NewGuid().ToString());
 
-            if (!Directory.Exists(_sheetContentPath))
-                Directory.CreateDirectory(_sheetContentPath);
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
 
             var scriptableObject = ScriptableObject.CreateInstance(typeof(T));
 
