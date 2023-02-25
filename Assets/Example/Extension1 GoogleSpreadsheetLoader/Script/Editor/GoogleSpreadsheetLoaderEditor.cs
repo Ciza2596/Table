@@ -43,11 +43,7 @@ namespace GoogleSpreadsheetLoader.Editor
         //private method
         [MenuItem("Tools/CizaModule/GoogleSpreadsheetLoader")]
         private static void ShowWindow() => GetWindow<GoogleSpreadsheetLoaderEditor>("GoogleSpreadsheetLoader");
-
-
-        private void OnDestroy() =>
-            PlayerPrefs.Save();
-
+        
 
         private void OnGUI()
         {
