@@ -26,6 +26,9 @@ namespace DataTable
             ReleaseInstallTasks();
             
             ReleaseSheetContents();
+
+            _addressablesModule = null;
+            _dataTables = null;
         }
 
         protected void AddDataTable<TTableData>(BaseDataTable<TTableData> dataTable) where TTableData : BaseTableData =>
