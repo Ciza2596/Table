@@ -56,10 +56,10 @@ namespace GoogleSpreadsheetLoader.Editor
             switch (_toolbarIndex)
             {
                 case 0:
-                    GoogleSpreadsheetLoader();
+                    GoogleSpreadsheetLoaderArea();
                     break;
                 case 1:
-                    Config();
+                    ConfigArea();
                     break;
             }
         }
@@ -72,7 +72,7 @@ namespace GoogleSpreadsheetLoader.Editor
             GUILayout.EndHorizontal();
         }
 
-        private void GoogleSpreadsheetLoader()
+        private void GoogleSpreadsheetLoaderArea()
         {
             if (CurrentConfigAssetPath != ConfigAssetPath || _googleSpreadsheetLoaderEditor is null)
             {
@@ -98,7 +98,7 @@ namespace GoogleSpreadsheetLoader.Editor
         }
 
 
-        private void Config()
+        private void ConfigArea()
         {
             EditorGUILayout.Space();
             ConfigAssetPath = GetAssetPathAndOpenWindow("Config Path", ConfigAssetPath);
