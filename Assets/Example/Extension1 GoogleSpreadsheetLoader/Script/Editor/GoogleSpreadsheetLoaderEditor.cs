@@ -11,7 +11,7 @@ namespace GoogleSpreadsheetLoader.Editor
         private int _toolbarIndex = 0;
 
         private readonly string CONFIG_ASSET_PATH_KEY = $"GoogleSpreadsheetLoader.{nameof(ConfigAssetPath)}";
-
+        
         private string ConfigAssetPath
         {
             get => PlayerPrefs.GetString(CONFIG_ASSET_PATH_KEY);
@@ -113,7 +113,7 @@ namespace GoogleSpreadsheetLoader.Editor
                 var path = EditorGUILayout.TextField(label, originPath);
                 if (GUILayout.Button("Select", EditorStyles.miniButton, GUILayout.Width(65)))
                 {
-                    path = EditorUtility.OpenFilePanel("Folder Path", "Assets", "");
+                    path = EditorUtility.OpenFilePanel("Folder Path", originPath, "");
                     var dataPath = Application.dataPath;
                     dataPath = dataPath.Replace("Assets", "");
                     path = path.Replace(dataPath, "");
