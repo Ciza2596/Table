@@ -1,6 +1,6 @@
 # DataTable [HasTest]
 ```
-coming soon.
+https://github.com/Ciza2596/DataTable.git?path=Assets/DataTable
 ```
 ### TableData declares property like " public int Hp { get; private set; } ".
 ### Support type:
