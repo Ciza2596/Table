@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b02af40e448047dba4ff6d70f6ff9d5, type: 3}
+  m_Name: GoogleSpreadsheetLoader
+  m_EditorClassIdentifier: 
+  _webAppUrl: https://script.google.com/macros/s/AKfycbx4kQKh_roQBBz3o5e38k-0l0l043pkGr-gcHx_81jzNcGiif11_flZ04SAgdADu3Uj/exec
+  _spreadsheetInfos:
+  - _spreadsheetId: 1-OEMPqWX0tYIUE73yd-06ypI7NgSrdxPAfomqvnCsmQ
+    _sheetContentPath: Assets/Example/Example1 UseGoogleSpreadsheetLoader/ScriptableObject/DataTable
+    _spreadSheetName: Spreadsheet1
+    _sheetInfos:
+    - _sheetId: 0
+      _name: Spreadsheet1-1
+      _isUsing: 1
+      _id: ee95d47f-167c-45cc-88af-483f41512a2b
+    - _sheetId: 717478892
+      _name: Spreadsheet1-2
+      _isUsing: 1
+      _id: 4433a223-373e-48c4-9b94-3a1b168ad031
+    _id: dc54b0e3-91b8-4787-9ff8-325bf376b0c4
+  - _spreadsheetId: 1otiVanTt_GPTgWb75d-3yrptErfZF5nKTDItHfJgCUM
+    _sheetContentPath: Assets/Example/Example1 UseGoogleSpreadsheetLoader/ScriptableObject/DataTable
+    _spreadSheetName: Spreadsheet2
+    _sheetInfos:
+    - _sheetId: 0
+      _name: Spreadsheet2-1
+      _isUsing: 1
+      _id: 6158ead0-2ffe-44ba-9de8-757b8024fea8
+    - _sheetId: 717478892
+      _name: Spreadsheet2-2
+      _isUsing: 1
+      _id: 6efd5023-6fc3-4c78-94d6-789544bc67e9
+    _id: d3795e6c-0ddb-4636-8fc6-a482f951be18
+  _usedSpreadsheetContentInfos:
+  - _sheetContentPath: Assets/Example/Example1 UseGoogleSpreadsheetLoader/ScriptableObject/DataTable
+    _sheetContentInfos:
+    - _sheetContent: {fileID: 11400000, guid: 3320df1311d174874866b8f58c5ad3dc, type: 2}
+      _googleSpreadsheetLoader: {fileID: 11400000}
+      _sheetInfoId: ee95d47f-167c-45cc-88af-483f41512a2b
+      _spreadSheetId: 1-OEMPqWX0tYIUE73yd-06ypI7NgSrdxPAfomqvnCsmQ
+      _sheetId: 0
+    - _sheetContent: {fileID: 11400000, guid: 7d906bd7ad01a47feb2cc9d05b164e30, type: 2}
+      _googleSpreadsheetLoader: {fileID: 11400000}
+      _sheetInfoId: 4433a223-373e-48c4-9b94-3a1b168ad031
+      _spreadSheetId: 1-OEMPqWX0tYIUE73yd-06ypI7NgSrdxPAfomqvnCsmQ
+      _sheetId: 717478892
+    _spreadsheetInfoId: dc54b0e3-91b8-4787-9ff8-325bf376b0c4
+  - _sheetContentPath: Assets/Example/Example1 UseGoogleSpreadsheetLoader/ScriptableObject/DataTable
+    _sheetContentInfos:
+    - _sheetContent: {fileID: 11400000, guid: a9a38f74cb0244635817b67c1ec2fafe, type: 2}
+      _googleSpreadsheetLoader: {fileID: 11400000}
+      _sheetInfoId: 6158ead0-2ffe-44ba-9de8-757b8024fea8
+      _spreadSheetId: 1otiVanTt_GPTgWb75d-3yrptErfZF5nKTDItHfJgCUM
+      _sheetId: 0
+    - _sheetContent: {fileID: 11400000, guid: b9da7c4824fb744948823025609865dc, type: 2}
+      _googleSpreadsheetLoader: {fileID: 11400000}
+      _sheetInfoId: 6efd5023-6fc3-4c78-94d6-789544bc67e9
+      _spreadSheetId: 1otiVanTt_GPTgWb75d-3yrptErfZF5nKTDItHfJgCUM
+      _sheetId: 717478892
+    _spreadsheetInfoId: d3795e6c-0ddb-4636-8fc6-a482f951be18
