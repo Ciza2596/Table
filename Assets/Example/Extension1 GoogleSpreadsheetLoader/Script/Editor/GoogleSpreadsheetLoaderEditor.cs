@@ -10,28 +10,38 @@ namespace GoogleSpreadsheetLoader.Editor
         private readonly string[] _toolbarTexts = { "GoogleSpreadsheetLoader", "Config" };
         private int _toolbarIndex = 0;
 
-        private readonly string CONFIG_ASSET_PATH_KEY = $"GoogleSpreadsheetLoader.{nameof(ConfigAssetPath)}";
-        
-        private string ConfigAssetPath
+        private readonly string _configGuidKey = $"GoogleSpreadsheetLoader.{nameof(ConfigGuid)}";
+
+        private string ConfigGuid
         {
-            get => PlayerPrefs.GetString(CONFIG_ASSET_PATH_KEY);
+            get => PlayerPrefs.GetString(_configGuidKey);
             set
             {
-                PlayerPrefs.SetString(CONFIG_ASSET_PATH_KEY, value);
+                PlayerPrefs.SetString(_configGuidKey, value);
                 PlayerPrefs.Save();
             }
         }
 
 
-        private string CURRENT_CONFIG_ASSET_PATH_KEY = $"GoogleSpreadsheetLoader.{nameof(CurrentConfigAssetPath)}";
+        private GoogleSpreadsheetLoader _config;
 
-        private string CurrentConfigAssetPath
+        private GoogleSpreadsheetLoader Config
         {
-            get => PlayerPrefs.GetString(CURRENT_CONFIG_ASSET_PATH_KEY);
+            get
+            {
+                if (_config is null)
+                    _config = GetObject<GoogleSpreadsheetLoader>(ConfigGuid);
+
+                return _config;
+            }
+
             set
             {
-                PlayerPrefs.SetString(CURRENT_CONFIG_ASSET_PATH_KEY, value);
-                PlayerPrefs.Save();
+                _config = value;
+                var guid = _config is null
+                    ? string.Empty
+                    : AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(_config));
+                ConfigGuid = guid;
             }
         }
 
@@ -43,7 +53,7 @@ namespace GoogleSpreadsheetLoader.Editor
         //private method
         [MenuItem("Tools/CizaModule/GoogleSpreadsheetLoader")]
         private static void ShowWindow() => GetWindow<GoogleSpreadsheetLoaderEditor>("GoogleSpreadsheetLoader");
-        
+
 
         private void OnGUI()
         {
@@ -70,15 +80,11 @@ namespace GoogleSpreadsheetLoader.Editor
 
         private void GoogleSpreadsheetLoaderArea()
         {
-            if (CurrentConfigAssetPath != ConfigAssetPath || _googleSpreadsheetLoaderEditor is null)
-            {
-                CurrentConfigAssetPath = ConfigAssetPath;
-                var googleSpreadsheetLoader = AssetDatabase.LoadAssetAtPath<Object>(CurrentConfigAssetPath);
-                _googleSpreadsheetLoaderEditor = UnityEditor.Editor.CreateEditor(googleSpreadsheetLoader);
-            }
-
-            if (_googleSpreadsheetLoaderEditor is null)
+            if(Config is null)
                 return;
+            
+            if (_googleSpreadsheetLoaderEditor is null)
+                _googleSpreadsheetLoaderEditor = UnityEditor.Editor.CreateEditor(Config);
 
             EditorGUILayout.BeginHorizontal();
 
@@ -97,27 +103,16 @@ namespace GoogleSpreadsheetLoader.Editor
         private void ConfigArea()
         {
             EditorGUILayout.Space();
-            ConfigAssetPath = GetAssetPathAndOpenWindow("Config Path", ConfigAssetPath);
+            Config = EditorGUILayout.ObjectField("Config", Config, typeof(GoogleSpreadsheetLoader)) as GoogleSpreadsheetLoader;
             EditorGUILayout.Space();
         }
+        
 
-
-        private string GetAssetPathAndOpenWindow(string label, string originPath)
+        private T GetObject<T>(string guid) where T : Object
         {
-            using (new EditorGUILayout.HorizontalScope())
-            {
-                var path = EditorGUILayout.TextField(label, originPath);
-                if (GUILayout.Button("Select", EditorStyles.miniButton, GUILayout.Width(65)))
-                {
-                    path = EditorUtility.OpenFilePanel("Folder Path", originPath, "");
-                    var dataPath = Application.dataPath;
-                    dataPath = dataPath.Replace("Assets", "");
-                    path = path.Replace(dataPath, "");
-                }
-
-
-                return string.IsNullOrWhiteSpace(path) ? originPath : path;
-            }
+            var assetPath = AssetDatabase.GUIDToAssetPath(guid);
+            var obj = AssetDatabase.LoadAssetAtPath<T>(assetPath);
+            return obj;
         }
     }
 }
