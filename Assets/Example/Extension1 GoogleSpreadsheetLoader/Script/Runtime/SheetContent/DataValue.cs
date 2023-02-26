@@ -13,6 +13,10 @@ namespace GoogleSpreadsheetLoader
 
 
         //constructor
+        public DataValue()
+        {
+        }
+
         public DataValue(string name, string value)
         {
             _name = name;

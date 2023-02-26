@@ -22,6 +22,44 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes:
     - Name: _rawData
-      Entry: 6
+      Entry: 7
+      Data: 0|System.String[,], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: ranks
+      Entry: 1
+      Data: 3|2
+    - Name: 
+      Entry: 1
+      Data: Key
+    - Name: 
+      Entry: 1
+      Data: Player1-2
+    - Name: 
+      Entry: 1
+      Data: Hp1_2
+    - Name: 
+      Entry: 1
+      Data: 12
+    - Name: 
+      Entry: 1
+      Data: Mp1_2
+    - Name: 
+      Entry: 1
+      Data: 12
+    - Name: 
+      Entry: 13
       Data: 
-  _dataUnits: []
+    - Name: 
+      Entry: 8
+      Data: 
+  _dataUnits:
+  - _key: Player1-2
+    _dataValues:
+    - _name: Key
+      _value: Player1-2
+    - _name: Hp1_2
+      _value: 12
+    - _name: Mp1_2
+      _value: 12

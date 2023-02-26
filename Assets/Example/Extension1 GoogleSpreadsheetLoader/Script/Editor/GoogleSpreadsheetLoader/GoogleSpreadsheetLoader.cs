@@ -21,7 +21,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         private bool _isBusy;
-        private GoogleSheetDataHandler _googleSheetDataHandler = new GoogleSheetDataHandler();
+        private GoogleSpreadsheetGasHandler _googleSpreadsheetGasHandler = new GoogleSpreadsheetGasHandler();
 
         //public method
         public async Task UpdateSheetContentInfo(SheetContentInfo sheetContentInfo)
@@ -31,8 +31,8 @@ namespace GoogleSpreadsheetLoader.Editor
             var spreadSheetId = sheetContentInfo.SpreadSheetId;
             var sheetId = sheetContentInfo.SheetId;
 
-            var spreadsheetName = await _googleSheetDataHandler.GetSpreadsheetName(_webAppUrl, spreadSheetId);
-            var sheetName = await _googleSheetDataHandler.GetSheetName(_webAppUrl, spreadSheetId, sheetId);
+            var spreadsheetName = await _googleSpreadsheetGasHandler.GetSpreadsheetName(_webAppUrl, spreadSheetId);
+            var sheetName = await _googleSpreadsheetGasHandler.GetSheetName(_webAppUrl, spreadSheetId, sheetId);
 
             var spreadsheetInfo =
                 _spreadsheetInfos.Find(spreadsheetInfo => spreadsheetInfo.SpreadsheetId == spreadSheetId);
@@ -40,7 +40,7 @@ namespace GoogleSpreadsheetLoader.Editor
             var sheetContentPath = spreadsheetInfo.SheetContentPath;
             var folderPath = PathHelper.GetFolderPath(sheetContentPath, spreadsheetName);
 
-            var csv = await _googleSheetDataHandler.GetGoogleSheetCsv(_webAppUrl, spreadSheetId, sheetId);
+            var csv = await _googleSpreadsheetGasHandler.GetGoogleSheetCsv(_webAppUrl, spreadSheetId, sheetId);
 
             sheetContentInfo.Update(sheetName, folderPath, csv);
 
@@ -72,10 +72,10 @@ namespace GoogleSpreadsheetLoader.Editor
                 if (string.IsNullOrEmpty(spreadsheetId))
                     continue;
 
-                var spreadSheetName = await _googleSheetDataHandler.GetSpreadsheetName(_webAppUrl, spreadsheetId);
+                var spreadSheetName = await _googleSpreadsheetGasHandler.GetSpreadsheetName(_webAppUrl, spreadsheetId);
                 spreadsheetInfo.SetSpreadSheetName(spreadSheetName);
 
-                var googleSheetInfos = await _googleSheetDataHandler.GetGoogleSheetInfos(_webAppUrl, spreadsheetId);
+                var googleSheetInfos = await _googleSpreadsheetGasHandler.GetGoogleSheetInfos(_webAppUrl, spreadsheetId);
 
                 foreach (var googleSheetInfo in googleSheetInfos)
                 {
@@ -154,6 +154,7 @@ namespace GoogleSpreadsheetLoader.Editor
             await Task.WhenAll(sheetContentInfoUpdates);
 
             EditorUtility.SetDirty(this);
+            
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 

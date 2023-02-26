@@ -7,7 +7,7 @@ using UnityEngine;
 namespace GoogleSpreadsheetLoader.Editor
 {
     [Serializable]
-    public class GoogleSheetDataHandler
+    public class GoogleSpreadsheetGasHandler
     {
         //private variable
         [SerializeField] public List<GoogleSheetCsv> _googleSheetCsvs = new List<GoogleSheetCsv>();

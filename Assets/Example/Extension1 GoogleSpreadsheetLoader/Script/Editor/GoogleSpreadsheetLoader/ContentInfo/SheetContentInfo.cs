@@ -83,6 +83,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
             CreateDataUnitsAndRawData(csv, out var dataUnits, out var rawData);
             _sheetContent.UpdateContent(dataUnits.ToArray(), rawData);
+            EditorUtility.SetDirty(_sheetContent);
         }
 
         [HorizontalGroup("動作")]

@@ -14,6 +14,9 @@ namespace GoogleSpreadsheetLoader
 
 
         //constructor
+        public DataUnit() {
+        }
+
         public DataUnit(string key, DataValue[] dataValues)
         {
             _key = key;
