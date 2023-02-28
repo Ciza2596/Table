@@ -6,7 +6,7 @@ using GoogleSpreadsheetLoader;
 
 namespace DataTable
 {
-    public abstract class BaseDataTableModuleConfig : IDataTableModuleConfig
+    public abstract class BaseDataTablesModuleConfig : IDataTablesModuleConfig
     {
         private AddressablesModule.AddressablesModule _addressablesModule;
         private Dictionary<Type, object> _dataTables;
@@ -14,7 +14,7 @@ namespace DataTable
         private List<UniTask> _installTasks = new List<UniTask>();
         private List<string> _dataTableNames = new List<string>();
 
-        protected BaseDataTableModuleConfig(AddressablesModule.AddressablesModule addressablesModule) =>
+        protected BaseDataTablesModuleConfig(AddressablesModule.AddressablesModule addressablesModule) =>
             _addressablesModule = addressablesModule;
 
 

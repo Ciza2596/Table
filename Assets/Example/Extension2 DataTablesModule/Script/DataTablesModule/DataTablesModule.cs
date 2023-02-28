@@ -10,8 +10,8 @@ namespace DataTable
 
         
         //public constructor
-        public DataTablesModule(IDataTableModuleConfig dataTableModuleConfig) =>
-            dataTableModuleConfig.Install(_dataTables);
+        public DataTablesModule(IDataTablesModuleConfig dataTablesModuleConfig) =>
+            dataTablesModuleConfig.Install(_dataTables);
         
 
 
