@@ -144,7 +144,7 @@ namespace GoogleSpreadsheetLoader.Editor
             {
                 var dataValues = new List<DataValue>();
 
-                for (var j = 0; j < usedLength; j++)
+                for (var j = 1; j < usedLength; j++)
                 {
                     var name = labels[j];
                     var value = csvTable[i][j];
