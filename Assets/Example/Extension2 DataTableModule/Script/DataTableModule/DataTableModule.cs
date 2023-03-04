@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace DataTable
 {
-    public class DataTablesModule
+    public class DataTableModule
     {
         //private variable
         private readonly Dictionary<Type, object> _dataTables = new Dictionary<Type, object>();
 
         
         //public constructor
-        public DataTablesModule(IDataTableModuleConfig dataTableModuleConfig) =>
+        public DataTableModule(IDataTableModuleConfig dataTableModuleConfig) =>
             dataTableModuleConfig.Install(_dataTables);
         
 

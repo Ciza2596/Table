@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using GoogleSpreadsheetLoader;
+using UnityEngine;
 
 namespace DataTable
 {
@@ -20,6 +21,8 @@ namespace DataTable
 
         public async void Install(Dictionary<Type, object> dataTables)
         {
+            Debug.Log("[BaseDataTablesModuleConfig::Install] Start Load DataTable.");
+            
             _dataTables = dataTables;
 
             await ExecuteInstallTasks();
@@ -29,6 +32,8 @@ namespace DataTable
 
             _addressablesModule = null;
             _dataTables = null;
+            
+            Debug.Log("[BaseDataTablesModuleConfig::Install] DataTable is loaded.");
         }
 
         protected void AddDataTable<TTableData>(BaseDataTable<TTableData> dataTable) where TTableData : BaseTableData =>

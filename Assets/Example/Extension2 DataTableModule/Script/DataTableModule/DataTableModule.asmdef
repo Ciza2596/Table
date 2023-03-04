@@ -1,6 +1,6 @@
 {
-    "name": "DataTablesModule",
-    "rootNamespace": "DataTablesModule",
+    "name": "DataTableModule",
+    "rootNamespace": "DataTable",
     "references": [
         "DataTable",
         "UniTask",

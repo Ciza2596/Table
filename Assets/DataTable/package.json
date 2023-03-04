@@ -22,9 +22,9 @@
       "path": "Samples~/Extension1 GoogleSpreadsheetLoader"
     },
     {
-      "displayName": "Extension2 DataTablesModule",
+      "displayName": "Extension2 DataTableModule",
       "description": "Please import Extension1 ,AddressablesModule and UniTask. Load sheetContent by AddressablesModule.",
-      "path": "Samples~/Extension2 DataTablesModule"
+      "path": "Samples~/Extension2 DataTableModule"
     },
     {
       "displayName": "Example1 UseGoogleSpreadsheetLoader",
