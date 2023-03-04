@@ -1,0 +1,19 @@
+{
+    "name": "DataTableModule",
+    "rootNamespace": "DataTable",
+    "references": [
+        "DataTable",
+        "UniTask",
+        "AddressablesModule",
+        "GoogleSpreadsheetLoader"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
