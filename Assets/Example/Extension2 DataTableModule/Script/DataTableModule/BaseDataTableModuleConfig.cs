@@ -12,7 +12,8 @@ namespace DataTable
         private AddressablesModule.AddressablesModule _addressablesModule;
         private Dictionary<Type, object> _dataTables;
 
-        private List<UniTask> _installTasks = new List<UniTask>();
+        private Func<UniTask> _initializeDataTable;
+        //private List<UniTask> _installTasks = new List<UniTask>();
         private List<string> _dataTableNames = new List<string>();
 
         protected BaseDataTableModuleConfig(AddressablesModule.AddressablesModule addressablesModule) =>
@@ -26,7 +27,7 @@ namespace DataTable
             _dataTables = dataTables;
 
             await ExecuteInstallTasks();
-            ReleaseInstallTasks();
+            ReleaseInitializeDataTable();
             
             ReleaseSheetContents();
 
@@ -37,20 +38,20 @@ namespace DataTable
         }
 
         protected void AddDataTable<TTableData>(BaseDataTable<TTableData> dataTable) where TTableData : BaseTableData =>
-            _installTasks.Add(InitializeDataTable(dataTable));
-        
-        
+            _initializeDataTable += async () => { await InitializeDataTable(dataTable); };
+
+
         private async UniTask ExecuteInstallTasks()
         {
-            var installTasks = _installTasks.ToArray();
+            var installTasks = new List<UniTask>();
+            foreach (var invocation in _initializeDataTable.GetInvocationList())
+                installTasks.Add(((Func<UniTask>)invocation).Invoke());
             await UniTask.WhenAll(installTasks);
         }
         
-        private void ReleaseInstallTasks()
-        {
-            _installTasks.Clear();
-            _installTasks = null;
-        }
+        private void ReleaseInitializeDataTable() =>
+            _initializeDataTable = null;
+        
 
         private async UniTask InitializeDataTable<TTableData>(BaseDataTable<TTableData> dataTable)
             where TTableData : BaseTableData
