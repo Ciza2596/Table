@@ -58,7 +58,7 @@ namespace DataTable
             var dataTableName = dataTable.Name;
             _dataTableNames.Add(dataTableName);
             
-            var sheetContent = await _addressablesModule.GetAssetAsync<SheetContent>(dataTableName);
+            var sheetContent = await _addressablesModule.LoadAssetAsync<SheetContent>(dataTableName);
             var dataUnits = sheetContent.DataUnits.ToArray();
             dataTable.Initialize(dataUnits);
 
@@ -68,7 +68,7 @@ namespace DataTable
         private void ReleaseSheetContents()
         {
             var dataTableNames = _dataTableNames.ToArray();
-            _addressablesModule.ReleaseAssets(dataTableNames);
+            _addressablesModule.UnloadAssets(dataTableNames);
 
             _dataTableNames.Clear();
             _dataTableNames = null;

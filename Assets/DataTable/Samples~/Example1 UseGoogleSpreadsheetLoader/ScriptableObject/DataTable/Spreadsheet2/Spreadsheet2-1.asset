@@ -57,8 +57,6 @@ MonoBehaviour:
   _dataUnits:
   - _key: Player2-1
     _dataValues:
-    - _name: Key
-      _value: Player2-1
     - _name: Hp2_1
       _value: 21
     - _name: Mp2_1
