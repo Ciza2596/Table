@@ -28,7 +28,7 @@ namespace DataTable
             return dataTable.TryGetKeys(out keys);
         }
 
-        public bool TryGetValues<TDataTable, TTableData>(out TTableData[] tableDatas)
+        public bool TryGetTableDatas<TDataTable, TTableData>(out TTableData[] tableDatas)
             where TDataTable : BaseDataTable<TTableData> where TTableData : BaseTableData
         {
             tableDatas = null;
@@ -38,7 +38,7 @@ namespace DataTable
             if (!hasDataTable)
                 return false;
 
-            return dataTable.TryGetValues(out tableDatas);
+            return dataTable.TryGetTableDatas(out tableDatas);
         }
 
         public bool TryGetKeyValuePair<TDataTable, TTableData>(out KeyValuePair<string, TTableData>[] keyValuePairs)where TDataTable : BaseDataTable<TTableData> where TTableData : BaseTableData

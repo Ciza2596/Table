@@ -49,14 +49,8 @@ namespace DataTable
         public bool TryGetKeys(out string[] keys)
         {
             keys = _dataTableMap.Keys.ToArray();
-            
-            return keys != null && keys.Length > 0;
-        }
 
-        public bool TryGetValues(out TTableData[] tableDatas)
-        {
-            tableDatas = _dataTableMap.Values.ToArray();
-            return tableDatas != null && tableDatas.Length > 0;
+            return keys != null && keys.Length > 0;
         }
 
         public bool TryGetKeyValuePair(out KeyValuePair<string, TTableData>[] keyValuePairs)
@@ -77,6 +71,12 @@ namespace DataTable
             tableData = tableDataList.Find(match);
 
             return tableData != null;
+        }
+        
+        public bool TryGetTableDatas(out TTableData[] tableDatas)
+        {
+            tableDatas = _dataTableMap.Values.ToArray();
+            return tableDatas != null && tableDatas.Length > 0;
         }
 
         public bool TryGetTableDatas(Predicate<TTableData> match, out TTableData[] tableDatas)
