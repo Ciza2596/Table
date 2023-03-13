@@ -1,4 +1,4 @@
-using DataTable;
+using CizaDataTable;
 using NUnit.Framework;
 
 public abstract class BasePrimitiveDataTableTest<TDataTable, TTableData>

@@ -1,4 +1,4 @@
-using DataTable;
+using CizaDataTable;
 using UnityEngine;
 
 public class Vector2DataTable: BaseDataTable<Vector2TableData>

@@ -2,7 +2,7 @@ using System.Linq;
 using GoogleSpreadsheetLoader;
 using UnityEngine;
 
-namespace DataTable.Example1
+namespace CizaDataTable.Example1
 {
     public class PlayerDataTableShower : MonoBehaviour
     {

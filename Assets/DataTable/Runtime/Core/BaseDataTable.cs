@@ -6,7 +6,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace DataTable
+namespace CizaDataTable
 {
     public abstract class BaseDataTable<TTableData> where TTableData : BaseTableData
     {

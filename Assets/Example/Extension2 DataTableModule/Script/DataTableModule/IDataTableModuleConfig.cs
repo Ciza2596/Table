@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataTable
+namespace CizaDataTable
 {
     public interface IDataTableModuleConfig
     {

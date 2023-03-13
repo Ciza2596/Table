@@ -1,4 +1,4 @@
-using DataTable;
+using CizaDataTable;
 
 public class FloatDataTable: BaseDataTable<FloatTableData>
 {

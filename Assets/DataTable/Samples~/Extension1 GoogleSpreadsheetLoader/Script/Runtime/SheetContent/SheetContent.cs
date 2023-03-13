@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using DataTable;
+using CizaDataTable;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;

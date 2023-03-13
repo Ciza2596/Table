@@ -1,5 +1,5 @@
 
-namespace DataTable
+namespace CizaDataTable
 {
     public interface IDataUnit
     {

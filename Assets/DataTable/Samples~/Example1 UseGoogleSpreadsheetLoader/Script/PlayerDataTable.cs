@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace DataTable.Example1
+namespace CizaDataTable.Example1
 {
     public class PlayerDataTable : BaseDataTable<PlayerTableData>
     {

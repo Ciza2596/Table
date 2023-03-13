@@ -1,6 +1,6 @@
 {
     "name": "DataTable",
-    "rootNamespace": "DataTable",
+    "rootNamespace": "CizaDataTable",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

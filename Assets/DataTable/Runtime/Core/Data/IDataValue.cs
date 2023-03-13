@@ -1,4 +1,4 @@
-namespace DataTable
+namespace CizaDataTable
 {
     public interface IDataValue
     {

@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using DataTable;
+using CizaDataTable;
 using UnityEngine;
 
 namespace GoogleSpreadsheetLoader
