@@ -1,6 +1,6 @@
 {
     "name": "DataTableModule",
-    "rootNamespace": "DataTable",
+    "rootNamespace": "CizaDataTable",
     "references": [
         "DataTable",
         "UniTask",
