@@ -1,4 +1,4 @@
-# DataTable [HasTest]
+# DataTable
 ```
 https://github.com/Ciza2596/DataTable.git?path=Assets/DataTable
 ```
@@ -68,8 +68,61 @@ public class CharacterDataUnitOverview : ScriptableObject
 
 ## Method
 
-1.
+1 - **Initialize**
 
-2.  
+```csharp
+public class InitializeExample : MonoBehaviour
+{
+    [SerializeField]
+    private CharacterDataUnitOverview _characterDataUnitOverview;
+    private void Awake()
+    {
+        var dataUnits = _characterDataUnitOverview.DataUnits;
+        var characterDataTable = new CharacterDataTable();
+        
+        characterDataTable.Initialize(dataUnits);
+    }
+}
+```
 
-## Editor
+2 - **TryGetTableData**
+
+```csharp
+public class TryGetTableDataExample : MonoBehaviour
+{
+    [SerializeField]
+    private CharacterDataUnitOverview _characterDataUnitOverview;
+    private void Awake()
+    {
+        var dataUnits = _characterDataUnitOverview.DataUnits;
+        var characterDataTable = new CharacterDataTable();
+        
+        characterDataTable.Initialize(dataUnits);
+
+        characterDataTable.TryGetTableData("Player", out var playerTableData);
+        Debug.Log($"Key: {playerTableData.Key}, Hp: {playerTableData.Hp}, Position: {playerTableData.Position}");
+        
+        characterDataTable.TryGetTableData("Gobin", out var gobinTableData);
+        Debug.Log($"Key: {gobinTableData.Key}, Hp: {gobinTableData.Hp}, Position: {gobinTableData.Position}");
+    }
+}
+```
+
+3 - **Release**
+
+```csharp
+public class ReleaseExample : MonoBehaviour
+{
+    [SerializeField]
+    private CharacterDataUnitOverview _characterDataUnitOverview;
+    private void Awake()
+    {
+        var dataUnits = _characterDataUnitOverview.DataUnits;
+        var characterDataTable = new CharacterDataTable();
+        
+        characterDataTable.Initialize(dataUnits);
+        
+        characterDataTable.Release();
+    }
+}
+```
