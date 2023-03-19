@@ -17,7 +17,7 @@ public class BoolDataTableTest : BasePrimitiveDataTableTest<BoolDataTable, BoolT
 
         Check_DataTable_Is_Initialized();
         Check_DataTable_DataUnitCount(dataUnitCount);
-        
+
         //act
         var key = DATA_UNIT_KEY_PREFIX + "0";
         _dataTable.TryGetTableData(key, out var tableData);

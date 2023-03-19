@@ -339,7 +339,7 @@ namespace CizaDataTable
             catch
             {
                 Debug.LogError(
-                    $"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key} TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString}");
+                    $"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key}, TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString}");
             }
         }
 
