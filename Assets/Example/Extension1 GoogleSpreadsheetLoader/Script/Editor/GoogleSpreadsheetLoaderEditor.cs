@@ -7,10 +7,10 @@ namespace GoogleSpreadsheetLoader.Editor
     public class GoogleSpreadsheetLoaderEditor : EditorWindow
     {
         //private variable
-        private readonly string[] _toolbarTexts = { "GoogleSpreadsheetLoader", "Config" };
+        private readonly string[] _toolbarTexts = { "GoogleSpreadsheetLoader", "ConfigResource" };
         private int _toolbarIndex = 0;
 
-        private readonly string _configGuidKey = $"GoogleSpreadsheetLoader.{nameof(ConfigGuid)}";
+        private readonly string _configGuidKey = $"GoogleSpreadsheetLoaderEditor.{nameof(ConfigGuid)}";
 
         private string ConfigGuid
         {
