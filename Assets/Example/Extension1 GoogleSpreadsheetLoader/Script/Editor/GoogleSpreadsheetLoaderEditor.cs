@@ -103,7 +103,7 @@ namespace GoogleSpreadsheetLoader.Editor
         private void ConfigArea()
         {
             EditorGUILayout.Space();
-            Config = EditorGUILayout.ObjectField("Config", Config, typeof(GoogleSpreadsheetLoader)) as GoogleSpreadsheetLoader;
+            Config = EditorGUILayout.ObjectField("Config", Config, typeof(GoogleSpreadsheetLoader), false) as GoogleSpreadsheetLoader;
             EditorGUILayout.Space();
         }
         
