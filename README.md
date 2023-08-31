@@ -1,6 +1,6 @@
 # DataTable
 ```
-https://github.com/Ciza2596/DataTable.git?path=Assets/DataTable
+https://github.com/Ciza2596/DataTable.git?path=Assets/_Project/DataTable
 ```
 
 ## Info
