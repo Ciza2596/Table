@@ -4,7 +4,6 @@
     "references": [
         "DataTable",
         "UniTask",
-        "AddressablesModule",
         "GoogleSpreadsheetLoader"
     ],
     "includePlatforms": [],

@@ -1,79 +1,79 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CizaAddressablesModule;
 using Cysharp.Threading.Tasks;
 using GoogleSpreadsheetLoader;
 using UnityEngine;
 
 namespace CizaDataTable
 {
-    public abstract class BaseDataTableModuleConfig : IDataTableModuleConfig
-    {
-        private AddressablesModule _addressablesModule;
-        private Dictionary<Type, object> _dataTables;
+	public abstract class BaseDataTableModuleConfig : IDataTableModuleConfig
+	{
+		private IAssetProvider           _assetProvider;
+		private Dictionary<Type, object> _dataTables;
 
-        private Func<UniTask> _initializeDataTable;
-        //private List<UniTask> _installTasks = new List<UniTask>();
-        private List<string> _dataTableNames = new List<string>();
+		private Func<UniTask> _initializeDataTable;
+		private List<string>  _dataTableNames = new List<string>();
 
-        protected BaseDataTableModuleConfig(AddressablesModule addressablesModule) =>
-            _addressablesModule = addressablesModule;
+		protected BaseDataTableModuleConfig(IAssetProvider assetProvider) =>
+			_assetProvider = assetProvider;
 
+		public async void Install(Dictionary<Type, object> dataTables)
+		{
+			Debug.Log("[BaseDataTablesModuleConfig::Install] Start Load DataTable.");
 
-        public async void Install(Dictionary<Type, object> dataTables)
-        {
-            Debug.Log("[BaseDataTablesModuleConfig::Install] Start Load DataTable.");
-            
-            _dataTables = dataTables;
+			_dataTables = dataTables;
 
-            await ExecuteInstallTasks();
-            ReleaseInitializeDataTable();
-            
-            ReleaseSheetContents();
+			await ExecuteInstallTasks();
+			ReleaseInitializeDataTable();
 
-            _addressablesModule = null;
-            _dataTables = null;
-            
-            Debug.Log("[BaseDataTablesModuleConfig::Install] DataTable is loaded.");
-        }
+			ReleaseSheetContents();
 
-        protected void AddDataTable<TTableData>(BaseDataTable<TTableData> dataTable) where TTableData : BaseTableData =>
-            _initializeDataTable += async () => { await InitializeDataTable(dataTable); };
+			_assetProvider = null;
+			_dataTables    = null;
 
+			Debug.Log("[BaseDataTablesModuleConfig::Install] DataTable is loaded.");
+		}
 
-        private async UniTask ExecuteInstallTasks()
-        {
-            var installTasks = new List<UniTask>();
-            foreach (var invocation in _initializeDataTable.GetInvocationList())
-                installTasks.Add(((Func<UniTask>)invocation).Invoke());
-            await UniTask.WhenAll(installTasks);
-        }
-        
-        private void ReleaseInitializeDataTable() =>
-            _initializeDataTable = null;
-        
+		protected void AddDataTable<TTableData>(BaseDataTable<TTableData> dataTable) where TTableData : BaseTableData =>
+			_initializeDataTable += async () => { await InitializeDataTable(dataTable); };
 
-        private async UniTask InitializeDataTable<TTableData>(BaseDataTable<TTableData> dataTable)
-            where TTableData : BaseTableData
-        {
-            var dataTableName = dataTable.Name;
-            _dataTableNames.Add(dataTableName);
-            
-            var sheetContent = await _addressablesModule.LoadAssetAsync<SheetContent>(dataTableName);
-            var dataUnits = sheetContent.DataUnits.ToArray();
-            dataTable.Initialize(dataUnits);
+		private async UniTask ExecuteInstallTasks()
+		{
+			if (_initializeDataTable == null)
+				return;
 
-            _dataTables.Add(dataTable.GetType(), dataTable);
-        }
+			var installTasks = new List<UniTask>();
+			foreach (var invocation in _initializeDataTable.GetInvocationList())
+				installTasks.Add(((Func<UniTask>)invocation).Invoke());
 
-        private void ReleaseSheetContents()
-        {
-            var dataTableNames = _dataTableNames.ToArray();
-            _addressablesModule.UnloadAssets(dataTableNames);
+			await UniTask.WhenAll(installTasks);
+		}
 
-            _dataTableNames.Clear();
-            _dataTableNames = null;
-        }
-    }
+		private void ReleaseInitializeDataTable() =>
+			_initializeDataTable = null;
+
+		private async UniTask InitializeDataTable<TTableData>(BaseDataTable<TTableData> dataTable)
+			where TTableData : BaseTableData
+		{
+			var dataTableName = dataTable.Name;
+			_dataTableNames.Add(dataTableName);
+
+			var sheetContent = await _assetProvider.LoadAssetAsync<SheetContent>(dataTableName, default);
+			var dataUnits    = sheetContent.DataUnits.ToArray();
+			dataTable.Initialize(dataUnits);
+
+			_dataTables.Add(dataTable.GetType(), dataTable);
+		}
+
+		private void ReleaseSheetContents()
+		{
+			var dataTableNames = _dataTableNames.ToArray();
+			foreach (var dataTableName in dataTableNames)
+				_assetProvider.UnloadAsset<SheetContent>(dataTableName);
+
+			_dataTableNames.Clear();
+			_dataTableNames = null;
+		}
+	}
 }
