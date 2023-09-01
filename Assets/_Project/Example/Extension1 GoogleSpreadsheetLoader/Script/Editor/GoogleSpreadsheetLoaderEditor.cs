@@ -51,7 +51,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         //private method
-        [MenuItem("Tools/CizaModule/GoogleSpreadsheetLoader")]
+        [MenuItem("Tools/Ciza/GoogleSpreadsheetLoader")]
         private static void ShowWindow() => GetWindow<GoogleSpreadsheetLoaderEditor>("GoogleSpreadsheetLoader");
 
 

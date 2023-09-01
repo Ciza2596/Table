@@ -49,10 +49,6 @@ namespace GoogleSpreadsheetLoader.Editor
 
         //public variable
         public string SheetInfoId => _sheetInfoId;
-
-
-        public bool IsBusy => _isBusy;
-
         public string SpreadSheetId => _spreadSheetId;
         public string SheetId => _sheetId;
 
@@ -107,11 +103,11 @@ namespace GoogleSpreadsheetLoader.Editor
         [Button("更新")]
         [GUIColor(0, 1, 0)]
         [DisableIf("_isBusy")]
-        private void Update()
+        private async void Update()
         {
             try
             {
-                _googleSpreadsheetLoader.UpdateSheetContentInfo(this);
+                await _googleSpreadsheetLoader.UpdateSheetContentInfo(this);
             }
             catch
             {

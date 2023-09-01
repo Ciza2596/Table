@@ -7,10 +7,10 @@ namespace GoogleSpreadsheetLoader.Editor
     public class GoogleSpreadsheetLoaderEditor : EditorWindow
     {
         //private variable
-        private readonly string[] _toolbarTexts = { "GoogleSpreadsheetLoader", "Config" };
+        private readonly string[] _toolbarTexts = { "GoogleSpreadsheetLoader", "ConfigResource" };
         private int _toolbarIndex = 0;
 
-        private readonly string _configGuidKey = $"GoogleSpreadsheetLoader.{nameof(ConfigGuid)}";
+        private readonly string _configGuidKey = $"GoogleSpreadsheetLoaderEditor.{nameof(ConfigGuid)}";
 
         private string ConfigGuid
         {
@@ -51,7 +51,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
 
         //private method
-        [MenuItem("Tools/CizaModule/GoogleSpreadsheetLoader")]
+        [MenuItem("Tools/Ciza/GoogleSpreadsheetLoader")]
         private static void ShowWindow() => GetWindow<GoogleSpreadsheetLoaderEditor>("GoogleSpreadsheetLoader");
 
 
@@ -103,7 +103,7 @@ namespace GoogleSpreadsheetLoader.Editor
         private void ConfigArea()
         {
             EditorGUILayout.Space();
-            Config = EditorGUILayout.ObjectField("Config", Config, typeof(GoogleSpreadsheetLoader)) as GoogleSpreadsheetLoader;
+            Config = EditorGUILayout.ObjectField("Config", Config, typeof(GoogleSpreadsheetLoader), false) as GoogleSpreadsheetLoader;
             EditorGUILayout.Space();
         }
         
