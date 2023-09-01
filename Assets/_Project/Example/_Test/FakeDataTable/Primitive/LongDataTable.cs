@@ -1,10 +1,10 @@
 using CizaDataTable;
 
-public class LongDataTable: BaseDataTable<LongTableData>
+public class LongDataTable: DataTable<LongTableData>
 {
 }
 
-public class LongTableData : BaseTableData
+public class LongTableData : TableData
 {
     public LongTableData(string key) : base(key) { }
     public long Value { get; private set; }

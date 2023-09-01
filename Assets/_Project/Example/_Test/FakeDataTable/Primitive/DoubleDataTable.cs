@@ -1,10 +1,10 @@
 using CizaDataTable;
 
-public class DoubleDataTable: BaseDataTable<DoubleTableData>
+public class DoubleDataTable: DataTable<DoubleTableData>
 {
 }
 
-public class DoubleTableData : BaseTableData
+public class DoubleTableData : TableData
 {
     public DoubleTableData(string key) : base(key) { }
     public double Value { get; private set; }

@@ -16,7 +16,7 @@ namespace CizaDataTable
 
 
         //public method
-        public bool TryGetKeys<TDataTable, TTableData>(out string[] keys) where TDataTable : BaseDataTable<TTableData> where TTableData : BaseTableData
+        public bool TryGetKeys<TDataTable, TTableData>(out string[] keys) where TDataTable : DataTable<TTableData> where TTableData : TableData
         {
             keys = null;
 
@@ -29,7 +29,7 @@ namespace CizaDataTable
         }
 
         public bool TryGetTableDatas<TDataTable, TTableData>(out TTableData[] tableDatas)
-            where TDataTable : BaseDataTable<TTableData> where TTableData : BaseTableData
+            where TDataTable : DataTable<TTableData> where TTableData : TableData
         {
             tableDatas = null;
 
@@ -41,7 +41,7 @@ namespace CizaDataTable
             return dataTable.TryGetTableDatas(out tableDatas);
         }
 
-        public bool TryGetKeyValuePair<TDataTable, TTableData>(out KeyValuePair<string, TTableData>[] keyValuePairs)where TDataTable : BaseDataTable<TTableData> where TTableData : BaseTableData
+        public bool TryGetKeyValuePair<TDataTable, TTableData>(out KeyValuePair<string, TTableData>[] keyValuePairs)where TDataTable : DataTable<TTableData> where TTableData : TableData
         {
             keyValuePairs = null;
 
@@ -54,7 +54,7 @@ namespace CizaDataTable
         }
 
         public bool TryGetTableData<TDataTable, TTableData>(string key, out TTableData tableData)
-            where TDataTable : BaseDataTable<TTableData> where TTableData : BaseTableData
+            where TDataTable : DataTable<TTableData> where TTableData : TableData
         {
             tableData = null;
 
@@ -67,7 +67,7 @@ namespace CizaDataTable
         }
 
         public bool TryGetTableData<TDataTable, TTableData>(Predicate<TTableData> match, out TTableData tableData)
-            where TDataTable : BaseDataTable<TTableData> where TTableData : BaseTableData
+            where TDataTable : DataTable<TTableData> where TTableData : TableData
         {
             tableData = null;
 
@@ -81,7 +81,7 @@ namespace CizaDataTable
 
 
         public bool TryGetTableDatas<TDataTable, TTableData>(Predicate<TTableData> match, out TTableData[] tableDatas)
-            where TDataTable : BaseDataTable<TTableData> where TTableData : BaseTableData
+            where TDataTable : DataTable<TTableData> where TTableData : TableData
         {
             tableDatas = null;
 

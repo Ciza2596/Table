@@ -22,10 +22,14 @@ Reference character sheet to definition CharacterDataTable.
 <img src="Document/Image/CharacterSheet.png?"/>
 
 ```csharp
-public class CharacterDataTable : BaseDataTable<CharacterTableData>{}
+using CizaDataTable;
+using UnityEngine.Scripting;
 
-public class CharacterTableData : BaseTableData
+public class CharacterDataTable : DataTable<CharacterTableData>{}
+
+public class CharacterTableData : TableData
 {
+    [Preserve]
     public CharacterTableData(string key) : base(key){}
 
     public float Hp { get; private set; }

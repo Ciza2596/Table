@@ -2,7 +2,7 @@ using CizaDataTable;
 using NUnit.Framework;
 
 public abstract class BasePrimitiveDataTableTest<TDataTable, TTableData>
-    where TDataTable : BaseDataTable<TTableData>, new() where TTableData : BaseTableData
+    where TDataTable : DataTable<TTableData>, new() where TTableData : TableData
 
 {
     //private variable

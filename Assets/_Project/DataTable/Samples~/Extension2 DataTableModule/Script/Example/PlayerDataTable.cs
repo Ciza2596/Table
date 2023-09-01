@@ -1,10 +1,10 @@
 using CizaDataTable;
 
-public class PlayerDataTable : BaseDataTable<PlayerTableData>
+public class PlayerDataTable : DataTable<PlayerTableData>
 {
 }
 
-public class PlayerTableData : BaseTableData
+public class PlayerTableData : TableData
 {
     public PlayerTableData(string key) : base(key)
     {

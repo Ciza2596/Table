@@ -1,9 +1,9 @@
 using CizaDataTable;
 using UnityEngine;
 
-public class CharacterDataTable : BaseDataTable<CharacterTableData>{}
+public class CharacterDataTable : DataTable<CharacterTableData>{}
 
-public class CharacterTableData : BaseTableData
+public class CharacterTableData : TableData
 {
     public CharacterTableData(string key) : base(key){}
 

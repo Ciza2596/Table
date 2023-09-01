@@ -35,7 +35,7 @@ namespace CizaDataTable
 			Debug.Log("[BaseDataTablesModuleConfig::Install] DataTable is loaded.");
 		}
 
-		protected void AddDataTable<TTableData>(BaseDataTable<TTableData> dataTable) where TTableData : BaseTableData =>
+		protected void AddDataTable<TTableData>(DataTable<TTableData> dataTable) where TTableData : TableData =>
 			_initializeDataTable += async () => { await InitializeDataTable(dataTable); };
 
 		private async UniTask ExecuteInstallTasks()
@@ -53,8 +53,8 @@ namespace CizaDataTable
 		private void ReleaseInitializeDataTable() =>
 			_initializeDataTable = null;
 
-		private async UniTask InitializeDataTable<TTableData>(BaseDataTable<TTableData> dataTable)
-			where TTableData : BaseTableData
+		private async UniTask InitializeDataTable<TTableData>(DataTable<TTableData> dataTable)
+			where TTableData : TableData
 		{
 			var dataTableName = dataTable.Name;
 			_dataTableNames.Add(dataTableName);

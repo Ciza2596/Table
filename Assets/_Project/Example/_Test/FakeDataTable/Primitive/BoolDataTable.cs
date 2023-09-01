@@ -1,10 +1,10 @@
 using CizaDataTable;
 
-public class BoolDataTable : BaseDataTable<BoolTableData>
+public class BoolDataTable : DataTable<BoolTableData>
 {
 }
 
-public class BoolTableData : BaseTableData
+public class BoolTableData : TableData
 {
     public BoolTableData(string key) : base(key) { }
     public bool Value { get; private set; }
