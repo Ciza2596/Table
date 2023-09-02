@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GoogleSpreadsheetLoader.Editor
 {
-	[CreateAssetMenu(fileName = "GoogleSpreadsheetLoader", menuName = "Ciza/DataTable/GoogleSpreadsheetLoader")]
+	[CreateAssetMenu(fileName = "GoogleSpreadsheetLoader", menuName = "Ciza/Table/GoogleSpreadsheetLoader")]
 	public class GoogleSpreadsheetLoader : ScriptableObject
 	{
 		//private variable

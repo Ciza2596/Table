@@ -1,6 +1,6 @@
 # Table
 ```
-https://github.com/Ciza2596/DataTable.git?path=Assets/_Project/Table
+https://github.com/Ciza2596/Table.git?path=Assets/_Project/Table
 ```
 
 ## Info
@@ -43,7 +43,7 @@ public class CharacterTable : Table<CharacterTable.Data>{
 2 - **Definition IDataUnit**
 
 ```csharp
-[CreateAssetMenu(fileName = "CharacterDataUnitOverview", menuName = "DataTable/CharacterDataUnitOverview")]
+[CreateAssetMenu(fileName = "CharacterDataUnitOverview", menuName = "Ciza/Table/CharacterDataUnitOverview")]
 public class CharacterDataUnitOverview : ScriptableObject
 {
     [SerializeField] private DataUnitImp[] _dataUnitImps;

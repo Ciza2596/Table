@@ -2,7 +2,7 @@ using System;
 using CizaTable;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CharacterDataUnitOverview", menuName = "DataTable/CharacterDataUnitOverview")]
+[CreateAssetMenu(fileName = "CharacterDataUnitOverview", menuName = "Ciza/Table/CharacterDataUnitOverview")]
 public class CharacterDataUnitOverview : ScriptableObject
 {
     [SerializeField] private DataUnitImp[] _dataUnitImps;
