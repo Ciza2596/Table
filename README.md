@@ -1,6 +1,6 @@
-# DataTable
+# Table
 ```
-https://github.com/Ciza2596/DataTable.git?path=Assets/_Project/DataTable
+https://github.com/Ciza2596/DataTable.git?path=Assets/_Project/Table
 ```
 
 ## Info
@@ -10,31 +10,33 @@ Support type:
 
 module | Test |
 --- | :---: |
-DataTable| ✔️ |
+Table| ✔️ |
 
 
 ## Setup
 
-1 - **Definition DataTable**
+1 - **Definition Table**
 
-Reference character sheet to definition CharacterDataTable.
+Reference character sheet to definition CharacterTable.
 
 <img src="Document/Image/CharacterSheet.png?"/>
 
 ```csharp
-using CizaDataTable;
+using CizaTable;
 using UnityEngine.Scripting;
 
-public class CharacterDataTable : DataTable<CharacterTableData>{}
+public class CharacterTable : Table<CharacterTable.Data>{
 
-public class CharacterTableData : TableData
-{
-    [Preserve]
-    public CharacterTableData(string key) : base(key){}
+    public class Data : TableData
+    {
+        [Preserve]
+        public Data(string key) : base(key){}
 
-    public float Hp { get; private set; }
+        public float Hp { get; private set; }
 
-    public Vector2 Position { get; private set; }
+        public Vector2 Position { get; private set; }
+    }
+
 }
 ```
 
@@ -82,9 +84,9 @@ public class InitializeExample : MonoBehaviour
     private void Awake()
     {
         var dataUnits = _characterDataUnitOverview.DataUnits;
-        var characterDataTable = new CharacterDataTable();
+        var characterTable = new CharacterTable();
         
-        characterDataTable.Initialize(dataUnits);
+        characterTable.Initialize(dataUnits);
     }
 }
 ```
@@ -99,14 +101,14 @@ public class TryGetTableDataExample : MonoBehaviour
     private void Awake()
     {
         var dataUnits = _characterDataUnitOverview.DataUnits;
-        var characterDataTable = new CharacterDataTable();
+        var characterTable = new CharacterTable();
         
-        characterDataTable.Initialize(dataUnits);
+        characterTable.Initialize(dataUnits);
 
-        characterDataTable.TryGetTableData("Player", out var playerTableData);
+        characterTable.TryGetTableData("Player", out var playerTableData);
         Debug.Log($"Key: {playerTableData.Key}, Hp: {playerTableData.Hp}, Position: {playerTableData.Position}");
         
-        characterDataTable.TryGetTableData("Gobin", out var gobinTableData);
+        characterTable.TryGetTableData("Gobin", out var gobinTableData);
         Debug.Log($"Key: {gobinTableData.Key}, Hp: {gobinTableData.Hp}, Position: {gobinTableData.Position}");
     }
 }
@@ -122,11 +124,11 @@ public class ReleaseExample : MonoBehaviour
     private void Awake()
     {
         var dataUnits = _characterDataUnitOverview.DataUnits;
-        var characterDataTable = new CharacterDataTable();
+        var characterTable = new CharacterTable();
         
-        characterDataTable.Initialize(dataUnits);
+        characterTable.Initialize(dataUnits);
         
-        characterDataTable.Release();
+        characterTable.Release();
     }
 }
 ```

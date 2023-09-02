@@ -1,5 +1,5 @@
 using System;
-using CizaDataTable;
+using CizaTable;
 
 
 [Serializable]

@@ -1,5 +1,5 @@
 using System;
-using CizaDataTable;
+using CizaTable;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CharacterDataUnitOverview", menuName = "DataTable/CharacterDataUnitOverview")]

@@ -7,14 +7,14 @@ public class TryGetTableDataExample : MonoBehaviour
     private void Awake()
     {
         var dataUnits = _characterDataUnitOverview.DataUnits;
-        var characterDataTable = new CharacterDataTable();
+        var characterTable = new CharacterTable();
         
-        characterDataTable.Initialize(dataUnits);
+        characterTable.Initialize(dataUnits);
 
-        characterDataTable.TryGetTableData("Player", out var playerTableData);
+        characterTable.TryGetTableData("Player", out var playerTableData);
         Debug.Log($"Key: {playerTableData.Key}, Hp: {playerTableData.Hp}, Position: {playerTableData.Position}");
         
-        characterDataTable.TryGetTableData("Gobin", out var gobinTableData);
+        characterTable.TryGetTableData("Gobin", out var gobinTableData);
         Debug.Log($"Key: {gobinTableData.Key}, Hp: {gobinTableData.Hp}, Position: {gobinTableData.Position}");
     }
 }

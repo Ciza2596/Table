@@ -7,10 +7,10 @@ public class ReleaseExample : MonoBehaviour
     private void Awake()
     {
         var dataUnits = _characterDataUnitOverview.DataUnits;
-        var characterDataTable = new CharacterDataTable();
+        var characterTable = new CharacterTable();
         
-        characterDataTable.Initialize(dataUnits);
+        characterTable.Initialize(dataUnits);
         
-        characterDataTable.Release();
+        characterTable.Release();
     }
 }
