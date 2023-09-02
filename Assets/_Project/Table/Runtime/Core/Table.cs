@@ -24,14 +24,16 @@ namespace CizaTable
 		//public variable
 		public string Name { get; }
 
-		public bool IsInitialized => _dataMap != null;
+		public bool IsInitialized { get; private set; }
 
 		//public method
 		public void Initialize(IDataUnit[] dataUnits)
 		{
-			if(IsInitialized)
+			if (IsInitialized)
 				return;
-			
+
+			IsInitialized = true;
+
 			Assert.IsNotNull(dataUnits, $"[{GetType().Name}::Initialize] SheetContent is null.");
 			Parser(dataUnits);
 		}
@@ -42,6 +44,7 @@ namespace CizaTable
 				return;
 
 			_dataMap.Clear();
+			IsInitialized = false;
 		}
 
 		public bool TryGetKeys(out string[] keys)

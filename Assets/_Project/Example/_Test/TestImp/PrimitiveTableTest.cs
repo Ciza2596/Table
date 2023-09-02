@@ -83,10 +83,10 @@ public abstract class PrimitiveTableTest<TTable, TTableData> where TTable : Tabl
 
 	//protected method
 	protected void Check_Table_Is_Initialized() =>
-			Assert.IsTrue(_table.IsInitialized, "Table doesnt be initialized.");
+			Assert.IsTrue(_table.IsInitialized, "Table should be initialized.");
 
 	protected void Check_Table_Doesnt_Be_Initialized() =>
-			Assert.IsFalse(_table.IsInitialized, "Table is initialized.");
+			Assert.IsFalse(_table.IsInitialized, "Table should be not initialized.");
 
 	protected void Check_Table_DataUnitCount(int expectedCount)
 	{
