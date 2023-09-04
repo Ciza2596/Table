@@ -7,84 +7,84 @@ using UnityEngine.Windows;
 
 namespace GoogleSpreadsheetLoader.Editor
 {
-    [Serializable]
-    public class SpreadsheetContentInfo
-    {
-        //private variable
-        [LabelText("Sheet Content存放路徑(建立物件時使用)")] [ReadOnly] [SerializeField]
-        private string _sheetContentPath;
+	[Serializable]
+	public class SpreadsheetContentInfo
+	{
+		//private variable
+		[LabelText("Sheet Content存放路徑(建立物件時使用)")]
+		[ReadOnly]
+		[SerializeField]
+		private string _sheetContentPath;
 
-        [TableList(IsReadOnly = true)] [SerializeField]
-        private List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
+		[TableList(IsReadOnly = true)]
+		[SerializeField]
+		private List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
 
-        [HideInInspector]
-        [SerializeField]
-        private string _spreadsheetInfoId;
+		[HideInInspector]
+		[SerializeField]
+		private string _spreadsheetInfoId;
 
+		//public variable
+		public string SheetContentPath => _sheetContentPath;
 
-        //public variable
-        public string SheetContentPath => _sheetContentPath;
+		public SheetContentInfo[] SheetContentInfos => _sheetContentInfos.ToArray();
 
-        public SheetContentInfo[] SheetContentInfos => _sheetContentInfos.ToArray();
+		public string SpreadsheetInfoId => _spreadsheetInfoId;
 
-        public string SpreadsheetInfoId => _spreadsheetInfoId;
+		//constructor
+		public SpreadsheetContentInfo(string spreadsheetInfoId) =>
+			_spreadsheetInfoId = spreadsheetInfoId;
 
+		//public method
+		public void RemoveAll()
+		{
+			var subSheetContentInfos = SheetContentInfos;
+			foreach (var subSheetContentInfo in subSheetContentInfos)
+			{
+				_sheetContentInfos.Remove(subSheetContentInfo);
+				subSheetContentInfo.Remove();
+			}
+		}
 
-        //constructor
-        public SpreadsheetContentInfo(string spreadsheetInfoId) =>
-            _spreadsheetInfoId = spreadsheetInfoId;
+		public void SetSheetContentPath(string sheetContentPath) =>
+			_sheetContentPath = sheetContentPath;
 
+		public SheetContentInfo FindSheetContentInfo(string sheetInfoId)
+		{
+			var sheetContentInfo = _sheetContentInfos.Find(sheetContentInfo => sheetContentInfo.SheetInfoId == sheetInfoId);
+			return sheetContentInfo;
+		}
 
-        //public method
-        public void RemoveAll()
-        {
-            var subSheetContentInfos = SheetContentInfos;
+		public SheetContentInfo CreateSheetContentInfo(string sheetInfoId, string spreadSheetId, string sheetId, string spreadSheetName, GoogleSpreadsheetLoader googleSpreadsheetLoader)
+		{
+			var sheetContent     = CreateScriptableObjectToAssets<SheetContent>(spreadSheetName);
+			var sheetContentInfo = new SheetContentInfo(sheetInfoId, spreadSheetId, sheetId, sheetContent, googleSpreadsheetLoader);
 
-            foreach (var subSheetContentInfo in subSheetContentInfos)
-            {
-                _sheetContentInfos.Remove(subSheetContentInfo);
-                subSheetContentInfo.Remove();
-            }
-        }
+			_sheetContentInfos.Add(sheetContentInfo);
+			return sheetContentInfo;
+		}
 
+		public void CheckIsSheetContentRemoved()
+		{
+			foreach (var sheetContentInfo in SheetContentInfos)
+				if (sheetContentInfo.IsRemoved)
+					_sheetContentInfos.Remove(sheetContentInfo);
+		}
 
-        public void SetSheetContentPath(string sheetContentPath) => _sheetContentPath = sheetContentPath;
+		//private method
+		private T CreateScriptableObjectToAssets<T>(string spreadSheetName) where T : ScriptableObject
+		{
+			var folderPath = PathHelper.GetFolderPath(_sheetContentPath, spreadSheetName);
+			var fullPath   = PathHelper.GetFullPath(folderPath, Guid.NewGuid().ToString());
 
-        public SheetContentInfo FindSheetContentInfo(string sheetInfoId)
-        {
-            var sheetContentInfo =
-                _sheetContentInfos.Find(sheetContentInfo => sheetContentInfo.SheetInfoId == sheetInfoId);
-            return sheetContentInfo;
-        }
+			if (!Directory.Exists(folderPath))
+				Directory.CreateDirectory(folderPath);
 
-        public SheetContentInfo CreateSheetContentInfo(string sheetInfoId, string spreadSheetId, string sheetId,
-            string spreadSheetName,
-            GoogleSpreadsheetLoader googleSpreadsheetLoader)
-        {
-            var sheetContent = CreateScriptableObjectToAssets<SheetContent>(spreadSheetName);
-            
-            var sheetContentInfo = new SheetContentInfo(sheetInfoId, spreadSheetId, sheetId, sheetContent,
-                googleSpreadsheetLoader);
+			var scriptableObject = ScriptableObject.CreateInstance(typeof(T));
 
-            _sheetContentInfos.Add(sheetContentInfo);
-            return sheetContentInfo;
-        }
-
-
-        //private method
-        private T CreateScriptableObjectToAssets<T>(string spreadSheetName) where T : ScriptableObject
-        {   
-            var folderPath = PathHelper.GetFolderPath(_sheetContentPath,spreadSheetName);
-            var fullPath = PathHelper.GetFullPath(folderPath, Guid.NewGuid().ToString());
-
-            if (!Directory.Exists(folderPath))
-                Directory.CreateDirectory(folderPath);
-
-            var scriptableObject = ScriptableObject.CreateInstance(typeof(T));
-
-            AssetDatabase.CreateAsset(scriptableObject, fullPath);
-            AssetDatabase.SaveAssets();
-            return scriptableObject as T;
-        }
-    }
+			AssetDatabase.CreateAsset(scriptableObject, fullPath);
+			AssetDatabase.SaveAssets();
+			return scriptableObject as T;
+		}
+	}
 }

@@ -37,8 +37,7 @@ namespace GoogleSpreadsheetLoader.Editor
 			var spreadsheetName = await _googleSpreadsheetGasHandler.GetSpreadsheetName(_webAppUrl, spreadSheetId);
 			var sheetName       = await _googleSpreadsheetGasHandler.GetSheetName(_webAppUrl, spreadSheetId, sheetId);
 
-			var spreadsheetInfo =
-				_spreadsheetInfos.Find(spreadsheetInfo => spreadsheetInfo.SpreadsheetId == spreadSheetId);
+			var spreadsheetInfo = _spreadsheetInfos.Find(spreadsheetInfo => spreadsheetInfo.SpreadsheetId == spreadSheetId);
 
 			var sheetContentPath = spreadsheetInfo.SheetContentPath;
 			var folderPath       = PathHelper.GetFolderPath(sheetContentPath, spreadsheetName);
@@ -46,8 +45,13 @@ namespace GoogleSpreadsheetLoader.Editor
 			var csv = await _googleSpreadsheetGasHandler.GetGoogleSheetCsv(_webAppUrl, spreadSheetId, sheetId);
 
 			sheetContentInfo.Update(sheetName, folderPath, csv);
-
 			sheetContentInfo.SetIsBusy(false);
+		}
+
+		public void CheckIsSheetContentRemoved()
+		{
+			foreach (var spreadsheetContentInfo in _usedSpreadsheetContentInfos)
+				spreadsheetContentInfo.CheckIsSheetContentRemoved();
 		}
 
 		//private method
@@ -62,14 +66,14 @@ namespace GoogleSpreadsheetLoader.Editor
 		[Button("Update Spreadsheet Preview")]
 		private async void UpdateSpreadsheets()
 		{
-			if (_spreadsheetInfos is null || _spreadsheetInfos.Count <= 0) return;
+			if (_spreadsheetInfos is null || _spreadsheetInfos.Count <= 0)
+				return;
 
 			Debug.Log("[GoogleSpreadsheetLoader::UpdateSpreadsheets] Start update spreadsheets....");
 
 			foreach (var spreadsheetInfo in _spreadsheetInfos)
 			{
 				var spreadsheetId = spreadsheetInfo.SpreadsheetId;
-
 				if (string.IsNullOrEmpty(spreadsheetId))
 					continue;
 
@@ -77,7 +81,6 @@ namespace GoogleSpreadsheetLoader.Editor
 				spreadsheetInfo.SetSpreadSheetName(spreadSheetName);
 
 				var googleSheetInfos = await _googleSpreadsheetGasHandler.GetGoogleSheetInfos(_webAppUrl, spreadsheetId);
-
 				foreach (var googleSheetInfo in googleSheetInfos)
 				{
 					var sheetName = googleSheetInfo.SheetName;
@@ -104,14 +107,16 @@ namespace GoogleSpreadsheetLoader.Editor
 		[DisableIf("_isBusy")]
 		private async void UpdateAllUsedSheetContentInfos()
 		{
-			if (_isBusy) return;
+			if (_isBusy)
+				return;
 
 			Debug.Log("[GoogleSpreadsheetLoader::UpdateAllUsedSheetContentInfos] Start update all used sheet contents....");
 
 			_isBusy = true;
 
-			var sheetContentInfoUpdates = new List<Task>();
+			CheckIsSheetContentRemoved();
 
+			var sheetContentInfoUpdates = new List<Task>();
 			foreach (var spreadsheetInfo in _spreadsheetInfos)
 			{
 				var spreadsheetInfoId      = spreadsheetInfo.GetId();
@@ -137,10 +142,7 @@ namespace GoogleSpreadsheetLoader.Editor
 					if (sheetInfo.IsUsing)
 					{
 						if (sheetContentInfo is null)
-							sheetContentInfo =
-								spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId, spreadsheetId, sheetId,
-								                                              spreadSheetName,
-								                                              this);
+							sheetContentInfo = spreadsheetContentInfo.CreateSheetContentInfo(sheetInfoId, spreadsheetId, sheetId, spreadSheetName, this);
 
 						sheetContentInfoUpdates.Add(UpdateSheetContentInfo(sheetContentInfo));
 						continue;
@@ -172,7 +174,6 @@ namespace GoogleSpreadsheetLoader.Editor
 			var sheetContentInfos = _usedSpreadsheetContentInfos.ToArray();
 			_usedSpreadsheetContentInfos.Clear();
 
-
 			foreach (var sheetContentInfo in sheetContentInfos)
 				sheetContentInfo.RemoveAll();
 		}
@@ -197,8 +198,7 @@ namespace GoogleSpreadsheetLoader.Editor
 		}
 
 		private SpreadsheetContentInfo FindUsedSpreadSheetContentInfo(string spreadsheetInfoId) =>
-			_usedSpreadsheetContentInfos.Find(spreadsheetContentInfo =>
-				                                  spreadsheetContentInfo.SpreadsheetInfoId == spreadsheetInfoId);
+			_usedSpreadsheetContentInfos.Find(spreadsheetContentInfo => spreadsheetContentInfo.SpreadsheetInfoId == spreadsheetInfoId);
 
 		/// <summary>
 		/// 打開指定的表單頁面
@@ -206,7 +206,6 @@ namespace GoogleSpreadsheetLoader.Editor
 		private void GoogleOpenUrl(string service, string spreadsheetId, string sheetId, int row = 0, int column = 0)
 		{
 			var request = $"{service}?key={spreadsheetId}&gid={sheetId}&action=GetRawCSV";
-
 			if (row > 0 && column > 0)
 				request += string.Format("&row={0}&column={1}", row, column);
 
