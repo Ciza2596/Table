@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 namespace CizaTable
 {
@@ -8,11 +9,28 @@ namespace CizaTable
 		//private variable
 		private readonly Dictionary<Type, object> _tables = new Dictionary<Type, object>();
 
+		private ITableModuleConfig _tableModuleConfig;
+
+		public bool IsInitializing { get; private set; }
+		public bool IsInitialized  => _tableModuleConfig == null;
+
 		//public constructor
 		public TableModule(ITableModuleConfig tableModuleConfig) =>
-			tableModuleConfig.Install(_tables);
+			_tableModuleConfig = tableModuleConfig;
 
 		//public method
+		public async UniTask Initialize()
+		{
+			if (IsInitialized || IsInitializing)
+				return;
+
+			IsInitializing = true;
+			await _tableModuleConfig.Install(_tables);
+			IsInitializing = false;
+
+			_tableModuleConfig = null;
+		}
+
 		public bool TryGetKeys<TTable, TTableData>(out string[] keys) where TTable : Table<TTableData> where TTableData : Table<TTableData>.TableData
 		{
 			if (!TryGetTable<TTable>(out var dataTable))
