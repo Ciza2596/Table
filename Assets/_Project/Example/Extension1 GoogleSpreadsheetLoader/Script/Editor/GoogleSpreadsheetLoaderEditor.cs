@@ -64,8 +64,6 @@ namespace GoogleSpreadsheetLoader.Editor
 					ConfigArea();
 					break;
 			}
-
-			Config.CheckIsSheetContentRemoved();
 		}
 
 		private void ToolBarArea()
@@ -94,6 +92,8 @@ namespace GoogleSpreadsheetLoader.Editor
 			EditorGUILayout.Space(15);
 
 			EditorGUILayout.EndHorizontal();
+
+			Config.CheckIsSheetContentRemoved();
 		}
 
 		private void ConfigArea()
