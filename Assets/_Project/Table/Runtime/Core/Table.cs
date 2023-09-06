@@ -131,10 +131,10 @@ namespace CizaTable
 
 		private Dictionary<string, PropertyInfo> CreateTableDataPropertyInfoMap()
 		{
-			var bindingFlags  = BindingFlags.Instance | BindingFlags.Public;
-			var propertyInfos = typeof(TTableData).GetProperties(bindingFlags);
-
 			var propertyInfoMap = new Dictionary<string, PropertyInfo>();
+
+			var bindingFlags  = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+			var propertyInfos = typeof(TTableData).GetProperties(bindingFlags);
 
 			foreach (var propertyInfo in propertyInfos)
 			{
@@ -332,7 +332,7 @@ namespace CizaTable
 		public abstract class TableData
 		{
 			//constructor
-			protected TableData(string key) => Key = key;
+			public TableData(string key) => Key = key;
 
 			//public variable
 			public string Key { get; }
