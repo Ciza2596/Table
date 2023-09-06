@@ -35,7 +35,7 @@ namespace CizaTable
 			Debug.Log($"[{GetType().Name}::Install] Table is loaded.");
 		}
 
-		protected void AddTable<TTableData>(Table<TTableData> table) where TTableData : Table<TTableData>.TableData =>
+		protected void AddTable<TTableData>(Table<TTableData> table) where TTableData : TableData =>
 			_initializeTable += async () => { await InitializeTable(table); };
 
 		private async UniTask ExecuteInstallTasks()
@@ -53,7 +53,7 @@ namespace CizaTable
 		private void ReleaseInitializeTable() =>
 			_initializeTable = null;
 
-		private async UniTask InitializeTable<TTableData>(Table<TTableData> table) where TTableData : Table<TTableData>.TableData
+		private async UniTask InitializeTable<TTableData>(Table<TTableData> table) where TTableData : TableData
 		{
 			var tableName = table.Name;
 			_tableNames.Add(tableName);
