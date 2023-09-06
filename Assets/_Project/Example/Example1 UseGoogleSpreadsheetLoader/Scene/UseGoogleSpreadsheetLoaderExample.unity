@@ -133,8 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1801756433}
   - component: {fileID: 1801756432}
+  - component: {fileID: 1801756434}
   m_Layer: 0
-  m_Name: GameObjecPlayerDataTableShower
+  m_Name: DataTableShower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b535a8f03f38f4fa8bd39a8d0978c4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerKey: Player1-1_0
+  _key: Player1-1_0
   _sheetContent: {fileID: 11400000, guid: 73d2dff497e314074ba13f0a79ba84b3, type: 2}
 --- !u!4 &1801756433
 Transform:
@@ -169,6 +170,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1801756434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801756431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c60d732d89664d7aa25cf430f03d10f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: Player1-2
+  _sheetContent: {fileID: 11400000, guid: b706fd0c0936a4861a0e0c7c58438cd6, type: 2}
 --- !u!1 &1904312819
 GameObject:
   m_ObjectHideFlags: 0

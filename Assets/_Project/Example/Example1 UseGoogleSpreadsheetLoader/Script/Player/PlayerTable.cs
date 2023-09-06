@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace CizaTable.Example1
 {
@@ -6,9 +7,10 @@ namespace CizaTable.Example1
 	{
 		public class Data : TableData
 		{
+			[Preserve]
 			public Data(string key) : base(key) { }
 
-			public float Hp1_1 { get; private set; }
+			protected float Hp1_1 { get; private set; }
 
 			public float Mp1_1 { get; private set; }
 

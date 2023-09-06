@@ -89,27 +89,22 @@ namespace CizaTable
 		}
 
 		//private method
-		private void AddTableData(string key, TTableData tableData)
-		{
-			if (_dataMap.ContainsKey(key))
-			{
-				Debug.Log($"[{GetType().Name}::AddTableData] Already add key: {key}.");
-				return;
-			}
-
-			_dataMap.Add(key, tableData);
-		}
-
 		private void Parser(IDataUnit[] dataUnits)
 		{
 			var tableDataPropertyInfoMap = CreateTableDataPropertyInfoMap();
 			foreach (var dataUnit in dataUnits)
 			{
-				var key       = dataUnit.Key;
+				var key = dataUnit.Key;
+				if (_dataMap.ContainsKey(key))
+				{
+					Debug.Log($"[{GetType().Name}::Parser] Already add key: {key}.");
+					continue;
+				}
+
+
 				var tableData = Activator.CreateInstance(typeof(TTableData), key) as TTableData;
 
 				var dataValues = dataUnit.DataValues;
-
 				foreach (var dataValue in dataValues)
 				{
 					var name                     = dataValue.Name;
@@ -125,7 +120,7 @@ namespace CizaTable
 					SetValue(tableDataPropertyInfo, value, tableData);
 				}
 
-				AddTableData(key, tableData);
+				_dataMap.Add(key, tableData);
 			}
 		}
 
