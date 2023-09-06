@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 
 namespace CizaTable
 {
-	public abstract class Table<TTableData> where TTableData : Table<TTableData>.TableData
+	public abstract class Table<TTableData> where TTableData : TableData
 	{
 		//private variable
 		private const string _spaceTag       = " ";
@@ -327,15 +327,6 @@ namespace CizaTable
 				valueString = valueString.Replace(_floatTag, null);
 
 			return valueString;
-		}
-
-		public abstract class TableData
-		{
-			//constructor
-			public TableData(string key) => Key = key;
-
-			//public variable
-			public string Key { get; }
 		}
 	}
 }

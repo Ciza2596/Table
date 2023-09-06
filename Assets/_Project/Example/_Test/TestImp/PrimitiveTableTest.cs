@@ -1,14 +1,14 @@
 using CizaTable;
 using NUnit.Framework;
 
-public abstract class PrimitiveTableTest<TTable, TTableData> where TTable : Table<TTableData>, new() where TTableData : Table<TTableData>.TableData
+public abstract class PrimitiveTableTest<TTable, TTableData> where TTable : Table<TTableData>, new() where TTableData : TableData
 
 {
 	//private variable
 	private const string _propertyName = "Value";
 
-	protected const   string     _dataUnitKeyPrefix = "Key";
-	protected virtual string     ValueString { get; }
+	protected const   string _dataUnitKeyPrefix = "Key";
+	protected virtual string ValueString { get; }
 	protected         TTable _table;
 
 	[SetUp]
@@ -83,10 +83,10 @@ public abstract class PrimitiveTableTest<TTable, TTableData> where TTable : Tabl
 
 	//protected method
 	protected void Check_Table_Is_Initialized() =>
-			Assert.IsTrue(_table.IsInitialized, "Table should be initialized.");
+		Assert.IsTrue(_table.IsInitialized, "Table should be initialized.");
 
 	protected void Check_Table_Doesnt_Be_Initialized() =>
-			Assert.IsFalse(_table.IsInitialized, "Table should be not initialized.");
+		Assert.IsFalse(_table.IsInitialized, "Table should be not initialized.");
 
 	protected void Check_Table_DataUnitCount(int expectedCount)
 	{
