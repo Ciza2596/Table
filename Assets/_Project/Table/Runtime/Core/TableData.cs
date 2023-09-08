@@ -1,5 +1,8 @@
+using System;
+
 namespace CizaTable
 {
+	[Serializable]
 	public abstract class TableData
 	{
 		//constructor

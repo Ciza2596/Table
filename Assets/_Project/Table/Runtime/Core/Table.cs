@@ -101,7 +101,6 @@ namespace CizaTable
 					continue;
 				}
 
-
 				var tableData = Activator.CreateInstance(typeof(TTableData), key) as TTableData;
 
 				var dataValues = dataUnit.DataValues;

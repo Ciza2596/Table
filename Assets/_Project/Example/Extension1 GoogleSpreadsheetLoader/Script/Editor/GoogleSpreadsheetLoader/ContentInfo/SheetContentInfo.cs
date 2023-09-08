@@ -11,6 +11,7 @@ namespace GoogleSpreadsheetLoader.Editor
 	public class SheetContentInfo
 	{
 		//private variable
+		[PropertyOrder(-1)]
 		[TableColumnWidth(200)]
 		[VerticalGroup("ScriptableObject")]
 		[ReadOnly]
@@ -80,6 +81,7 @@ namespace GoogleSpreadsheetLoader.Editor
 			EditorUtility.SetDirty(_sheetContent);
 		}
 
+		[PropertyOrder(1)]
 		[HorizontalGroup("動作")]
 		[GUIColor(1, 0, 0)]
 		[Button("移除")]
