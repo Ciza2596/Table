@@ -31,6 +31,19 @@ namespace CizaTable
 			_tableModuleConfig = null;
 		}
 
+		public bool TryGetTable<T>(out T table)
+		{
+			var type = typeof(T);
+			if (!_tables.ContainsKey(type))
+			{
+				table = default;
+				return false;
+			}
+
+			table = (T)_tables[type];
+			return true;
+		}
+
 		public bool TryGetKeys<TTable, TTableData>(out string[] keys) where TTable : Table<TTableData> where TTableData : TableData
 		{
 			if (!TryGetTable<TTable>(out var dataTable))
@@ -95,20 +108,6 @@ namespace CizaTable
 			}
 
 			return dataTable.TryGetTableDatas(match, out tableDatas);
-		}
-
-		//private method
-		private bool TryGetTable<T>(out T table)
-		{
-			var type = typeof(T);
-			if (!_tables.ContainsKey(type))
-			{
-				table = default;
-				return false;
-			}
-
-			table = (T)_tables[type];
-			return true;
 		}
 	}
 }
