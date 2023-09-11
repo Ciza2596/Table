@@ -10,6 +10,13 @@ namespace CizaTable
 {
 	public abstract class Table<TTableData> where TTableData : TableData
 	{
+		public enum KeyLetterTypes
+		{
+			ToLower,
+			Normal,
+			ToUpper
+		}
+
 		//private variable
 		private const string _spaceTag       = " ";
 		private const string _vectorSplitTag = ",";
@@ -19,9 +26,17 @@ namespace CizaTable
 		private readonly        Dictionary<string, TTableData> _dataMap     = new Dictionary<string, TTableData>();
 
 		//constructor
-		protected Table() => Name = GetType().Name;
+		protected Table() : this(KeyLetterTypes.ToLower) { }
+
+		protected Table(KeyLetterTypes keyLetterType)
+		{
+			KeyLetterType = keyLetterType;
+			Name          = GetType().Name;
+		}
 
 		//public variable
+		public KeyLetterTypes KeyLetterType { get; }
+
 		public string Name { get; }
 
 		public bool IsInitialized { get; private set; }
@@ -62,7 +77,7 @@ namespace CizaTable
 
 		public bool TryGetTableData(string key, out TTableData tableData)
 		{
-			var hasValue = _dataMap.TryGetValue(key, out tableData);
+			var hasValue = _dataMap.TryGetValue(GetKey(key), out tableData);
 			return hasValue;
 		}
 
@@ -94,7 +109,7 @@ namespace CizaTable
 			var tableDataPropertyInfoMap = CreateTableDataPropertyInfoMap();
 			foreach (var dataUnit in dataUnits)
 			{
-				var key = dataUnit.Key;
+				var key = GetKey(dataUnit.Key);
 				if (_dataMap.ContainsKey(key))
 				{
 					Debug.Log($"[{GetType().Name}::Parser] Already add key: {key}.");
@@ -321,6 +336,20 @@ namespace CizaTable
 				valueString = valueString.Replace(_floatTag, null);
 
 			return valueString;
+		}
+
+		string GetKey(string key)
+		{
+			switch (KeyLetterType)
+			{
+				case KeyLetterTypes.ToLower:
+					return key.ToLower();
+
+				case KeyLetterTypes.ToUpper:
+					return key.ToUpper();
+			}
+
+			return key;
 		}
 	}
 }
