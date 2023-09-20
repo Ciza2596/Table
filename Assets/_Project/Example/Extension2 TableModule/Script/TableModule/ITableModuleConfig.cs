@@ -6,6 +6,6 @@ namespace CizaTable
 {
 	public interface ITableModuleConfig
 	{
-		public UniTask Install(Dictionary<Type, object> tables);
+		public UniTask InstallAsync(Dictionary<Type, object> tables);
 	}
 }

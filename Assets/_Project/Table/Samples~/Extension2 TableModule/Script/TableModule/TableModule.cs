@@ -25,7 +25,7 @@ namespace CizaTable
 				return;
 
 			IsInitializing = true;
-			await _tableModuleConfig.Install(_tables);
+			await _tableModuleConfig.InstallAsync(_tables);
 			IsInitializing = false;
 
 			_tableModuleConfig = null;

@@ -18,7 +18,7 @@ namespace CizaTable
 		protected BaseTableModuleConfig(IAssetProvider assetProvider) =>
 			_assetProvider = assetProvider;
 
-		public async UniTask Install(Dictionary<Type, object> tables)
+		public async UniTask InstallAsync(Dictionary<Type, object> tables)
 		{
 			Debug.Log($"[{GetType().Name}::Install] Start Load Table.");
 
