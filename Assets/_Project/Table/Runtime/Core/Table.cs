@@ -340,6 +340,9 @@ namespace CizaTable
 
 		string GetKey(string key)
 		{
+			if (string.IsNullOrEmpty(key))
+				return string.Empty;
+			
 			switch (KeyLetterType)
 			{
 				case KeyLetterTypes.ToLower:
