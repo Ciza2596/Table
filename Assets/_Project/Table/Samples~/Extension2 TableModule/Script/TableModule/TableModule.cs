@@ -19,13 +19,13 @@ namespace CizaTable
 			_tableModuleConfig = tableModuleConfig;
 
 		//public method
-		public async UniTask Initialize()
+		public async UniTask InitializeAsync()
 		{
 			if (IsInitialized || IsInitializing)
 				return;
 
 			IsInitializing = true;
-			await _tableModuleConfig.InstallAsync(_tables);
+			await _tableModuleConfig.Install(_tables);
 			IsInitializing = false;
 
 			_tableModuleConfig = null;

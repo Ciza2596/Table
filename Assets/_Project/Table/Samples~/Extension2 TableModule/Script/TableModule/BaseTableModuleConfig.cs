@@ -18,9 +18,9 @@ namespace CizaTable
 		protected BaseTableModuleConfig(IAssetProvider assetProvider) =>
 			_assetProvider = assetProvider;
 
-		public async UniTask InstallAsync(Dictionary<Type, object> tables)
+		public async UniTask Install(Dictionary<Type, object> tables)
 		{
-			Debug.Log($"[{GetType().Name}::Install] Start Load Table.");
+			Debug.Log($"[{GetType().Name}::Install] Start to load table at time: {Time.time}.");
 
 			_tables = tables;
 
@@ -32,7 +32,7 @@ namespace CizaTable
 			_assetProvider = null;
 			_tables        = null;
 
-			Debug.Log($"[{GetType().Name}::Install] Table is loaded.");
+			Debug.Log($"[{GetType().Name}::Install] Table is loaded at time: {Time.time}.");
 		}
 
 		protected void AddTable<TTableData>(Table<TTableData> table) where TTableData : TableData =>
