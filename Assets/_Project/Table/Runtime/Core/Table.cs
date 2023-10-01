@@ -64,25 +64,68 @@ namespace CizaTable
 
 		public bool TryGetKeys(out string[] keys)
 		{
+			if (!IsInitialized)
+			{
+				keys = Array.Empty<string>();
+				return false;
+			}
+
 			keys = _dataMap.Keys.ToArray();
 
 			return keys != null && keys.Length > 0;
 		}
 
+		public bool TryGetKeys(Predicate<TTableData> match, out string[] keys)
+		{
+			if (!IsInitialized)
+			{
+				keys = Array.Empty<string>();
+				return false;
+			}
+
+			var tableDataList = _dataMap.Values.ToList();
+			var tableDatas    = tableDataList.FindAll(match).ToArray();
+
+			var keyList = new List<string>();
+			foreach (var tableData in tableDatas)
+				keyList.Add(tableData.Key);
+
+			keys = keyList.ToArray();
+			return true;
+		}
+
 		public bool TryGetKeyValuePair(out KeyValuePair<string, TTableData>[] keyValuePairs)
 		{
+			if (!IsInitialized)
+			{
+				keyValuePairs = Array.Empty<KeyValuePair<string, TTableData>>();
+				return false;
+			}
+
 			keyValuePairs = _dataMap.ToArray();
-			return keyValuePairs != null && keyValuePairs.Length > 0;
+			return true;
 		}
 
 		public bool TryGetTableData(string key, out TTableData tableData)
 		{
+			if (!IsInitialized)
+			{
+				tableData = null;
+				return false;
+			}
+
 			var hasValue = _dataMap.TryGetValue(GetKey(key), out tableData);
 			return hasValue;
 		}
 
 		public bool TryGetTableData(Predicate<TTableData> match, out TTableData tableData)
 		{
+			if (!IsInitialized)
+			{
+				tableData = null;
+				return false;
+			}
+
 			var tableDataList = _dataMap.Values.ToList();
 			tableData = tableDataList.Find(match);
 
@@ -91,16 +134,28 @@ namespace CizaTable
 
 		public bool TryGetTableDatas(out TTableData[] tableDatas)
 		{
+			if (!IsInitialized)
+			{
+				tableDatas = Array.Empty<TTableData>();
+				return false;
+			}
+
 			tableDatas = _dataMap.Values.ToArray();
-			return tableDatas != null && tableDatas.Length > 0;
+			return true;
 		}
 
 		public bool TryGetTableDatas(Predicate<TTableData> match, out TTableData[] tableDatas)
 		{
+			if (!IsInitialized)
+			{
+				tableDatas = Array.Empty<TTableData>();
+				return false;
+			}
+
 			var tableDataList = _dataMap.Values.ToList();
 			tableDatas = tableDataList.FindAll(match).ToArray();
 
-			return tableDatas != null && tableDatas.Length > 0;
+			return true;
 		}
 
 		//private method
@@ -342,7 +397,7 @@ namespace CizaTable
 		{
 			if (string.IsNullOrEmpty(key))
 				return string.Empty;
-			
+
 			switch (KeyLetterType)
 			{
 				case KeyLetterTypes.ToLower:
