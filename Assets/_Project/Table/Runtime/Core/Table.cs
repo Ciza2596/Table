@@ -18,6 +18,7 @@ namespace CizaTable
 		}
 
 		//private variable
+		private const string _sheetPrefixTag = "'";
 		private const string _spaceTag       = " ";
 		private const string _vectorSplitTag = ",";
 		private const string _floatTag       = "f";
@@ -216,6 +217,7 @@ namespace CizaTable
 		{
 			var propertyType = propertyInfo.PropertyType;
 
+			valueString = GetValueStringWithRemoveTag(valueString, _sheetPrefixTag);
 			try
 			{
 				if (propertyType == typeof(string))
@@ -243,7 +245,7 @@ namespace CizaTable
 					return;
 				}
 
-				valueString = GetValueStringWithNotSpaceAndLower(valueString);
+				valueString = GetValueStringWithRemoveTag(valueString, _spaceTag);
 				if (propertyType == typeof(bool))
 				{
 					var value = string.IsNullOrWhiteSpace(valueString) ? false : bool.Parse(valueString);
@@ -251,7 +253,7 @@ namespace CizaTable
 					return;
 				}
 
-				valueString = GetValueStringWithNotFloatTag(valueString);
+				valueString = GetValueStringWithRemoveTag(valueString, _floatTag);
 				if (propertyType == typeof(double))
 				{
 					var value = string.IsNullOrWhiteSpace(valueString) ? 0 : double.Parse(valueString, _cultureInfo);
@@ -375,23 +377,8 @@ namespace CizaTable
 			}
 		}
 
-		private string GetValueStringWithNotSpaceAndLower(string origin)
-		{
-			var valueString = origin.ToLower(_cultureInfo);
-			if (valueString.Contains(_spaceTag))
-				valueString = valueString.Replace(_spaceTag, null);
-
-			return valueString;
-		}
-
-		private string GetValueStringWithNotFloatTag(string origin)
-		{
-			var valueString = origin.ToLower(_cultureInfo);
-			if (valueString.Contains(_floatTag))
-				valueString = valueString.Replace(_floatTag, null);
-
-			return valueString;
-		}
+		private string GetValueStringWithRemoveTag(string origin, string tag) =>
+			origin.Contains(tag) ? origin.Replace(tag, null) : origin;
 
 		string GetKey(string key)
 		{
