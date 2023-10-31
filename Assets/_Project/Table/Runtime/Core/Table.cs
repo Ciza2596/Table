@@ -12,8 +12,8 @@ namespace CizaTable
 	{
 		public enum KeyLetterTypes
 		{
-			ToLower,
 			Normal,
+			ToLower,
 			ToUpper
 		}
 
@@ -26,7 +26,7 @@ namespace CizaTable
 		private readonly        Dictionary<string, TTableData> _dataMap     = new Dictionary<string, TTableData>();
 
 		//constructor
-		protected Table() : this(KeyLetterTypes.ToLower) { }
+		protected Table() : this(KeyLetterTypes.Normal) { }
 
 		protected Table(KeyLetterTypes keyLetterType)
 		{
