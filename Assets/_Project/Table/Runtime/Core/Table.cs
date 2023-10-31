@@ -22,6 +22,7 @@ namespace CizaTable
 		private const string _spaceTag       = " ";
 		private const string _vectorSplitTag = ",";
 		private const string _floatTag       = "f";
+		private const float  _colorMax       = 255;
 
 		private static readonly CultureInfo                    _cultureInfo = CultureInfo.InvariantCulture;
 		private readonly        Dictionary<string, TTableData> _dataMap     = new Dictionary<string, TTableData>();
@@ -366,6 +367,29 @@ namespace CizaTable
 						var z = int.Parse(valueStrings[2], _cultureInfo);
 
 						value = new Vector3Int(x, y, z);
+					}
+
+					propertyInfo.SetValue(tableData, value);
+				}
+
+				if (propertyType == typeof(Color))
+				{
+					var value = Color.white;
+					if (!string.IsNullOrWhiteSpace(valueString))
+					{
+						var valueStrings = valueString.Split(_vectorSplitTag);
+						if (valueStrings.Length != 4)
+						{
+							Debug.LogError($"[{GetType().Name}::SetValue] TableDataKey: {tableData.Key} TableData: {tableData.GetType().Name}, PropertyName: {propertyInfo.Name}, value: {valueString} - Color's valueString length isnt 4");
+							return;
+						}
+
+						var r = int.Parse(valueStrings[0], _cultureInfo);
+						var g = int.Parse(valueStrings[1], _cultureInfo);
+						var b = int.Parse(valueStrings[2], _cultureInfo);
+						var a = int.Parse(valueStrings[3], _cultureInfo);
+
+						value = new Color(r / _colorMax, g / _colorMax, b / _colorMax, a / _colorMax);
 					}
 
 					propertyInfo.SetValue(tableData, value);

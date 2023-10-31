@@ -1,18 +1,19 @@
 using NUnit.Framework;
 using UnityEngine;
 
-public class Vector2DataTableTest : PrimitiveTableTest<Vector2Table, Vector2Table.Data>
+public class ColorTableTest : PrimitiveTableTest<ColorTable, ColorTable.Data>
 {
-	protected override string ValueString => "1.05f, 156.3f";
+	protected override string ValueString => "255, 255, 255, 255";
 
-	[TestCase("1.11f, 40.65f")]
+
+	[TestCase("255, 255, 255, 255")]
 	public void _04_CheckValueIsEqual(string valueString)
 	{
 		//arrange
-		var expected = new Vector2(1.11f, 40.65f);
+		var expected = new Color(1, 1, 1, 1);
 		Check_Table_Doesnt_Be_Initialized();
 
-		var dataUnitCount = 3;
+		var dataUnitCount = 1;
 		var fakeDataUnits = CreateFakeDataUnits(dataUnitCount, 1, valueString);
 		_table.Initialize(fakeDataUnits);
 
@@ -26,6 +27,6 @@ public class Vector2DataTableTest : PrimitiveTableTest<Vector2Table, Vector2Tabl
 
 
 		//assert
-		Assert.AreEqual(expected, tableData.OutputValue, $"TableData's value is not match.");
+		Assert.AreEqual(expected, tableData.Value, $"TableData's value is not match.");
 	}
 }
