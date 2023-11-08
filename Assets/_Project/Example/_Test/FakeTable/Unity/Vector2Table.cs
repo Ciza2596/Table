@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Vector2Table : Table<Vector2Table.Data>
 {
+	public override string Name => "Vector2Table";
+
 	public class Data : TableData
 	{
 		public Data(string key) : base(key) { }
-
-		protected string kl { get; private set; }
 
 		protected Vector2 Value { get; private set; }
 

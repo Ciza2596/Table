@@ -30,16 +30,13 @@ namespace CizaTable
 		//constructor
 		protected Table() : this(KeyLetterTypes.Normal) { }
 
-		protected Table(KeyLetterTypes keyLetterType)
-		{
+		protected Table(KeyLetterTypes keyLetterType) =>
 			KeyLetterType = keyLetterType;
-			Name          = GetType().Name;
-		}
 
 		//public variable
 		public KeyLetterTypes KeyLetterType { get; }
 
-		public string Name { get; }
+		public abstract string Name { get; }
 
 		public bool IsInitialized { get; private set; }
 

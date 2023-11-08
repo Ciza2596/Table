@@ -4,6 +4,8 @@ namespace CizaTable.Example1
 {
 	public class GoblinTable : Table<GoblinTable.Data>
 	{
+		public override string Name => "GoblinTable";
+		
 		public class Data : TableData
 		{
 			[Preserve]
@@ -13,5 +15,6 @@ namespace CizaTable.Example1
 
 			protected float Mp1_2 { get; private set; }
 		}
+		
 	}
 }

@@ -5,6 +5,8 @@ namespace CizaTable.Example1
 {
 	public class PlayerTable : Table<PlayerTable.Data>
 	{
+		public override string Name => "PlayerTable";
+		
 		public class Data : TableData
 		{
 			[Preserve]
@@ -16,5 +18,6 @@ namespace CizaTable.Example1
 
 			public Vector2 Position { get; private set; }
 		}
+		
 	}
 }
