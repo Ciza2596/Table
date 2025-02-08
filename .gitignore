@@ -60,11 +60,8 @@ sysinfo.txt
 crashlytics-build.properties
 
 # remove plugins
-Assets/Plugins
-Assets/Plugins.meta
-
-# Assets/Plugins
-Assets/Plugins
+Assets/_Other
+Assets/_Other.meta
 
 # _Builds
 _Builds

@@ -1,6 +1,6 @@
 # Table
 ```
-https://github.com/Ciza2596/Table.git?path=Assets/_Project/Table
+https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table/Table
 ```
 
 ## Info
