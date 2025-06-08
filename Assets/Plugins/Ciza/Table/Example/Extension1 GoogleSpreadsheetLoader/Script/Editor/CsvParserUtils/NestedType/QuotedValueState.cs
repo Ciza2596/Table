@@ -1,26 +1,27 @@
-namespace CsvParser
+namespace GoogleSpreadsheetLoader.Editor
 {
-	internal class LineStartState : ParserState
+	internal class QuotedValueState : ParserState
 	{
 		public override ParserState AnyChar(char ch, ParserContext context)
 		{
 			context.AddChar(ch);
-			return ValueState;
+			return QuotedValueState;
 		}
 
 		public override ParserState Comma(ParserContext context)
 		{
-			context.AddValue();
-			return ValueStartState;
+			context.AddChar(COMMA_CHARACTER);
+			return QuotedValueState;
 		}
 
 		public override ParserState Quote(ParserContext context) =>
-			QuotedValueState;
+			QuoteState;
 
 		public override ParserState EndOfLine(ParserContext context)
 		{
-			context.AddLine();
-			return LineStartState;
+			context.AddChar('\r');
+			context.AddChar('\n');
+			return QuotedValueState;
 		}
 	}
 }

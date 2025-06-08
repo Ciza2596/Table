@@ -1,130 +1,109 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GoogleHelper;
 using UnityEngine;
 
 namespace GoogleSpreadsheetLoader.Editor
 {
-    [Serializable]
-    public class GoogleSpreadsheetGasHandler
-    {
-        //private variable
-        [SerializeField] public List<GoogleSheetCsv> _googleSheetCsvs = new List<GoogleSheetCsv>();
-
-        private GoogleHelper.GoogleHelper _googleHelper = new GoogleHelper.GoogleHelper();
+	[Serializable]
+	public class GoogleSpreadsheetGasHandler
+	{
+		protected readonly GoogleHelper _googleHelper = new GoogleHelper(true);
 
 
-        //public method
+		//public method
 
-        public async Task<string> GetSpreadsheetName(string service, string spreadsheetId)
-        {
-            var action = "GetSpreadsheetName";
-            var parameters = new Dictionary<string, string>
-            {
-                { "key", spreadsheetId },
-            };
+		public async Task<string> GetSpreadsheetName(string service, string spreadsheetId)
+		{
+			var action = "GetSpreadsheetName";
+			var parameters = new Dictionary<string, string>
+			{
+				{ "key", spreadsheetId },
+			};
 
-            var requestURL = new RequestURL(service, action, parameters);
-            return await _googleHelper.StartDownload(requestURL);
-        }
-        
-        public async Task<string> GetSheetName(string service, string spreadsheetId, string sheetId)
-        {
-            var action = "GetSheetName";
-            var parameters = new Dictionary<string, string>
-            {
-                { "key", spreadsheetId },
-                { "gid", sheetId },
-            };
+			var requestURL = new RequestURL(service, action, parameters);
+			return await _googleHelper.StartDownload(requestURL);
+		}
 
-            var requestURL = new RequestURL(service, action, parameters);
-            return await _googleHelper.StartDownload(requestURL);
-        }
+		public async Task<string> GetSheetName(string service, string spreadsheetId, string sheetId)
+		{
+			var action = "GetSheetName";
+			var parameters = new Dictionary<string, string>
+			{
+				{ "key", spreadsheetId },
+				{ "gid", sheetId },
+			};
 
-        public async Task<GoogleSheetInfo[]> GetGoogleSheetInfos(string service, string spreadsheetId)
-        {
-            var googleSheetDatas = new List<GoogleSheetInfo>();
+			var requestURL = new RequestURL(service, action, parameters);
+			return await _googleHelper.StartDownload(requestURL);
+		}
 
-            await GoogleGetSheets(service, spreadsheetId, googleSheetDatas);
+		public async Task<GoogleSheetInfo[]> GetGoogleSheetInfos(string service, string spreadsheetId)
+		{
+			var googleSheetDatas = new List<GoogleSheetInfo>();
 
-            return googleSheetDatas.ToArray();
-        }
+			await GoogleGetSheets(service, spreadsheetId, googleSheetDatas);
 
-        public async Task<string> GetGoogleSheetCsv(string service, string spreadSheetId, string sheetId)
-        {
-            var action = "GetRawCsv";
-            var parameters = new Dictionary<string, string>
-            {
-                { "key", spreadSheetId },
-                { "gid", sheetId },
-            };
+			return googleSheetDatas.ToArray();
+		}
 
-            var requestURL = new RequestURL(service, action, parameters);
-            return await _googleHelper.StartDownload(requestURL);
-        }
+		public async Task<string> GetGoogleSheetCsv(string service, string spreadSheetId, string sheetId)
+		{
+			var action = "GetRawCsv";
+			var parameters = new Dictionary<string, string>
+			{
+				{ "key", spreadSheetId },
+				{ "gid", sheetId },
+			};
 
-
-        //private variable
-        private async Task GoogleGetSheets(string service, string spreadsheetId, List<GoogleSheetInfo> googleSheetDatas)
-        {
-            var action = "GetSpreadsheets";
-            var parameters = new Dictionary<string, string>
-            {
-                { "key", spreadsheetId }
-            };
-
-            var requestURL = new RequestURL(service, action, parameters);
-            var result = await _googleHelper.StartDownload(requestURL);
-            var deserializeResults = MiniJson.Deserialize(result) as List<object>;
-
-            foreach (var deserializeResult in deserializeResults)
-            {
-                var sheetData = deserializeResult as List<object>;
-
-                var sheetId = sheetData[0].ToString();
-                var sheetName = sheetData[1].ToString();
-
-                var googleSheetInfo = new GoogleSheetInfo(sheetId, sheetName);
-                googleSheetDatas.Add(googleSheetInfo);
-            }
-        }
-    }
+			var requestURL = new RequestURL(service, action, parameters);
+			return await _googleHelper.StartDownload(requestURL);
+		}
 
 
-    [Serializable]
-    public class GoogleSheetInfo
-    {
-        [SerializeField] private string _sheetId;
-        [SerializeField] private string _sheetName;
+		//private variable
+		private async Task GoogleGetSheets(string service, string spreadsheetId, List<GoogleSheetInfo> googleSheetDatas)
+		{
+			var action = "GetSpreadsheets";
+			var parameters = new Dictionary<string, string>
+			{
+				{ "key", spreadsheetId }
+			};
 
-        public GoogleSheetInfo(string sheetId, string sheetName)
-        {
-            _sheetId = sheetId;
-            _sheetName = sheetName;
-        }
+			var requestURL = new RequestURL(service, action, parameters);
+			var result = await _googleHelper.StartDownload(requestURL);
+			var deserializeResults = MiniJson.Deserialize(result) as List<object>;
 
-        public string SheetId => _sheetId;
-        public string SheetName => _sheetName;
-    }
+			foreach (var deserializeResult in deserializeResults)
+			{
+				var sheetData = deserializeResult as List<object>;
 
-    [Serializable]
-    public class GoogleSheetCsv
-    {
-        [SerializeField] private string _spreadsheetId;
-        [SerializeField] private string _sheetId;
-        [SerializeField] private string _csv;
+				var sheetId = sheetData[0].ToString();
+				var sheetName = sheetData[1].ToString();
+
+				var googleSheetInfo = new GoogleSheetInfo(sheetId, sheetName);
+				googleSheetDatas.Add(googleSheetInfo);
+			}
+		}
+	}
 
 
-        public GoogleSheetCsv(string spreadsheetId, string sheetId, string csv)
-        {
-            _spreadsheetId = spreadsheetId;
-            _sheetId = sheetId;
-            _csv = csv;
-        }
+	[Serializable]
+	public class GoogleSheetInfo
+	{
+		[SerializeField]
+		private string _sheetId;
 
-        public string SpreadsheetId => _spreadsheetId;
-        public string SheetId => _sheetId;
-        public string Csv => _csv;
-    }
+		[SerializeField]
+		private string _sheetName;
+
+		public GoogleSheetInfo(string sheetId, string sheetName)
+		{
+			_sheetId = sheetId;
+			_sheetName = sheetName;
+		}
+
+		public string SheetId => _sheetId;
+		public string SheetName => _sheetName;
+	}
 }

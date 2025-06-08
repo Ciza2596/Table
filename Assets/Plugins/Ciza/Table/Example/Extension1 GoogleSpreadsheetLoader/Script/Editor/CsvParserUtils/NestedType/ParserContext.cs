@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CsvParser
+namespace GoogleSpreadsheetLoader.Editor
 {
 	internal class ParserContext
 	{

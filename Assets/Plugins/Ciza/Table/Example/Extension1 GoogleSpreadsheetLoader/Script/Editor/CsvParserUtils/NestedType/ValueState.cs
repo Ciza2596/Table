@@ -1,4 +1,4 @@
-namespace CsvParser
+namespace GoogleSpreadsheetLoader.Editor
 {
     internal class ValueState : ParserState
     {

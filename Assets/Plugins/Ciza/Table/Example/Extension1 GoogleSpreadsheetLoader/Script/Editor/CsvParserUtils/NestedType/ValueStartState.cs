@@ -1,5 +1,5 @@
 
-namespace CsvParser
+namespace GoogleSpreadsheetLoader.Editor
 {
     internal class ValueStartState : LineStartState
     {

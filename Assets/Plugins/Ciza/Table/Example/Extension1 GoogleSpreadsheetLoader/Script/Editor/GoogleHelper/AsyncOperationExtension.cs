@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace GoogleHelper
+namespace GoogleSpreadsheetLoader.Editor
 {
 	public static class AsyncOperationExtension
 	{

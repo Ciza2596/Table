@@ -1,32 +1,35 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
+using UnityEngine.Scripting;
 
-namespace GoogleHelper
+namespace GoogleSpreadsheetLoader.Editor
 {
 	public class GoogleHelper
 	{
-		private bool _isPrintLog      = false;
-		private bool _isPrintErrorLog = true;
+		public virtual bool IsPrintLog { get; protected set; }
 
-		public void SetIsPrintLog(bool      isPrintLog) => _isPrintLog = isPrintLog;
-		public void SetIsPrintErrorLog(bool isPrintErrorLog) => _isPrintErrorLog = isPrintErrorLog;
+		[Preserve]
+		public GoogleHelper(bool isPrintLog) =>
+			SetIsPrintLog(isPrintLog);
 
-		public async Task<string> StartDownload(RequestURL requestURL)
+		public virtual void SetIsPrintLog(bool isPrintLog) => IsPrintLog = isPrintLog;
+
+		public virtual async Task<string> StartDownload(RequestURL requestURL)
 		{
 			var request = requestURL.GetWebDoGetURL();
-			var result  = string.Empty;
+			var result = string.Empty;
 
 			if (!string.IsNullOrEmpty(request))
 			{
 				var getRequest = UnityWebRequest.Get(request);
 
 				PrintLog("[GoogleHelper:StartDownload] Start download data from google.");
-				#if UNITY_2017_2_OR_NEWER
+#if UNITY_2017_2_OR_NEWER
 				await getRequest.SendWebRequest();
-				#else
+#else
                 await getRequest.Send();
-				#endif
+#endif
 
 				if (getRequest.isDone)
 				{
@@ -57,60 +60,15 @@ namespace GoogleHelper
 			return result;
 		}
 
-		public async Task<string> StartPost(RequestURL requestURL)
+		protected virtual void PrintLog(string message)
 		{
-			var request = requestURL.ServiceURL;
-			var result  = "";
-
-			if (!string.IsNullOrEmpty(request))
-			{
-				var getRequest = UnityWebRequest.Post(request, requestURL.GetPostData());
-
-				PrintLog("[GoogleHelper:StartPost] Start post data to google.");
-				#if UNITY_2017_2_OR_NEWER
-				await getRequest.SendWebRequest();
-				#else
-                await getRequest.Send();
-				#endif
-
-				if (getRequest.isDone)
-				{
-					var error = getRequest.error;
-
-					if (string.IsNullOrEmpty(error))
-					{
-						result = System.Text.Encoding.UTF8.GetString(getRequest.downloadHandler.data);
-						var isEmpty = string.IsNullOrEmpty(result) || result == "\"\"";
-
-						if (isEmpty)
-						{
-							result = string.Empty;
-							PrintErrorLog("GoogleHelper:StartPost] Nothing to download.");
-						}
-
-						PrintLog("[GoogleHelper:StartPost] Post work is done.");
-					}
-					else
-					{
-						PrintErrorLog("GoogleHelper:StartPost] Unable to access google : " + error);
-					}
-
-					return result;
-				}
-			}
-
-			return result;
-		}
-
-		private void PrintLog(string message)
-		{
-			if (_isPrintLog)
+			if (IsPrintLog)
 				Debug.Log(message);
 		}
 
-		private void PrintErrorLog(string message)
+		protected virtual void PrintErrorLog(string message)
 		{
-			if (_isPrintLog)
+			if (IsPrintLog)
 				Debug.LogError(message);
 		}
 	}
