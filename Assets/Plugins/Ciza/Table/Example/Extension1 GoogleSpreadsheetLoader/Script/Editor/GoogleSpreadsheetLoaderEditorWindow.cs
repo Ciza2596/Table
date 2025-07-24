@@ -4,7 +4,7 @@ using Object = UnityEngine.Object;
 
 namespace GoogleSpreadsheetLoader.Editor
 {
-	public class GoogleSpreadsheetLoaderEditor : EditorWindow
+	public class GoogleSpreadsheetLoaderEditorWindow : EditorWindow
 	{
 		//private variable
 		private readonly string[] _toolbarTexts = { "GoogleSpreadsheetLoader", "ConfigResource" };
@@ -49,7 +49,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
 		//private method
 		[MenuItem("Tools/Ciza/GoogleSpreadsheetLoader")]
-		private static void ShowWindow() => GetWindow<GoogleSpreadsheetLoaderEditor>("GoogleSpreadsheetLoader");
+		private static void ShowWindow() => GetWindow<GoogleSpreadsheetLoaderEditorWindow>("GoogleSpreadsheetLoader");
 
 		private void OnGUI()
 		{

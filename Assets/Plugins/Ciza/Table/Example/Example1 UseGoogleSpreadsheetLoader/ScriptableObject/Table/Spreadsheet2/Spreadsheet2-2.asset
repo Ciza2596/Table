@@ -12,52 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a7ecc11d1c14b3fb5c5b7a35d0a17f, type: 3}
   m_Name: Spreadsheet2-2
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: _rawData
-      Entry: 7
-      Data: 0|System.String[,], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 6
-    - Name: ranks
-      Entry: 1
-      Data: 3|2
-    - Name: 
-      Entry: 1
-      Data: Key
-    - Name: 
-      Entry: 1
-      Data: Player2-2
-    - Name: 
-      Entry: 1
-      Data: Hp2_2
-    - Name: 
-      Entry: 1
-      Data: 22
-    - Name: 
-      Entry: 1
-      Data: Mp2_2
-    - Name: 
-      Entry: 1
-      Data: 22
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  _dataUnits:
-  - _key: Player2-2
-    _dataValues:
-    - _name: Hp2_2
-      _value: 22
-    - _name: Mp2_2
-      _value: 22
+  _dataMapList:
+    _maps:
+    - _isEnable: 1
+      _key: Player2-2
+      _dataValues:
+      - _name: Hp2_2
+        _value: 22
+      - _name: Mp2_2
+        _value: 22
+  _rawData:
+    _size: {x: 3, y: 2}
+    _data:
+    - Key
+    - Player2-2
+    - Hp2_2
+    - 22
+    - Mp2_2
+    - 22

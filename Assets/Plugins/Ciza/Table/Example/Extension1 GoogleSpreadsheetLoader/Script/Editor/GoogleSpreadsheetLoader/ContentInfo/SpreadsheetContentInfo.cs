@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -11,12 +10,9 @@ namespace GoogleSpreadsheetLoader.Editor
 	public class SpreadsheetContentInfo
 	{
 		//private variable
-		[LabelText("Sheet Content存放路徑(建立物件時使用)")]
-		[ReadOnly]
 		[SerializeField]
 		private string _sheetContentPath;
 
-		[TableList(IsReadOnly = true)]
 		[SerializeField]
 		private List<SheetContentInfo> _sheetContentInfos = new List<SheetContentInfo>();
 

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,11 +9,6 @@ namespace GoogleSpreadsheetLoader.Editor
 	[Serializable]
 	public class SheetContentInfo
 	{
-		//private variable
-		[PropertyOrder(-1)]
-		[TableColumnWidth(200)]
-		[VerticalGroup("ScriptableObject")]
-		[ReadOnly]
 		[SerializeField]
 		private SheetContent _sheetContent;
 
@@ -76,16 +70,11 @@ namespace GoogleSpreadsheetLoader.Editor
 				AssetDatabase.MoveAsset(currentAssetPath, assetPath);
 			}
 
-			CreateDataUnitsAndRawData(csv, out var dataUnits, out var rawData);
-			_sheetContent.UpdateContent(dataUnits.ToArray(), rawData);
+			CreateDataUnitsAndRawData(csv, out var dataMapList, out var rawData);
+			_sheetContent.UpdateContent(dataMapList, rawData);
 			EditorUtility.SetDirty(_sheetContent);
 		}
 
-		[PropertyOrder(1)]
-		[HorizontalGroup("動作")]
-		[GUIColor(1, 0, 0)]
-		[Button("移除")]
-		[DisableIf("_isBusy")]
 		public void Remove()
 		{
 			var subSheetContent = _sheetContent;
@@ -97,11 +86,6 @@ namespace GoogleSpreadsheetLoader.Editor
 			Debug.Log($"[SubSheetContentInfo::Remove] Remove content file : {assetPath}.");
 		}
 
-		//private method
-		[HorizontalGroup("動作")]
-		[Button("更新")]
-		[GUIColor(0, 1, 0)]
-		[DisableIf("_isBusy")]
 		private async void Update()
 		{
 			try
@@ -114,12 +98,12 @@ namespace GoogleSpreadsheetLoader.Editor
 			}
 		}
 
-		private void CreateDataUnitsAndRawData(string csv, out List<DataUnit> dataUnits, out string[,] rawData)
+		private void CreateDataUnitsAndRawData(string csv, out DataMapList dataMapList, out string[,] rawData)
 		{
 			//讀入 CSV 檔案，使其分為 string 二維陣列
 			var csvTable = CsvParserUtils.Parse(csv);
 
-			dataUnits = new List<DataUnit>();
+			dataMapList = new DataMapList();
 			var labels = new List<string>();
 			int usedLength = 0;
 			for (var i = 0; i < csvTable[0].Length; i++)
@@ -147,8 +131,8 @@ namespace GoogleSpreadsheetLoader.Editor
 
 				var key = csvTable[i][0];
 
-				var dataUnit = new DataUnit(key, dataValues.ToArray());
-				dataUnits.Add(dataUnit);
+				//var dataUnit = new DataUnit(key, dataValues.ToArray());
+				dataMapList.Add(key, dataValues.ToArray());
 			}
 
 			//Read Raw Data

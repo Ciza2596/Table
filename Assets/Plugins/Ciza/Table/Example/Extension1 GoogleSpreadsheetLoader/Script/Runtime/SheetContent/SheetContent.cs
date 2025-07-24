@@ -1,32 +1,30 @@
 using System;
 using System.Collections.Generic;
 using CizaTable;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
 
 namespace GoogleSpreadsheetLoader
 {
 	[Serializable]
-	public class SheetContent : SerializedScriptableObject
+	public class SheetContent : ScriptableObject
 	{
-		//private variable
-		[TableList]
 		[SerializeField]
-		private DataUnit[] _dataUnits;
-
+		private DataMapList _dataMapList;
+		
 		[Header("已匯入資料(Raw)")]
-		[OdinSerialize]
-		private string[,] _rawData;
+		[Space]
+		[SerializeField]
+		private Array2D<string> _rawData;
 
 		//public variable
-		public IReadOnlyList<IDataUnit> DataUnits => _dataUnits;
+		public IReadOnlyList<IDataUnit> DataUnits => _dataMapList.ToDataUnits();
 
 		//public method
-		public void UpdateContent(DataUnit[] dataUnits, string[,] rawData)
+		public void UpdateContent(DataMapList dataMapList, string[,] rawData)
 		{
-			_dataUnits = dataUnits;
-			_rawData   = rawData;
+			_dataMapList = dataMapList;
+			_rawData   = rawData.ToArray2D();
+			
 		}
 	}
 }

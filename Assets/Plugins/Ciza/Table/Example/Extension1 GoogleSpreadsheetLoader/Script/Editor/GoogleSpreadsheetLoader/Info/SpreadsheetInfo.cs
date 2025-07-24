@@ -1,33 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.OdinInspector;
+using CizaTable;
 using UnityEngine;
 
 namespace GoogleSpreadsheetLoader.Editor
 {
 	[Serializable]
-	public class SpreadsheetInfo
+	public class SpreadsheetInfo : IZomeraphyPanel
 	{
 		//private variable
 
-		[VerticalGroup("Web")]
-		[PropertyOrder(0)]
 		[SerializeField]
 		private string _spreadsheetId;
 
-		[VerticalGroup("Web")]
-		[PropertyOrder(10)]
 		[SerializeField]
 		private string _sheetContentPath = "Assets/Table";
 
 		[Space]
-		[ReadOnly]
 		[SerializeField]
-		private string _spreadSheetName;
+		private string _spreadsheetName;
 
 		[Space]
-		[TableList(HideToolbar = true, AlwaysExpanded = true)]
 		[SerializeField]
 		private List<SheetInfo> _sheetInfos;
 
@@ -37,12 +31,12 @@ namespace GoogleSpreadsheetLoader.Editor
 
 		//public variable
 
-		public string SpreadSheetName => _spreadSheetName;
+		public string SpreadsheetName => _spreadsheetName;
 
 		public IReadOnlyList<SheetInfo> SheetInfos => _sheetInfos;
 
 		public string SheetContentPath => _sheetContentPath;
-		public string SpreadsheetId    => _spreadsheetId;
+		public string SpreadsheetId => _spreadsheetId;
 
 		//public method
 		public string GetId()
@@ -67,17 +61,17 @@ namespace GoogleSpreadsheetLoader.Editor
 			return sheetInfo;
 		}
 
-		public void OrderByIsUsing() =>
-			_sheetInfos = _sheetInfos.OrderByDescending(sheetInfo => sheetInfo.IsUsing).ToList();
+		public virtual void RemoveSheetInfo(int removeCount)
+		{
+			var count = _sheetInfos.Count;
+			if (removeCount <= count)
+				_sheetInfos.RemoveRange(count - removeCount, removeCount);
+			else
+				_sheetInfos.Clear();
+		}
 
-		public void SetSpreadSheetName(string spreadSheetName) =>
-			_spreadSheetName = spreadSheetName;
+		public void OrderByIsUsing() => _sheetInfos = _sheetInfos.OrderByDescending(sheetInfo => sheetInfo.IsUsing).ToList();
 
-		//private method
-		[PropertyOrder(20)]
-		[VerticalGroup("Web")]
-		[Button("Open Spreadsheet Web.")]
-		private void OpenSpreadsheetWeb() =>
-			Application.OpenURL($"https://docs.google.com/spreadsheets/d/{_spreadsheetId}/edit#gid=0");
+		public void SetSpreadSheetName(string spreadSheetName) => _spreadsheetName = spreadSheetName;
 	}
 }

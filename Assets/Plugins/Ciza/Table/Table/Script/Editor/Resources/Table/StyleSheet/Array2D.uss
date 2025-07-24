@@ -1,0 +1,14 @@
+.array2D Vector2IntField {
+    margin-bottom: 5px;
+}
+
+.array2D TextField {
+    margin: 0;
+}
+
+.array2D TextField > TextInput{
+    border-radius: 0;
+    padding: 2px 3px;
+    -unity-text-align: middle-center;
+}
+

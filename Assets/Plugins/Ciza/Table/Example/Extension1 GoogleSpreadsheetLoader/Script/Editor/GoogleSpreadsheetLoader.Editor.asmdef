@@ -2,7 +2,9 @@
     "name": "GoogleSpreadsheetLoader.Editor",
     "rootNamespace": "GoogleSpreadsheetLoader.Editor",
     "references": [
-        "GoogleSpreadsheetLoader"
+        "GoogleSpreadsheetLoader",
+        "Table",
+        "Table.Editor"
     ],
     "includePlatforms": [
         "Editor"

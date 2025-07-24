@@ -1,25 +1,21 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sirenix.OdinInspector;
+using CizaTable;
 using UnityEditor;
 using UnityEngine;
 
 namespace GoogleSpreadsheetLoader.Editor
 {
 	[CreateAssetMenu(fileName = "GoogleSpreadsheetLoader", menuName = "Ciza/Table/GoogleSpreadsheetLoader")]
-	public class GoogleSpreadsheetLoader : ScriptableObject
+	public class GoogleSpreadsheetLoader : ScriptableObject, IZomeraphyPanel
 	{
 		//private variable
-		[VerticalGroup("Service")]
 		[SerializeField]
 		private string _webAppUrl;
 
-		[Title("Spreadsheet preview")]
-		[VerticalGroup("SpreadsheetPreview")]
 		[SerializeField]
 		private List<SpreadsheetInfo> _spreadsheetInfos;
 
-		[Title("Used Sheet Content")]
 		[SerializeField]
 		private List<SpreadsheetContentInfo> _usedSpreadsheetContentInfos = new List<SpreadsheetContentInfo>();
 
@@ -27,7 +23,7 @@ namespace GoogleSpreadsheetLoader.Editor
 		private GoogleSpreadsheetGasHandler _googleSpreadsheetGasHandler = new GoogleSpreadsheetGasHandler();
 
 		//public method
-		public async Task UpdateSheetContentInfo(SheetContentInfo sheetContentInfo)
+		public virtual async Task UpdateSheetContentInfo(SheetContentInfo sheetContentInfo)
 		{
 			sheetContentInfo.SetIsBusy(true);
 
@@ -48,23 +44,15 @@ namespace GoogleSpreadsheetLoader.Editor
 			sheetContentInfo.SetIsBusy(false);
 		}
 
-		public void CheckIsSheetContentRemoved()
+		public virtual void CheckIsSheetContentRemoved()
 		{
 			foreach (var spreadsheetContentInfo in _usedSpreadsheetContentInfos)
 				spreadsheetContentInfo.CheckIsSheetContentRemoved();
 		}
 
-		//private method
-		[Title("Google Web Service")]
-		[PropertyOrder(-100)]
-		[Button("Open Google App Script Web.")]
-		[VerticalGroup("Service")]
-		private void OpenGoogleScriptPage() =>
-			Application.OpenURL("https://www.google.com/script/start/");
 
-		[VerticalGroup("SpreadsheetPreview")]
-		[Button("Update Spreadsheet Preview")]
-		private async void UpdateSpreadsheets()
+		[ContextMenu("Update All Spreadsheets")]
+		public async Task UpdateSpreadsheets()
 		{
 			if (_spreadsheetInfos is null || _spreadsheetInfos.Count <= 0)
 				return;
@@ -95,17 +83,18 @@ namespace GoogleSpreadsheetLoader.Editor
 						sheetInfo.SetName(sheetName);
 				}
 
+				var removeCount = spreadsheetInfo.SheetInfos.Count - googleSheetInfos.Length;
+				if(removeCount > 0)
+					spreadsheetInfo.RemoveSheetInfo(removeCount);
+
 				spreadsheetInfo.OrderByIsUsing();
 			}
 
 			Debug.Log("[GoogleSpreadsheetLoader::UpdateSpreadsheets] Spreadsheets is updated.");
 		}
 
-		[Button("Update All Used Sheet Contents")]
-		[ButtonGroup("ContentList")]
-		[GUIColor(0, 1, 0)]
-		[DisableIf("_isBusy")]
-		private async void UpdateAllUsedSheetContentInfos()
+		[ContextMenu("Update All Spreadsheet Contents")]
+		public async Task UpdateAllUsedSheetContentInfos()
 		{
 			if (_isBusy)
 				return;
@@ -131,7 +120,7 @@ namespace GoogleSpreadsheetLoader.Editor
 					spreadsheetContentInfo.SetSheetContentPath(sheetContentPath);
 
 				var spreadsheetId   = spreadsheetInfo.SpreadsheetId;
-				var spreadSheetName = spreadsheetInfo.SpreadSheetName;
+				var spreadSheetName = spreadsheetInfo.SpreadsheetName;
 
 				foreach (var sheetInfo in spreadsheetInfo.SheetInfos)
 				{
@@ -165,10 +154,6 @@ namespace GoogleSpreadsheetLoader.Editor
 			Debug.Log("[GoogleSpreadsheetLoader::UpdateAllUsedSheetContentInfos] update all used sheet contents is updated.");
 		}
 
-		[Button("Remove All Used Sheet Content")]
-		[ButtonGroup("ContentList")]
-		[GUIColor(1, 0, 0)]
-		[DisableIf("_isBusy")]
 		private void RemoveAllUsedSheetContentInfos()
 		{
 			var sheetContentInfos = _usedSpreadsheetContentInfos.ToArray();
@@ -178,8 +163,6 @@ namespace GoogleSpreadsheetLoader.Editor
 				sheetContentInfo.RemoveAll();
 		}
 
-		[GUIColor(0, 1, 1)]
-		[Button("ResetBusy")]
 		private void ResetBusy()
 		{
 			var sheetContentInfos = _usedSpreadsheetContentInfos.ToArray();
@@ -199,17 +182,5 @@ namespace GoogleSpreadsheetLoader.Editor
 
 		private SpreadsheetContentInfo FindUsedSpreadSheetContentInfo(string spreadsheetInfoId) =>
 			_usedSpreadsheetContentInfos.Find(spreadsheetContentInfo => spreadsheetContentInfo.SpreadsheetInfoId == spreadsheetInfoId);
-
-		/// <summary>
-		/// 打開指定的表單頁面
-		/// </summary>
-		private void GoogleOpenUrl(string service, string spreadsheetId, string sheetId, int row = 0, int column = 0)
-		{
-			var request = $"{service}?key={spreadsheetId}&gid={sheetId}&action=GetRawCSV";
-			if (row > 0 && column > 0)
-				request += string.Format("&row={0}&column={1}", row, column);
-
-			Application.OpenURL(request);
-		}
 	}
 }

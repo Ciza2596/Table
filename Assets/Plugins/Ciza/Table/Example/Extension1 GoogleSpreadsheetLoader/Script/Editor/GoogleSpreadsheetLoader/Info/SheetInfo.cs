@@ -1,5 +1,4 @@
 using System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace GoogleSpreadsheetLoader.Editor
@@ -7,13 +6,9 @@ namespace GoogleSpreadsheetLoader.Editor
 	[Serializable]
 	public class SheetInfo
 	{
-		//private variable
-		[TableColumnWidth(100)]
-		[ReadOnly]
 		[SerializeField]
 		private string _sheetId;
 
-		[ReadOnly]
 		[SerializeField]
 		private string _name;
 
