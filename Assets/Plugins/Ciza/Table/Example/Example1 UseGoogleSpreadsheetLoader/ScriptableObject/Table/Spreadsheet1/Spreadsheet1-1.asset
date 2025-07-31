@@ -27,23 +27,23 @@ MonoBehaviour:
       _key: Player1-1_1
       _dataValues:
       - _name: Hp1_1
-        _value: 1001
+        _value: 1021
       - _name: Mp1_1
-        _value: 11
+        _value: 112
       - _name: Position
         _value: 10,11
   _rawData:
-    _size: {x: 4, y: 3}
+    _size: {x: 3, y: 4}
     _data:
     - Key
     - Player1-1_0
     - Player1-1_1
     - Hp1_1
     - 1100
-    - 1001
+    - 1021
     - Mp1_1
     - 100
-    - 11
+    - 112
     - Position
     - 0,10
     - 10,11

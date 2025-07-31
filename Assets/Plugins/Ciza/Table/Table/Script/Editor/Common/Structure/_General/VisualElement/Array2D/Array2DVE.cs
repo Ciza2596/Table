@@ -77,7 +77,7 @@ namespace CizaTable.Editor
 				{
 					var index = y * size.x + x;
 					var itemProperty = DataProperty.GetArrayElementAtIndex(index);
-					var width = new Length(100f / size.x, LengthUnit.Percent);
+					var width = Length.Percent(100f / size.x);
 					var propertyField = new PropertyField(itemProperty, string.Empty) { style = { width = width } };
 					propertyField.BindProperty(itemProperty);
 					row.Add(propertyField);

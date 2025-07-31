@@ -49,7 +49,7 @@ namespace GoogleSpreadsheetLoader.Editor
 			label.style.flexShrink = 1;
 			label.style.overflow = Overflow.Hidden;
 			label.style.unityTextAlign = TextAnchor.MiddleCenter;
-			label.style.width = new Length(widthPercentage, LengthUnit.Percent);
+			label.style.width = Length.Percent(widthPercentage);
 			label.SetBorder(1, Color.black, isLast ? SideKinds.All : SideKinds.NoRight);
 			return label;
 		}

@@ -60,7 +60,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
 		protected virtual void SetupLabel(Label label, float widthPercentage)
 		{
-			label.style.width = new Length(widthPercentage, LengthUnit.Percent);
+			label.style.width = Length.Percent(widthPercentage);
 			label.style.flexGrow = 1;
 			label.style.flexShrink = 1;
 			label.style.overflow = Overflow.Hidden;
@@ -73,7 +73,7 @@ namespace GoogleSpreadsheetLoader.Editor
 
 		protected virtual void SetupIsUsingToggle()
 		{
-			_isUsingToggle.style.width = new Length(10, LengthUnit.Percent);
+			_isUsingToggle.style.width = Length.Percent(10);
 			_isUsingToggle.style.minWidth = 60;
 			_isUsingToggle.style.flexGrow = 1;
 			_isUsingToggle.style.flexShrink = 1;

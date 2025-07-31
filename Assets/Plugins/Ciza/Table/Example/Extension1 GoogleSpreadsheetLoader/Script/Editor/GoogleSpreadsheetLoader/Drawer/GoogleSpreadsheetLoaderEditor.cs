@@ -16,6 +16,12 @@ namespace GoogleSpreadsheetLoader.Editor
 
 		[field: NonSerialized]
 		protected SpreadsheetContentInfosVE _usedSpreadsheetContentInfosVE;
+		
+		[field: NonSerialized]
+		protected Button _updateSpreadsheetPreviewButton;
+		
+		[field: NonSerialized]
+		protected Button _updateUsedSpreadsheetContentButton;
 
 		protected virtual string WebAppUrlPath => "_webAppUrl";
 		protected virtual string SpreadsheetInfosPath => "_spreadsheetInfos";
@@ -24,6 +30,8 @@ namespace GoogleSpreadsheetLoader.Editor
 		protected virtual SerializedProperty WebAppUrlProperty => serializedObject.FindProperty(WebAppUrlPath);
 		protected virtual SerializedProperty SpreadsheetInfosProperty => serializedObject.FindProperty(SpreadsheetInfosPath);
 		protected virtual SerializedProperty UsedSpreadsheetContentInfosProperty => serializedObject.FindProperty(UsedSpreadsheetContentInfosPath);
+		
+		protected virtual GoogleSpreadsheetLoader GoogleSpreadsheetLoader => target as GoogleSpreadsheetLoader;
 
 		public override VisualElement CreateInspectorGUI()
 		{
@@ -42,7 +50,8 @@ namespace GoogleSpreadsheetLoader.Editor
 			_spreadsheetInfosVE.Initialize();
 			spreadsheetInfosBox.Initialize(SpreadsheetInfosProperty.displayName, _spreadsheetInfosVE);
 			root.Add(spreadsheetInfosBox);
-			root.Add(new Button(UpdateSpreadsheetPreview) { text = "Update Spreadsheet Preview" });
+			_updateSpreadsheetPreviewButton = CreateButton("Update Spreadsheet Preview", UpdateSpreadsheetPreview, Color.green);
+			root.Add(_updateSpreadsheetPreviewButton);
 
 			root.Add(new SmallerSpaceVE());
 			root.Add(new Label("Used Sheet Content") { style = { unityFontStyleAndWeight = FontStyle.Bold, marginTop = 5 } });
@@ -55,30 +64,53 @@ namespace GoogleSpreadsheetLoader.Editor
 			root.Add(usedSpreadsheetContentInfosBox);
 
 			var buttonContainer = new VisualElement() { style = { flexDirection = FlexDirection.Row } };
-			buttonContainer.Add(CreateButton("Update All Used Sheet Contents", Color.green));
-			buttonContainer.Add(CreateButton("Remove All Used Sheet Contents", Color.red));
+			_updateUsedSpreadsheetContentButton = CreateButton("Update All Used Sheet Contents", UpdateUsedSpreadsheetContentInfos, Color.green);
+			buttonContainer.Add(_updateUsedSpreadsheetContentButton);
+			buttonContainer.Add(CreateButton("Remove All Used Sheet Contents", RemoveUsedSpreadsheetContentInfos, Color.red));
 			root.Add(buttonContainer);
 
-			var busyButton = CreateButton("Reset Busy", Color.cyan);
+			var busyButton = CreateButton("Reset Busy", ResetBusy, Color.cyan);
 			root.Add(busyButton);
 			return root;
 		}
 
-		protected virtual Button CreateButton(string text, Color color)
+		protected virtual Button CreateButton(string text, Action onClick, Color color)
 		{
-			var button = new Button() { text = text, style = { flexGrow = 1 } };
-
+			var button = new Button(onClick) { text = text, style = { flexGrow = 1 } };
 			button.SetTintColor(color);
 			return button;
 		}
 
 		protected virtual async void UpdateSpreadsheetPreview()
 		{
-			if (serializedObject.targetObject is not GoogleSpreadsheetLoader spreadsheetLoader)
+			if (GoogleSpreadsheetLoader == null)
 				return;
 
-			await spreadsheetLoader.UpdateSpreadsheets();
+			_updateSpreadsheetPreviewButton.SetEnabled(false);
+			await GoogleSpreadsheetLoader.UpdateSpreadsheets();
 			_spreadsheetInfosVE.Refresh();
+			_updateSpreadsheetPreviewButton.SetEnabled(true);
 		}
+		
+		protected virtual async void UpdateUsedSpreadsheetContentInfos()
+		{
+			if (GoogleSpreadsheetLoader == null)
+				return;
+
+			_updateUsedSpreadsheetContentButton.SetEnabled(false);
+			await GoogleSpreadsheetLoader.UpdateAllUsedSheetContentInfos();
+			_usedSpreadsheetContentInfosVE.Refresh();
+			_updateUsedSpreadsheetContentButton.SetEnabled(true);
+		}
+
+		protected virtual void RemoveUsedSpreadsheetContentInfos()
+		{
+			GoogleSpreadsheetLoader?.RemoveAllUsedSheetContentInfos();
+			_usedSpreadsheetContentInfosVE.Refresh();
+		}
+		
+		protected virtual void ResetBusy() => GoogleSpreadsheetLoader?.ResetBusy();
+		
+		
 	}
 }

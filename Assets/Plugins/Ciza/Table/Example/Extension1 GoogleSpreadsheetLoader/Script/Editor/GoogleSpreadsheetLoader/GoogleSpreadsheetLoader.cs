@@ -154,7 +154,7 @@ namespace GoogleSpreadsheetLoader.Editor
 			Debug.Log("[GoogleSpreadsheetLoader::UpdateAllUsedSheetContentInfos] update all used sheet contents is updated.");
 		}
 
-		private void RemoveAllUsedSheetContentInfos()
+		public void RemoveAllUsedSheetContentInfos()
 		{
 			var sheetContentInfos = _usedSpreadsheetContentInfos.ToArray();
 			_usedSpreadsheetContentInfos.Clear();
@@ -163,7 +163,7 @@ namespace GoogleSpreadsheetLoader.Editor
 				sheetContentInfo.RemoveAll();
 		}
 
-		private void ResetBusy()
+		public void ResetBusy()
 		{
 			var sheetContentInfos = _usedSpreadsheetContentInfos.ToArray();
 			foreach (var sheetContentInfo in sheetContentInfos)

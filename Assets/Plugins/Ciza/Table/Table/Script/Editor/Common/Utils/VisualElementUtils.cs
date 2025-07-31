@@ -171,6 +171,8 @@ namespace CizaTable.Editor
 
 		public static void SetTintColor(this VisualElement element, Color tint, bool isApplyToChildren = true)
 		{
+			if(tint == Color.white)
+				return;
 			if(element.style.backgroundImage != null)
 				element.style.unityBackgroundImageTintColor = tint;
 			if (element is Image image)

@@ -8,8 +8,7 @@ namespace GoogleSpreadsheetLoader.Editor
 	{
 		[Preserve]
 		public SpreadsheetInfosVE(SerializedProperty listProperty) : base(listProperty) { }
-
-
+		
 		protected override ItemVE CreateItem(SerializedProperty itemProperty)
 		{
 			var spreadsheetInfoVE = new SpreadsheetInfoVE(this, itemProperty);

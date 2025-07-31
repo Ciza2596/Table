@@ -26,7 +26,7 @@ namespace GoogleSpreadsheetLoader.Editor
 		
 
 		[Preserve]
-		public SpreadsheetInfoVE(ListVE root, SerializedProperty itemProperty) : base(root, itemProperty) { }
+		public SpreadsheetInfoVE(SpreadsheetInfosVE root, SerializedProperty itemProperty) : base(root, itemProperty) { }
 
 		public virtual string SpreadsheetName
 		{

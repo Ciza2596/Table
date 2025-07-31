@@ -22,7 +22,7 @@ MonoBehaviour:
       - _name: Mp1_2
         _value: 12
   _rawData:
-    _size: {x: 3, y: 2}
+    _size: {x: 2, y: 3}
     _data:
     - Key
     - Player1-2

@@ -40,7 +40,7 @@ namespace CizaTable
 		[Preserve]
 		public Array2D(T[,] matrix)
 		{
-			_size = new Vector2Int(matrix.GetLength(0), matrix.GetLength(1));
+			_size = new Vector2Int(matrix.GetLength(1), matrix.GetLength(0));
 			_data = matrix.Cast<T>().ToArray();
 		}
 
