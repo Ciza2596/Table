@@ -2,7 +2,6 @@ using System;
 using CizaTable.Editor;
 using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.Scripting;
 using UnityEngine.UIElements;
 
