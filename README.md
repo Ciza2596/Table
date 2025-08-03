@@ -3,6 +3,24 @@
 https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table/Table
 ```
 
+# GoogleSpreadsheetLoader
+```
+https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table.GoogleSpreadsheetLoader/Table.GoogleSpreadsheetLoader
+```
+### Dependency:
+```
+https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
+```
+
+# TableModule
+```
+https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table.TableModule/Table.TableModule
+```
+### Dependency:
+```
+https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
+```
+
 ## Info
 Support type:
   1. Primitive: bool, double, enum, float, int, long, string
@@ -131,14 +149,4 @@ public class ReleaseExample : MonoBehaviour
         characterTable.Release();
     }
 }
-```
-
-# GoogleSpreadsheetLoader
-```
-https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table.GoogleSpreadsheetLoader/Table.GoogleSpreadsheetLoader
-```
-
-# TableModule
-```
-https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table.TableModule/Table.TableModule
 ```
