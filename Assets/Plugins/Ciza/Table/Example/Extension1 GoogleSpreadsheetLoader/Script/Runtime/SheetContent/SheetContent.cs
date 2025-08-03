@@ -10,7 +10,7 @@ namespace GoogleSpreadsheetLoader
 	{
 		[SerializeField]
 		private DataMapList _dataMapList;
-		
+
 		[Header("已匯入資料(Raw)")]
 		[Space]
 		[SerializeField]
@@ -23,8 +23,7 @@ namespace GoogleSpreadsheetLoader
 		public void UpdateContent(DataMapList dataMapList, string[,] rawData)
 		{
 			_dataMapList = dataMapList;
-			_rawData   = rawData.ToArray2D();
-			
+			_rawData = new Array2D<string>(rawData);
 		}
 	}
 }

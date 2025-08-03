@@ -36,6 +36,9 @@ namespace CizaTable.Editor
 		protected string _itemPath;
 
 		[NonSerialized]
+		protected object _itemValue;
+
+		[NonSerialized]
 		protected Type _itemType;
 
 		[NonSerialized]
@@ -250,12 +253,14 @@ namespace CizaTable.Editor
 		{
 			var target = itemProperty.serializedObject.targetObject;
 			var itemPath = itemProperty.propertyPath;
-			var itemType = itemProperty.GetValue().GetType();
-			if (target != _target || itemPath != _itemPath || itemType != _itemType)
+			var itemValue = itemProperty.GetValue();
+			var itemType = itemValue.GetType();
+			if (target != _target || itemPath != _itemPath || itemValue != _itemValue || itemType != _itemType)
 			{
 				ItemProperty = itemProperty;
 				_target = target;
 				_itemPath = itemPath;
+				_itemValue = itemValue;
 				_itemType = itemType;
 				if (isRefreshBodyContent)
 				{
