@@ -132,3 +132,13 @@ public class ReleaseExample : MonoBehaviour
     }
 }
 ```
+
+# GoogleSpreadsheetLoader
+```
+https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table.GoogleSpreadsheetLoader/Table.GoogleSpreadsheetLoader
+```
+
+# TableModule
+```
+https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table.TableModule/Table.TableModule
+```

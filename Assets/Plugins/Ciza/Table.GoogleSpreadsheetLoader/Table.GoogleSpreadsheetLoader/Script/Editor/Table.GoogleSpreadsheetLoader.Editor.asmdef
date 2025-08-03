@@ -1,0 +1,21 @@
+{
+    "name": "Table.GoogleSpreadsheetLoader.Editor",
+    "rootNamespace": "CizaTable.Editor",
+    "references": [
+        "UniTask",
+        "Table",
+        "Table.Editor",
+        "Table.GoogleSpreadsheetLoader"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

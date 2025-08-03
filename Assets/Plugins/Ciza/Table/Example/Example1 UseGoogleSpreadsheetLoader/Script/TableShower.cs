@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using GoogleSpreadsheetLoader;
+using CizaTable;
 using UnityEngine;
 
 namespace CizaTable.Example1

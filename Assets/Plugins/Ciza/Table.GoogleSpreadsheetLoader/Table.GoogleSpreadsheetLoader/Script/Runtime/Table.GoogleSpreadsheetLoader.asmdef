@@ -1,0 +1,16 @@
+{
+    "name": "Table.GoogleSpreadsheetLoader",
+    "rootNamespace": "CizaTable",
+    "references": [
+        "Table"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,7 +1,7 @@
 {
-  "name": "com.ciza.table",
-  "displayName": "Table",
-  "description": "Table.",
+  "name": "com.ciza.tabletablemodule",
+  "displayName": "Table.TableModule",
+  "description": "Table.TableModule.",
   "version": "0.0.24",
   "unity": "2022.2",
   "unityRelease": "1f1",
