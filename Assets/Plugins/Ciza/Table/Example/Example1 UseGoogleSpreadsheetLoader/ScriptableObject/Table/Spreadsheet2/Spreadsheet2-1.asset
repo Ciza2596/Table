@@ -23,6 +23,7 @@ MonoBehaviour:
         _value: 21
   _rawData:
     _size: {x: 2, y: 3}
+    _isReadOnly: 0
     _data:
     - Key
     - Player2-1

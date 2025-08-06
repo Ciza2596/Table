@@ -48,11 +48,13 @@ MonoBehaviour:
       _sheetInfoId: 28ecc1a0-ab1f-4102-8842-c31cade2f593
       _spreadSheetId: 1-OEMPqWX0tYIUE73yd-06ypI7NgSrdxPAfomqvnCsmQ
       _sheetId: 0
+      _isBusy: 0
     - _sheetContent: {fileID: 11400000, guid: 660d0a94470d1fc4bbf3aee94a935305, type: 2}
       _googleSpreadsheetLoader: {fileID: 11400000}
       _sheetInfoId: cf49b018-224c-4551-8395-b8e0e2e8dde0
       _spreadSheetId: 1-OEMPqWX0tYIUE73yd-06ypI7NgSrdxPAfomqvnCsmQ
       _sheetId: 717478892
+      _isBusy: 0
     _spreadsheetInfoId: 782bab67-f688-4a14-8862-fccfca1ebe58
   - _sheetContentPath: Assets/Plugins/Ciza/Table/Example/Example1 UseGoogleSpreadsheetLoader/ScriptableObject/Table
     _sheetContentInfos:
@@ -61,9 +63,12 @@ MonoBehaviour:
       _sheetInfoId: cea8e21d-10b6-4e3e-be88-e080fd19843d
       _spreadSheetId: 1otiVanTt_GPTgWb75d-3yrptErfZF5nKTDItHfJgCUM
       _sheetId: 0
+      _isBusy: 0
     - _sheetContent: {fileID: 11400000, guid: 9e7e1348bbe07bf49ae5ccfc1bcb61b9, type: 2}
       _googleSpreadsheetLoader: {fileID: 11400000}
       _sheetInfoId: 1ff5bb90-cd03-4c24-8a96-766f90fae8c8
       _spreadSheetId: 1otiVanTt_GPTgWb75d-3yrptErfZF5nKTDItHfJgCUM
       _sheetId: 717478892
+      _isBusy: 0
     _spreadsheetInfoId: 4c40d1fa-ac6e-4234-a1b2-6a1fe9a31004
+  _isBusy: 1

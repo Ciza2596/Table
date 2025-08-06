@@ -18,6 +18,8 @@ namespace CizaTable.Editor
 		[SerializeField]
 		private List<SpreadsheetContentInfo> _usedSpreadsheetContentInfos = new List<SpreadsheetContentInfo>();
 
+		[HideInInspector]
+		[SerializeField]
 		private bool                        _isBusy;
 		private GoogleSpreadsheetGasHandler _googleSpreadsheetGasHandler = new GoogleSpreadsheetGasHandler();
 

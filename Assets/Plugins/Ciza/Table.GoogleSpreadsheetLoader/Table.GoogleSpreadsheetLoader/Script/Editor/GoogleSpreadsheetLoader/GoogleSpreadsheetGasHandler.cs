@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace CizaTable.Editor
 {
@@ -97,6 +98,7 @@ namespace CizaTable.Editor
 		[SerializeField]
 		private string _sheetName;
 
+		[Preserve]
 		public GoogleSheetInfo(string sheetId, string sheetName)
 		{
 			_sheetId = sheetId;

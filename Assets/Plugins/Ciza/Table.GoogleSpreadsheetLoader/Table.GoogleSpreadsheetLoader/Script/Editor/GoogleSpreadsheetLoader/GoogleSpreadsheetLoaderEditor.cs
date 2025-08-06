@@ -24,10 +24,13 @@ namespace CizaTable.Editor
 		protected virtual string WebAppUrlPath => "_webAppUrl";
 		protected virtual string SpreadsheetInfosPath => "_spreadsheetInfos";
 		protected virtual string UsedSpreadsheetContentInfosPath => "_usedSpreadsheetContentInfos";
+		
+		protected virtual string IsBusyPath => "_isBusy";
 
 		protected virtual SerializedProperty WebAppUrlProperty => serializedObject.FindProperty(WebAppUrlPath);
 		protected virtual SerializedProperty SpreadsheetInfosProperty => serializedObject.FindProperty(SpreadsheetInfosPath);
 		protected virtual SerializedProperty UsedSpreadsheetContentInfosProperty => serializedObject.FindProperty(UsedSpreadsheetContentInfosPath);
+		protected virtual SerializedProperty IsBusyProperty => serializedObject.FindProperty(IsBusyPath);
 		
 		protected virtual GoogleSpreadsheetLoader GoogleSpreadsheetLoader => target as GoogleSpreadsheetLoader;
 
@@ -38,6 +41,12 @@ namespace CizaTable.Editor
 			root.Add(new VisualElement() { style = { height = 1, flexGrow = 1, marginBottom = 5, backgroundColor = new Color(0.35f, 0.35f, 0.35f) } });
 			root.Add(new Button(WebUtils.OpenGoogleScriptPage) { text = "Open Google App Script Web", style = { marginLeft = 0, marginRight = 0, flexGrow = 1 } });
 			root.Add(new PropertyField(WebAppUrlProperty));
+			root.TrackPropertyValue(IsBusyProperty, property =>
+			{
+				var isBusy = property.boolValue;
+				_updateSpreadsheetPreviewButton.SetEnabled(!isBusy);
+				_updateUsedSpreadsheetContentButton.SetEnabled(!isBusy);
+			});
 
 			root.Add(new SmallerSpaceVE());
 			root.Add(new Label("Spreadsheet Preview") { style = { unityFontStyleAndWeight = FontStyle.Bold, marginTop = 5 } });
@@ -84,10 +93,8 @@ namespace CizaTable.Editor
 			if (GoogleSpreadsheetLoader == null)
 				return;
 
-			_updateSpreadsheetPreviewButton.SetEnabled(false);
 			await GoogleSpreadsheetLoader.UpdateSpreadsheets();
 			_spreadsheetInfosVE.Refresh();
-			_updateSpreadsheetPreviewButton.SetEnabled(true);
 		}
 		
 		protected virtual async void UpdateUsedSpreadsheetContentInfos()
@@ -95,10 +102,8 @@ namespace CizaTable.Editor
 			if (GoogleSpreadsheetLoader == null)
 				return;
 
-			_updateUsedSpreadsheetContentButton.SetEnabled(false);
 			await GoogleSpreadsheetLoader.UpdateAllUsedSheetContentInfos();
 			_usedSpreadsheetContentInfosVE.Refresh();
-			_updateUsedSpreadsheetContentButton.SetEnabled(true);
 		}
 
 		protected virtual void RemoveUsedSpreadsheetContentInfos()

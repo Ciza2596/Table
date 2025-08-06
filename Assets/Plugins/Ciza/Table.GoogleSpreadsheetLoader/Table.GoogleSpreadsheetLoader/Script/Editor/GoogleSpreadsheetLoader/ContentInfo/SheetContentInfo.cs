@@ -27,7 +27,9 @@ namespace CizaTable.Editor
 		[HideInInspector]
 		[SerializeField]
 		private string _sheetId;
-
+		
+		[HideInInspector]
+		[SerializeField]
 		private bool _isBusy;
 
 		public bool IsRemoved => _sheetContent == null;

@@ -19,8 +19,11 @@ namespace CizaTable.Editor
 		protected Button _updateButton;
 		
 		protected virtual string SheetContentPath => "_sheetContent";
+		
+		protected virtual string IsBusyPath => "_isBusy";
 
 		protected virtual SerializedProperty SheetContentProperty => ItemProperty.FindPropertyRelative(SheetContentPath);
+		protected virtual SerializedProperty IsBusyProperty => ItemProperty.FindPropertyRelative(IsBusyPath);
 		
 		protected virtual GoogleSpreadsheetLoader GoogleSpreadsheetLoader => ItemProperty.serializedObject.targetObject as GoogleSpreadsheetLoader;
 
@@ -64,6 +67,7 @@ namespace CizaTable.Editor
 
 			_updateButton = new Button(UpdateSheetContentInfo) { text = "更新", style = { flexGrow = 1 } };
 			_updateButton.SetTintColor(Color.green);
+			_updateButton.TrackPropertyValue(IsBusyProperty, property => _updateButton.SetEnabled(!property.boolValue));
 			_actionButtonsContainer.Add(_updateButton);
 			var removeButton = new Button(RemoveSheetContentInfo) { text = "移除", style = { flexGrow = 1 } };
 			removeButton.SetTintColor(Color.red);
@@ -77,9 +81,7 @@ namespace CizaTable.Editor
 			if (sheetContentInfo == null || GoogleSpreadsheetLoader == null)
 				return;
 			
-			_updateButton.SetEnabled(false);
 			await GoogleSpreadsheetLoader.UpdateSheetContentInfo(sheetContentInfo);
-			_updateButton.SetEnabled(true);
 		}
 
 		protected virtual void RemoveSheetContentInfo()
