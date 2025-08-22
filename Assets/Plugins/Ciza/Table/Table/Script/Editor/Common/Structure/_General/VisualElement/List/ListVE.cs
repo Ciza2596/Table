@@ -253,7 +253,7 @@ namespace CizaTable.Editor
 		protected virtual void DerivedInitializeItemType()
 		{
 			ItemType = SerializationUtils.GetElementTypes(ItemsProperty)[0];
-			IsElementIsClass = TypeUtils.CheckIsClassWithoutString(ItemType);
+			IsElementIsClass = !TypeUtils.CheckIsUnityObj(ItemType) && TypeUtils.CheckIsClassWithoutString(ItemType);
 		}
 
 		#region Create VE
