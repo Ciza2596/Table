@@ -63,7 +63,7 @@ namespace CizaTable.Editor
 
 		#region Check
 
-		public static bool CheckIsUnityObj(Type type) =>
+		public static bool CheckIsUnityObjSubclass(Type type) =>
 			type.IsSubclassOf(typeof(Object));
 
 		public static bool CheckIsString(Type type) =>
@@ -76,7 +76,7 @@ namespace CizaTable.Editor
 
 		public static object CreateInstance(Type type, params object[] args)
 		{
-			if (CheckIsUnityObj(type))
+			if (CheckIsUnityObjSubclass(type))
 				return null;
 
 			if (CheckIsString(type))
