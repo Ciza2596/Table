@@ -1,6 +1,6 @@
 namespace CizaTable.Editor
 {
-    public class PathHelper
+    public static class PathHelper
     {
         public static string GetFullPath(string assetPath, string name, string folderName = null)
         {

@@ -25,11 +25,8 @@ namespace CizaTable.Editor
 				var getRequest = UnityWebRequest.Get(request);
 
 				PrintLog("[GoogleHelper:StartDownload] Start download data from google.");
-#if UNITY_2017_2_OR_NEWER
+				
 				await getRequest.SendWebRequest();
-#else
-                await getRequest.Send();
-#endif
 
 				if (getRequest.isDone)
 				{

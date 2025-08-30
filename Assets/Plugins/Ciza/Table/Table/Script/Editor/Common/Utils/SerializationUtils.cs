@@ -38,36 +38,6 @@ namespace CizaTable.Editor
 
 		// UI TOOLKIT: ----------------------------------------------------------------------------
 
-		#region Path
-
-		public static bool TryGetParentPath(SerializedProperty property, out string parentPath) =>
-			TryGetParentPath(property.propertyPath, out parentPath);
-
-		public static bool TryGetParentPath(string path, out string parentPath)
-		{
-			var index = path.LastIndexOf('.');
-
-			if (index < 0)
-			{
-				parentPath = string.Empty;
-				return false;
-			}
-
-			if (path[(index + 1)..].Contains("["))
-			{
-				index = path[..index].LastIndexOf('.');
-				index = path[..index].LastIndexOf('.');
-			}
-
-			parentPath = path[..index];
-			return true;
-		}
-
-		#endregion
-
-		public static string GetTitle(SerializedProperty property, bool isFullType, string[] forbiddenNames = null) =>
-			TypeUtils.GetTitle(GetType(property, isFullType), forbiddenNames);
-
 		#region GetType
 
 		public static Type GetType(SerializedProperty property, bool isFullType)
@@ -103,12 +73,6 @@ namespace CizaTable.Editor
 		}
 
 		#region CreateChildProperties
-
-		public static bool CreateChildProperties(VisualElement root, Object obj, ChildrenKinds kind, float spaceHeight = 5, Action<SerializedPropertyChangeEvent> onChangeValue = null, params string[] excludeFields)
-		{
-			var serializedObject = new SerializedObject(obj);
-			return CreateChildProperties(root, serializedObject.GetIterator(), false, kind, spaceHeight, onChangeValue, excludeFields);
-		}
 
 		public static bool CreateChildProperties(VisualElement root, SerializedProperty property, ChildrenKinds kind, float spaceHeight = 5, Action<SerializedPropertyChangeEvent> onChangeValue = null, params string[] excludeFields) =>
 			CreateChildProperties(root, property, true, kind, spaceHeight, onChangeValue, excludeFields);

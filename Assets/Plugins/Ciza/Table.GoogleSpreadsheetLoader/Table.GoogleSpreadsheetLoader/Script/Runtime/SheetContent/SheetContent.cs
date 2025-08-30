@@ -10,10 +10,12 @@ namespace CizaTable
 		[SerializeField]
 		private DataMapList _dataMapList;
 
+#if UNITY_EDITOR
 		[Header("已匯入資料(Raw)")]
 		[Space]
 		[SerializeField]
 		private Array2D<string> _rawData;
+#endif
 
 		//public variable
 		public IReadOnlyList<IDataUnit> DataUnits => _dataMapList.ToDataUnits();
@@ -22,7 +24,9 @@ namespace CizaTable
 		public void UpdateContent(DataMapList dataMapList, string[,] rawData)
 		{
 			_dataMapList = dataMapList;
+#if UNITY_EDITOR
 			_rawData = new Array2D<string>(rawData);
+#endif
 		}
 	}
 }
