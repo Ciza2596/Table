@@ -84,15 +84,12 @@ namespace CizaTable.Editor
 			await GoogleSpreadsheetLoader.UpdateSheetContentInfo(sheetContentInfo);
 		}
 
-		protected virtual void RemoveSheetContentInfo()
+		protected virtual void RemoveSheetContentInfo() => Root.DeleteItem(Index);
+		
+		public override void Refresh(int index, SerializedProperty itemProperty, bool isAllowReordering, bool isAllowDisable, bool isAllowDuplicate, bool isAllowDelete, bool isAllowCopyPaste)
 		{
-			var subSheetContent = SheetContentProperty.GetValue<SheetContent>();
-			SheetContentProperty.SetValue(null);
-
-			var assetPath = AssetDatabase.GetAssetPath(subSheetContent);
-			AssetDatabase.DeleteAsset(assetPath);
-			AssetDatabase.SaveAssets();
-			Debug.Log($"[SubSheetContentInfo::Remove] Remove content file : {assetPath}.");
+			base.Refresh(index, itemProperty, isAllowReordering, isAllowDisable, isAllowDuplicate, isAllowDelete, isAllowCopyPaste);
+			_sheetContentField.SetValueWithoutNotify(SheetContentProperty.GetValue<SheetContent>());
 		}
 	}
 }

@@ -109,6 +109,7 @@ namespace CizaTable.Editor
 		protected virtual void RemoveUsedSpreadsheetContentInfos()
 		{
 			GoogleSpreadsheetLoader?.RemoveAllUsedSheetContentInfos();
+			_usedSpreadsheetContentInfosVE.SetListProperty(UsedSpreadsheetContentInfosProperty);
 			_usedSpreadsheetContentInfosVE.Refresh();
 		}
 		

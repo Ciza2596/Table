@@ -9,8 +9,25 @@ namespace CizaTable.Editor
     {
         [Preserve]
         public SheetContentInfosVE(SerializedProperty listProperty) : base(listProperty) { }
-        
-        
+
+
+        public override void DeleteItem(int index)
+        {
+            if(index < 0) return;
+            
+            ListProperty.serializedObject.Update();
+            var sheetContent = ItemsProperty.GetArrayElementAtIndex(index).FindPropertyRelative("_sheetContent").GetValue<SheetContent>();
+            var assetPath = AssetDatabase.GetAssetPath(sheetContent);
+            
+            ItemsProperty.DeleteArrayElementAtIndex(index);
+            SerializationUtils.ApplyUnregisteredSerialization(ListProperty.serializedObject);
+            Refresh();
+            
+            AssetDatabase.DeleteAsset(assetPath);
+            AssetDatabase.SaveAssets();
+            Debug.Log($"[SubSheetContentInfo::Remove] Remove content file : {assetPath}.");
+        }
+
         protected override void DerivedInitialize()
         {
             base.DerivedInitialize();
