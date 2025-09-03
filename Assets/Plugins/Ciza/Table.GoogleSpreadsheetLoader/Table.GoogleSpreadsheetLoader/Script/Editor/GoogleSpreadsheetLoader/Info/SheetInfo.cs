@@ -10,7 +10,10 @@ namespace CizaTable.Editor
 		private string _sheetId;
 
 		[SerializeField]
-		private string _name;
+		private string _spreadsheetName;
+
+		[SerializeField]
+		private string _sheetName;
 
 		[SerializeField]
 		private bool _isUsing;
@@ -22,7 +25,7 @@ namespace CizaTable.Editor
 		//constructor
 		public SheetInfo(string sheetId)
 		{
-			_id      = Guid.NewGuid().ToString();
+			_id = Guid.NewGuid().ToString();
 			_sheetId = sheetId;
 		}
 
@@ -30,11 +33,19 @@ namespace CizaTable.Editor
 		public string Id => _id;
 
 		public string SheetId => _sheetId;
-		public string Name    => _name;
-		public bool   IsUsing => _isUsing;
+
+		public string FullName => _spreadsheetName + " - " + _sheetName;
+
+		public string SpreadsheetName => _spreadsheetName;
+		public string SheetName => _sheetName;
+
+		public bool IsUsing => _isUsing;
 
 		//public method
-		public void SetName(string name) =>
-			_name = name;
+		public void SetName(string spreadSheetName, string sheetName)
+		{
+			_spreadsheetName = spreadSheetName;
+			_sheetName = sheetName;
+		}
 	}
 }

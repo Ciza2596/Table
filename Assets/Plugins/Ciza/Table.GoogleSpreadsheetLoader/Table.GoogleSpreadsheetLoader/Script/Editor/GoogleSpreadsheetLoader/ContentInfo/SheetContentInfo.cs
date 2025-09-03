@@ -14,10 +14,6 @@ namespace CizaTable.Editor
 
 		[HideInInspector]
 		[SerializeField]
-		private GoogleSpreadsheetLoader _googleSpreadsheetLoader;
-
-		[HideInInspector]
-		[SerializeField]
 		private string _sheetInfoId;
 
 		[HideInInspector]
@@ -37,7 +33,7 @@ namespace CizaTable.Editor
 		public bool IsRemoved => _sheetContent == null;
 
 		//constructor
-		public SheetContentInfo(string sheetInfoId, string spreadSheetId, string sheetId, SheetContent sheetContent, GoogleSpreadsheetLoader googleSpreadsheetLoader)
+		public SheetContentInfo(string sheetInfoId, string spreadSheetId, string sheetId, SheetContent sheetContent)
 		{
 			_sheetInfoId = sheetInfoId;
 
@@ -45,11 +41,11 @@ namespace CizaTable.Editor
 			_sheetId = sheetId;
 
 			_sheetContent = sheetContent;
-			_googleSpreadsheetLoader = googleSpreadsheetLoader;
 		}
 
 		//public variable
 		public string SheetInfoId => _sheetInfoId;
+
 		public string SpreadSheetId => _spreadSheetId;
 		public string SheetId => _sheetId;
 
@@ -88,18 +84,6 @@ namespace CizaTable.Editor
 			AssetDatabase.DeleteAsset(assetPath);
 			AssetDatabase.SaveAssets();
 			Debug.Log($"[SubSheetContentInfo::Remove] Remove content file : {assetPath}.");
-		}
-
-		private async void Update()
-		{
-			try
-			{
-				await _googleSpreadsheetLoader.UpdateSheetContentInfo(this);
-			}
-			catch
-			{
-				_isBusy = false;
-			}
 		}
 
 		private void CreateDataUnitsAndRawData(string csv, out DataMapList dataMapList, out string[,] rawData)

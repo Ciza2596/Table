@@ -51,10 +51,10 @@ namespace CizaTable.Editor
 			return sheetContentInfo;
 		}
 
-		public SheetContentInfo CreateSheetContentInfo(string sheetInfoId, string spreadSheetId, string sheetId, string spreadSheetName, GoogleSpreadsheetLoader googleSpreadsheetLoader)
+		public SheetContentInfo CreateSheetContentInfo(string sheetInfoId, string spreadSheetId, string sheetId, string spreadSheetName)
 		{
-			var sheetContent     = CreateScriptableObjectToAssets<SheetContent>(spreadSheetName);
-			var sheetContentInfo = new SheetContentInfo(sheetInfoId, spreadSheetId, sheetId, sheetContent, googleSpreadsheetLoader);
+			var sheetContent = CreateScriptableObjectToAssets<SheetContent>(spreadSheetName);
+			var sheetContentInfo = new SheetContentInfo(sheetInfoId, spreadSheetId, sheetId, sheetContent);
 
 			_sheetContentInfos.Add(sheetContentInfo);
 			return sheetContentInfo;
@@ -71,7 +71,7 @@ namespace CizaTable.Editor
 		private T CreateScriptableObjectToAssets<T>(string spreadSheetName) where T : ScriptableObject
 		{
 			var folderPath = PathHelper.GetFolderPath(_sheetContentPath, spreadSheetName);
-			var fullPath   = PathHelper.GetFullPath(folderPath, Guid.NewGuid().ToString());
+			var fullPath = PathHelper.GetFullPath(folderPath, Guid.NewGuid().ToString());
 
 			if (!Directory.Exists(folderPath))
 				Directory.CreateDirectory(folderPath);

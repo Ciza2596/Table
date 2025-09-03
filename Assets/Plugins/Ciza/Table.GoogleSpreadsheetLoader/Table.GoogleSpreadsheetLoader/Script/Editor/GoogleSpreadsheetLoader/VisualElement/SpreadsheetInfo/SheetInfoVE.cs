@@ -13,18 +13,18 @@ namespace CizaTable.Editor
 		protected readonly Label _sheetIdLabel = new Label();
 
 		[NonSerialized]
-		protected readonly Label _nameLabel = new Label();
+		protected readonly Label _sheetNameLabel = new Label();
 
 		[NonSerialized]
 		protected readonly Toggle _isUsingToggle = new Toggle();
 
 
 		protected virtual string SheetIdPath => "_sheetId";
-		protected virtual string NamePath => "_name";
+		protected virtual string SheetNamePath => "_sheetName";
 		protected virtual string IsUsingPath => "_isUsing";
 
 		protected virtual SerializedProperty SheetIdProperty => ItemProperty.FindPropertyRelative(SheetIdPath);
-		protected virtual SerializedProperty NameProperty => ItemProperty.FindPropertyRelative(NamePath);
+		protected virtual SerializedProperty SheetNameProperty => ItemProperty.FindPropertyRelative(SheetNamePath);
 		protected virtual SerializedProperty IsUsingProperty => ItemProperty.FindPropertyRelative(IsUsingPath);
 
 		[Preserve]
@@ -36,7 +36,7 @@ namespace CizaTable.Editor
 
 			SetupLabel(_sheetIdLabel, 50);
 
-			SetupLabel(_nameLabel, 40);
+			SetupLabel(_sheetNameLabel, 40);
 
 			SetupIsUsingToggle();
 			
@@ -50,8 +50,8 @@ namespace CizaTable.Editor
 			_sheetIdLabel.Unbind();
 			_sheetIdLabel.BindProperty(SheetIdProperty);
 			
-			_nameLabel.Unbind();
-			_nameLabel.BindProperty(NameProperty);
+			_sheetNameLabel.Unbind();
+			_sheetNameLabel.BindProperty(SheetNameProperty);
 			
 			_isUsingToggle.Unbind();
 			_isUsingToggle.BindProperty(IsUsingProperty);

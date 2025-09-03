@@ -9,7 +9,7 @@ namespace CizaTable.Editor
 	[Serializable]
 	public class GoogleSpreadsheetGasHandler
 	{
-		protected readonly GoogleHelper _googleHelper = new GoogleHelper(true);
+		protected readonly GoogleHelper _googleHelper = new GoogleHelper(false);
 
 
 		//public method

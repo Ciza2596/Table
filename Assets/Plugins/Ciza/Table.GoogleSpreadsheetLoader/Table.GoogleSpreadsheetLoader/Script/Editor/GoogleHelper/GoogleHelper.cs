@@ -24,7 +24,7 @@ namespace CizaTable.Editor
 			{
 				var getRequest = UnityWebRequest.Get(request);
 
-				PrintLog("[GoogleHelper:StartDownload] Start download data from google.");
+				PrintLog("[GoogleHelper::StartDownload] Start download data from google.");
 				
 				await getRequest.SendWebRequest();
 
@@ -40,14 +40,14 @@ namespace CizaTable.Editor
 						if (isEmpty)
 						{
 							result = string.Empty;
-							PrintErrorLog("GoogleHelper:StartDownload] Nothing to download.");
+							PrintErrorLog("[GoogleHelper::StartDownload] Nothing to download.");
 						}
 
-						PrintLog("[GoogleHelper:StartDownload] Download is done.");
+						PrintLog("[GoogleHelper::StartDownload] Download is done.");
 					}
 					else
 					{
-						PrintErrorLog("GoogleHelper:StartDownload] Unable to access google : " + error);
+						PrintErrorLog("[GoogleHelper::StartDownload] Unable to access google : " + error);
 					}
 
 					return result;

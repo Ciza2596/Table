@@ -93,7 +93,7 @@ namespace CizaTable.Editor
 			if (GoogleSpreadsheetLoader == null)
 				return;
 
-			await GoogleSpreadsheetLoader.UpdateSpreadsheets();
+			await GoogleSpreadsheetLoader.UpdateSpreadsheetPreview();
 			_spreadsheetInfosVE.Refresh();
 		}
 		
