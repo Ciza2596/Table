@@ -20,12 +20,12 @@ namespace CizaTable.Editor
 		{
 			Property = property;
 
-			if (!Property.isArray) 
+			if (!Property.isArray)
 				return base.CreatePropertyGUI(property);
-            
+
 			var root = new BoxVE(property, CreateHeadAdditional_ListCountLabel());
-			var title = (attribute as OverrideDrawerAttribute)?.Label ?? property.displayName;
-			root.Initialize(title, CreateBody_ListVE());
+			root.Initialize(Property.displayName, CreateBody_ListVE());
+			root.TrackPropertyValue(Property, _ => root.Refresh());
 
 			return root;
 		}

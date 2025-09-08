@@ -7,7 +7,21 @@ namespace CizaTable.Editor
 	[CustomPropertyDrawer(typeof(Array2D<>))]
 	public class Array2DDrawer : BBoxDrawer
 	{
+		// VARIABLE: -----------------------------------------------------------------------------
+
 		protected virtual string SizeTextFormat => "Size: {0} \u00d7 {1}";
+
+
+		// PUBLIC METHOD: ----------------------------------------------------------------------
+
+		public override VisualElement CreatePropertyGUI(SerializedProperty property)
+		{
+			base.CreatePropertyGUI(property);
+			return Root;
+		}
+
+
+		// PROTECT METHOD: --------------------------------------------------------------------
 
 		protected sealed override VisualElement CreateHeadAdditional() => CreateArray2DSizeLabel();
 
