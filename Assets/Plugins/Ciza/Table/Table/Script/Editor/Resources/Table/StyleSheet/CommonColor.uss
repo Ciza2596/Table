@@ -13,7 +13,7 @@
     --color-border-default: #1a1a1a;
     --color-border-element: #303030;
     --color-border-hover: #656565;
-    
+
     --color-text-default: #c4c4c4;
     --color-text-button: #eeeeee;
 
@@ -25,7 +25,7 @@
 
     --color-border-warning: #b0963a;
     --color-bg-warning: #64591f;
-    
+
     --color-border-error: #b03a3a;
     --color-bg-error: #641f1f;
 
@@ -35,6 +35,6 @@
     --color-list-head-expanded: #2a2a2a;
     --color-list-head-running: #191919;
     --color-list-body: #333333;
-    
+
     --color-track-section:#454950;
 }
