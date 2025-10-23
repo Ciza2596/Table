@@ -8,7 +8,7 @@ namespace CizaTable.Editor
 		[Preserve]
 		public SpreadsheetInfosVE(SerializedProperty listProperty) : base(listProperty) { }
 		
-		protected override ItemVE CreateItem(SerializedProperty itemProperty)
+		protected override ItemVE CreateItemVE(SerializedProperty itemProperty)
 		{
 			var spreadsheetInfoVE = new SpreadsheetInfoVE(this, itemProperty);
 			spreadsheetInfoVE.Initialize();

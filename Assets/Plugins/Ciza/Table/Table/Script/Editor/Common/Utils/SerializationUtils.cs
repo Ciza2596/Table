@@ -213,7 +213,8 @@ namespace CizaTable.Editor
 			if (value != null)
 				return value;
 
-			return TypeUtils.CreateInstance(fieldInfo.FieldType);
+			TypeUtils.TryCreateInstance(fieldInfo.FieldType, out var instance);
+			return instance;
 		}
 
 		private static object GetFieldValueWithIndex(string fieldName, object obj, int index)

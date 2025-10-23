@@ -10,7 +10,7 @@ namespace CizaTable.Editor
 		public DataMapListVE(string keyLabel, string valueLabel, SerializedProperty listProperty) : 
 			base(keyLabel, valueLabel, listProperty) { }
 
-		protected override ItemVE CreateItem(SerializedProperty itemProperty)
+		protected override ItemVE CreateItemVE(SerializedProperty itemProperty)
 		{
 			var itemVE = new DataMapItemVE(_keyLabel, _valueLabel, this, itemProperty);
 			itemVE.Initialize();

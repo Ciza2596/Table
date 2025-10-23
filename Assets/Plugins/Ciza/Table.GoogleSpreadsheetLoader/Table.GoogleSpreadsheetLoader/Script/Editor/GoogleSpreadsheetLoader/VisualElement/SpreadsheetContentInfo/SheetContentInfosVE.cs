@@ -49,7 +49,7 @@ namespace CizaTable.Editor
             _foot.SetMargin(0);
         }
         
-        protected override ItemVE CreateItem(SerializedProperty itemProperty)
+        protected override ItemVE CreateItemVE(SerializedProperty itemProperty)
         {
             var sheetContentInfoVE = new SheetContentInfoVE(this, itemProperty);
             sheetContentInfoVE.Initialize();
