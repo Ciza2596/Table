@@ -20,7 +20,6 @@ namespace CizaTable.Editor
 		public const BindingFlags FIELD_BINDINGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
 		public static readonly Regex RX_ARRAY = new Regex(@"\[\d+\]");
-		public static readonly Regex RX_ARRAY_PATH = new Regex(@"Array\.data\[\d+\]$");
 
 		public const string SPACE = " ";
 		public const string SCRIPT_FIELD = "m_Script";
@@ -93,6 +92,21 @@ namespace CizaTable.Editor
 
 		#endregion
 
+		#region Property
+
+		public static bool TryGetParentProperty(SerializedProperty property, out SerializedProperty parentProperty)
+		{
+			if (!TryGetParentPath(property, out var parentPath))
+			{
+				parentProperty = null;
+				return false;
+			}
+
+			parentProperty = property.serializedObject.FindProperty(parentPath);
+			return true;
+		}
+
+		#endregion
 
 
 		#region GetType
@@ -167,8 +181,83 @@ namespace CizaTable.Editor
 			property.SetValue(CopyPasteUtils.Duplicate(source.GetType(), source));
 		}
 
+		#region Create Field
+
+		public static PopupField<T> CreatePopupField<T>(List<T> options, SerializedProperty property, bool isFull, Action<T> onChangeValue = null) =>
+			CreatePopupField(options, property, !property.CheckHasAttribute<HideLabelAttribute>(out _), isFull, onChangeValue);
+
+
+		public static PopupField<T> CreatePopupField<T>(List<T> options, SerializedProperty property, bool isShowLabel, bool isFull, Action<T> onChangeValue = null)
+		{
+			T defaultValue = property.GetValue<string>().CheckHasValue() && options.Contains(property.GetValue<T>()) ? property.GetValue<T>() : options[0];
+			var popupField = new PopupField<T>(options, defaultValue) { label = isShowLabel ? property.displayName : (isFull ? string.Empty : SPACE) };
+			property.SetValue(defaultValue);
+			popupField.AddToClassList(AlignLabel.UNITY_ALIGN_FIELD_CLASS);
+
+			popupField.RegisterValueChangedCallback(evt =>
+			{
+				property.SetValue(evt.newValue);
+				onChangeValue?.Invoke(evt.newValue);
+			});
+			popupField.BindProperty(property);
+			return popupField;
+		}
+
+		public static PropertyField CreatePropertyField(SerializedProperty property, bool isFull) =>
+			CreatePropertyField(property, !property.CheckHasAttribute<HideLabelAttribute>(out _), isFull);
+
+		public static PropertyField CreatePropertyField(SerializedProperty property, bool isShowLabel, bool isFull)
+		{
+			var propertyField = isShowLabel ? new PropertyField(property) : new PropertyField(property, isFull ? string.Empty : SPACE);
+			propertyField.BindProperty(property);
+			return propertyField;
+		}
+
+		public static ToggleButtonGroup CreateToggleButtonGroup(SerializedProperty property, bool isWrapped, bool isStretched)
+		{
+			var toggleButtonGroup = new ToggleButtonGroup(property.displayName) { allowEmptySelection = false, isMultipleSelection = false };
+			toggleButtonGroup.AddToClassList(AlignLabel.UNITY_ALIGN_FIELD_CLASS);
+			toggleButtonGroup.contentContainer.style.flexWrap = isWrapped ? Wrap.Wrap : Wrap.NoWrap;
+
+			var isStretchedIndex = isStretched ? 1 : 0;
+			foreach (var enumName in property.enumNames)
+				toggleButtonGroup.Add(new Button { text = enumName, style = { flexShrink = 1, flexGrow = isStretchedIndex } });
+
+			RefreshField();
+			toggleButtonGroup.RegisterValueChangedCallback(OnToggleButtonGroupChangeValue);
+			toggleButtonGroup.TrackPropertyValue(property, _ => RefreshField());
+			return toggleButtonGroup;
+
+			void OnToggleButtonGroupChangeValue(ChangeEvent<ToggleButtonGroupState> @event)
+			{
+				var value = @event.newValue;
+				var index = value.GetActiveOptions(stackalloc int[value.length]).ToArray().FirstOrDefault();
+				property.enumValueIndex = index;
+				ApplyUnregisteredSerialization(property.serializedObject);
+
+				RefreshField();
+			}
+
+			void RefreshField()
+			{
+				var state = toggleButtonGroup.value;
+				state.ResetAllOptions();
+				var enumValueIndex = property.enumValueIndex > 0 ? property.enumValueIndex : 0;
+				state[enumValueIndex] = true;
+				toggleButtonGroup.SetValueWithoutNotify(state);
+			}
+		}
+
+		#endregion
+
 
 		#region CreateChildProperties
+
+		public static bool CreateChildProperties(VisualElement root, Object obj, ChildrenKinds kind, float spaceHeight = 5, Action<SerializedPropertyChangeEvent> onChangeValue = null, params string[] excludeFields)
+		{
+			var serializedObject = new SerializedObject(obj);
+			return CreateChildProperties(root, serializedObject.GetIterator(), false, kind, spaceHeight, onChangeValue, excludeFields);
+		}
 
 		public static bool CreateChildProperties(VisualElement root, SerializedProperty property, ChildrenKinds kind, float spaceHeight = 5, Action<SerializedPropertyChangeEvent> onChangeValue = null, params string[] excludeFields) =>
 			CreateChildProperties(root, property, true, kind, spaceHeight, onChangeValue, excludeFields);

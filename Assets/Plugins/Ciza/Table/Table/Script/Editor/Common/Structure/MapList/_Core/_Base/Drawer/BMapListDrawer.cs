@@ -2,12 +2,14 @@ using UnityEditor;
 
 namespace CizaTable.Editor.MapListVisual
 {
-    public abstract class BMapListDrawer : BCountBoxDrawer
-    {
-        protected override SerializedProperty ArrayProperty => Property.FindPropertyRelative("_maps");
-        protected sealed override BBoxVE.IContent CreateBody() => CreateListVE();
-		
+	public abstract class BMapListDrawer : BListBoxDrawer
+	{
+		protected override SerializedProperty GetItemsProperty(SerializedProperty property, BoxVE root) => property.FindPropertyRelative("_maps");
 
-        protected abstract BMapListVE CreateListVE();
-    }
+
+		protected sealed override ListVE CreateListVE(SerializedProperty property, BoxVE root) =>
+			CreateMapListVE(property, root);
+
+		protected abstract BMapListVE CreateMapListVE(SerializedProperty property, BoxVE root);
+	}
 }

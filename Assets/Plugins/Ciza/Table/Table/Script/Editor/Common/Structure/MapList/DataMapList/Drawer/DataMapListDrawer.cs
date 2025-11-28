@@ -9,9 +9,9 @@ namespace CizaTable.Editor
         protected virtual string KeyLabel => "Key";
         protected virtual string ValueLabel => "Data Values";
 
-        protected override BMapListVE CreateListVE()
+        protected override BMapListVE CreateMapListVE(SerializedProperty property, BoxVE root)
         {
-            var listVE = new DataMapListVE(KeyLabel, ValueLabel, Property);
+            var listVE = new DataMapListVE(KeyLabel, ValueLabel, property, false);
             listVE.Initialize();
             return listVE;
         }

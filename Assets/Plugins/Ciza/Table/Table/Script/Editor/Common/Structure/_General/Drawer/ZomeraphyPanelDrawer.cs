@@ -10,6 +10,13 @@ namespace CizaTable.Editor
 		{
 			var container = new BBoxVE.PropertyContentVE(property) { style = { paddingRight = 5 } };
 			container.Refresh();
+			
+
+			if (property.CheckHasAttribute<FlattenAttribute>(out _))
+			{
+				container.Refresh();
+				return container;
+			}
 
 			var boxVE = new BoxVE(property);
 			container.style.paddingRight = 0;

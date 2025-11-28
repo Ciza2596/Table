@@ -42,7 +42,7 @@ namespace CizaTable.Editor
 			_body.Add(new Button(() => WebUtils.OpenGoogleSpreadSheetUrl(SpreadsheetIdProperty.stringValue)) { text = "Open Spreadsheet Web", style = { flexGrow = 1, marginLeft = 3, marginRight = -2 } });
 			
 			_body.Add(new SmallSpaceVE());
-			_sheetInfosVE = new SheetInfosVE(SheetInfosProperty);
+			_sheetInfosVE = new SheetInfosVE(SheetInfosProperty, true);
 			_sheetInfosVE.Initialize();
 			_body.Add(_sheetInfosVE);
 		}

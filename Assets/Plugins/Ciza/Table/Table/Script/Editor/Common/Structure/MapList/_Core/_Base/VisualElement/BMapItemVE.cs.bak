@@ -22,7 +22,7 @@ namespace CizaTable.Editor.MapListVisual
 		public virtual string Key
 		{
 			get => KeyProperty.GetValue<string>();
-			protected set => KeyProperty.SetValue(value);
+			protected set => IsEnableProperty.SetValue(value);
 		}
 
 		public override bool IsEnable

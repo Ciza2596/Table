@@ -8,7 +8,7 @@ namespace CizaTable.Editor
     public class SheetContentInfosVE : ListVE
     {
         [Preserve]
-        public SheetContentInfosVE(SerializedProperty listProperty) : base(listProperty) { }
+        public SheetContentInfosVE(SerializedProperty listProperty, bool isAutoRefresh) : base(listProperty, isAutoRefresh) { }
 
 
         public override void DeleteItem(int index)

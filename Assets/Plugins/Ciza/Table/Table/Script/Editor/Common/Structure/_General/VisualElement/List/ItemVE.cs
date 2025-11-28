@@ -282,11 +282,11 @@ namespace CizaTable.Editor
 			var target = itemProperty.serializedObject.targetObject;
 			var itemPath = itemProperty.propertyPath;
 			var itemType = itemProperty.GetValue()?.GetType();
-
+			
 			var isDifTarget = target != _target;
 			var isDifItemPath = itemPath != _itemPath;
 			var isDifItemType = itemType != _itemType;
-
+			
 			if (isDifTarget || isDifItemPath || isDifItemType)
 			{
 				ItemProperty = itemProperty;

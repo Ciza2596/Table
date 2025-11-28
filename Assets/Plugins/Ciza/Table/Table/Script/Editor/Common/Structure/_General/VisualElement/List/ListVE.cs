@@ -88,6 +88,8 @@ namespace CizaTable.Editor
 
 		// PUBLIC VARIABLE: ---------------------------------------------------------------------
 
+		public virtual bool IsAutoRefresh { get; }
+
 		public virtual string DataId => GetType().Name;
 		public virtual string DataIdKey => DataId + ".";
 
@@ -130,9 +132,10 @@ namespace CizaTable.Editor
 		// CONSTRUCTOR: ---------------------------------------------------------------------------
 
 		[Preserve]
-		public ListVE(SerializedProperty listProperty)
+		public ListVE(SerializedProperty listProperty, bool isAutoRefresh)
 		{
 			ListProperty = listProperty;
+			IsAutoRefresh = isAutoRefresh;
 
 			Add(_head);
 			Add(_body);
@@ -144,8 +147,7 @@ namespace CizaTable.Editor
 		public virtual void SetListProperty(SerializedProperty listProperty)
 		{
 			ListProperty = listProperty;
-			ItemsProperty = CreateItemsProperty();
-			DerivedInitializeItemType();
+			RefreshItemsProperty();
 		}
 
 		public virtual void SetIsShowHead(bool isShow)
@@ -315,7 +317,8 @@ namespace CizaTable.Editor
 			ItemsProperty.DeleteArrayElementAtIndex(index);
 			SerializationUtils.ApplyUnregisteredSerialization(ListProperty.serializedObject);
 
-			Refresh();
+			if (IsAutoRefresh)
+				Refresh();
 		}
 
 		public override void MoveItems(int sourceIndex, int destinationIndex)
@@ -354,7 +357,8 @@ namespace CizaTable.Editor
 			}
 
 			MoveItems(ItemsProperty, sourceIndex, destinationIndex);
-			Refresh();
+			if (IsAutoRefresh)
+				Refresh();
 
 			selectedItemIndexList.AddRange(_selectedItemIndexList);
 			_selectedItemIndexList.Clear();
@@ -398,8 +402,9 @@ namespace CizaTable.Editor
 			SetupFoot();
 		}
 
-		protected virtual void DerivedInitializeItemType()
+		protected virtual void RefreshItemsProperty()
 		{
+			ItemsProperty = CreateItemsProperty();
 			ItemType = SerializationUtils.GetElementTypes(ItemsProperty)[0];
 			IsElementIsClass = TypeUtils.CheckIsClassWithoutStringOrUnityObjSubclass(ItemType);
 		}

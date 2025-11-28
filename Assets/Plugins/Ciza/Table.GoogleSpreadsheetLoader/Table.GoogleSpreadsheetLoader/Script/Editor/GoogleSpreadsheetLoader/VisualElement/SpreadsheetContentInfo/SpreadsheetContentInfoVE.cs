@@ -32,7 +32,7 @@ namespace CizaTable.Editor
             pathField.SetEnabled(false);
             _body.Add(pathField);
             
-            _sheetContentInfosVE = new SheetContentInfosVE(SheetContentInfosProperty);
+            _sheetContentInfosVE = new SheetContentInfosVE(SheetContentInfosProperty, true);
             _sheetContentInfosVE.Initialize();
             _body.Add(_sheetContentInfosVE);
         }

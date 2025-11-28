@@ -8,9 +8,9 @@ namespace CizaTable.Editor.MapListVisual
 		protected virtual string KeyLabel => "Key";
 		protected virtual string ValueLabel => "Value";
 
-		protected override BMapListVE CreateMapListVE(SerializedProperty property, BoxVE root)
+		protected override BMapListVE CreateListVE()
 		{
-			var listVE = new MapListVE(KeyLabel, ValueLabel, property, false);
+			var listVE = new MapListVE(KeyLabel, ValueLabel, Property);
 			listVE.Initialize();
 			return listVE;
 		}

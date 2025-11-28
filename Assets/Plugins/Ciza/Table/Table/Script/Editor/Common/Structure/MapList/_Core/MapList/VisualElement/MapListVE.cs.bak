@@ -13,7 +13,7 @@ namespace CizaTable.Editor.MapListVisual
 		// CONSTRUCTOR: --------------------------------------------------------------------- 
 
 		[Preserve]
-		public MapListVE(string keyLabel, string valueLabel, SerializedProperty listProperty, bool isAutoRefresh) : base(listProperty, isAutoRefresh)
+		public MapListVE(string keyLabel, string valueLabel, SerializedProperty listProperty) : base(listProperty)
 		{
 			_keyLabel = keyLabel;
 			_valueLabel = valueLabel;

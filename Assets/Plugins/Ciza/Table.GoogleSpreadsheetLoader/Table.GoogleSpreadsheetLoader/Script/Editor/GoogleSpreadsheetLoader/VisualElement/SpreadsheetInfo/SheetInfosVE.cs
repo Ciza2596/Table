@@ -8,7 +8,7 @@ namespace CizaTable.Editor
 	public class SheetInfosVE : ListVE
 	{
 		[Preserve]
-		public SheetInfosVE(SerializedProperty listProperty) : base(listProperty) { }
+		public SheetInfosVE(SerializedProperty listProperty, bool isAutoRefresh) : base(listProperty, isAutoRefresh) { }
 
 		protected override void DerivedInitialize()
 		{

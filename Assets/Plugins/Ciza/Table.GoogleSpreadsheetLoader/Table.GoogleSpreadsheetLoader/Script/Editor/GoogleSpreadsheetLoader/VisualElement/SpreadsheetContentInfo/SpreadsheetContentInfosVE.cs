@@ -11,7 +11,7 @@ namespace CizaTable.Editor
 
 
 		[Preserve]
-		public SpreadsheetContentInfosVE(SerializedProperty listProperty) : base(listProperty) { }
+		public SpreadsheetContentInfosVE(SerializedProperty listProperty, bool isAutoRefresh) : base(listProperty, isAutoRefresh) { }
 
 		protected override ItemVE CreateItemVE(SerializedProperty itemProperty)
 		{

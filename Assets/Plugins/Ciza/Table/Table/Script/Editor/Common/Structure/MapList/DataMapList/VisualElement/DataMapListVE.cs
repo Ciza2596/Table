@@ -7,8 +7,8 @@ namespace CizaTable.Editor
 	public class DataMapListVE : MapListVE
 	{
 		[Preserve]
-		public DataMapListVE(string keyLabel, string valueLabel, SerializedProperty listProperty) : 
-			base(keyLabel, valueLabel, listProperty) { }
+		public DataMapListVE(string keyLabel, string valueLabel, SerializedProperty listProperty, bool isAutoRefresh) : 
+			base(keyLabel, valueLabel, listProperty, isAutoRefresh) { }
 
 		protected override ItemVE CreateItemVE(SerializedProperty itemProperty)
 		{

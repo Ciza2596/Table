@@ -27,9 +27,6 @@ namespace CizaTable.Editor
 		[field: NonSerialized]
 		protected string Title { get; private set; }
 
-		[field: NonSerialized]
-		protected IContent Content { get; private set; }
-
 
 		protected virtual string[] USSPaths => Array.Empty<string>();
 		protected virtual string[] RootClasses => Array.Empty<string>();
@@ -41,6 +38,10 @@ namespace CizaTable.Editor
 
 		[field: NonSerialized]
 		public virtual bool IsInitialized { get; protected set; }
+		
+		
+		[field: NonSerialized]
+		public virtual IContent Content { get; private set; }
 
 
 		// CONSTRUCTOR: --------------------------------------------------------------------- 
@@ -55,11 +56,15 @@ namespace CizaTable.Editor
 
 		// PUBLIC METHOD: ----------------------------------------------------------------------
 
-		public void Initialize(string title, IContent content)
+
+		public void Initialize(string title, IContent content) =>
+			Initialize(title, content, null);
+
+		public void Initialize(string title, IContent content, VisualElement headAdditional)
 		{
 			if (IsInitialized) return;
 			IsInitialized = true;
-			DerivedInitialize(title, content);
+			DerivedInitialize(title, content, headAdditional);
 			Refresh();
 		}
 
@@ -67,7 +72,7 @@ namespace CizaTable.Editor
 
 		// PROTECT METHOD: --------------------------------------------------------------------
 
-		protected virtual void DerivedInitialize(string title, IContent content)
+		protected virtual void DerivedInitialize(string title, IContent content, VisualElement headAdditional)
 		{
 			Title = title;
 

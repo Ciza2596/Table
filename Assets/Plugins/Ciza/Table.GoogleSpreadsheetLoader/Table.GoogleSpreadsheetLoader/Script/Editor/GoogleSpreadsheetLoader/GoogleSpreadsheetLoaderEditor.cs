@@ -53,7 +53,7 @@ namespace CizaTable.Editor
 			root.Add(new VisualElement() { style = { height = 1, flexGrow = 1, marginBottom = 5, backgroundColor = new Color(0.35f, 0.35f, 0.35f) } });
 
 			var spreadsheetInfosBox = new BoxVE(SpreadsheetInfosProperty);
-			_spreadsheetInfosVE = new SpreadsheetInfosVE(SpreadsheetInfosProperty);
+			_spreadsheetInfosVE = new SpreadsheetInfosVE(SpreadsheetInfosProperty, false);
 			_spreadsheetInfosVE.Initialize();
 			spreadsheetInfosBox.Initialize(SpreadsheetInfosProperty.displayName, _spreadsheetInfosVE);
 			root.Add(spreadsheetInfosBox);
@@ -65,7 +65,7 @@ namespace CizaTable.Editor
 			root.Add(new VisualElement() { style = { height = 1, flexGrow = 1, marginBottom = 5, backgroundColor = new Color(0.35f, 0.35f, 0.35f) } });
 
 			var usedSpreadsheetContentInfosBox = new BoxVE(UsedSpreadsheetContentInfosProperty);
-			_usedSpreadsheetContentInfosVE = new SpreadsheetContentInfosVE(UsedSpreadsheetContentInfosProperty);
+			_usedSpreadsheetContentInfosVE = new SpreadsheetContentInfosVE(UsedSpreadsheetContentInfosProperty, false);
 			_usedSpreadsheetContentInfosVE.Initialize();
 			usedSpreadsheetContentInfosBox.Initialize(UsedSpreadsheetContentInfosProperty.displayName, _usedSpreadsheetContentInfosVE);
 			root.Add(usedSpreadsheetContentInfosBox);
