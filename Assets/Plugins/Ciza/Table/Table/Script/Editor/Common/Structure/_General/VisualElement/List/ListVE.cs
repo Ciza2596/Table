@@ -106,8 +106,8 @@ namespace CizaTable.Editor
 		public virtual bool IsAllowContextMenu => true;
 		public virtual bool IsAllowCopyPaste => true;
 
-		public virtual bool IsAllowGroupCollapse => IsElementIsClass;
-		public virtual bool IsAllowGroupExpand => IsElementIsClass;
+		public virtual bool IsAllowGroupCollapse => IsElementClass;
+		public virtual bool IsAllowGroupExpand => IsElementClass;
 
 		[field: NonSerialized]
 		public virtual ItemSortManipulator SortManipulator { get; protected set; }
@@ -121,7 +121,7 @@ namespace CizaTable.Editor
 		public virtual Type ItemType { get; protected set; }
 
 		[field: NonSerialized]
-		public virtual bool IsElementIsClass { get; protected set; }
+		public virtual bool IsElementClass { get; protected set; }
 
 
 		public virtual int[] SelectedItemIndexList => _selectedItemIndexList.ToArray();
@@ -406,7 +406,7 @@ namespace CizaTable.Editor
 		{
 			ItemsProperty = CreateItemsProperty();
 			ItemType = SerializationUtils.GetElementTypes(ItemsProperty)[0];
-			IsElementIsClass = TypeUtils.CheckIsClassWithoutStringOrUnityObjSubclass(ItemType);
+			IsElementClass = TypeUtils.CheckIsClassWithoutStringOrUnityObjSubclass(ItemType);
 		}
 
 		#region Create VE

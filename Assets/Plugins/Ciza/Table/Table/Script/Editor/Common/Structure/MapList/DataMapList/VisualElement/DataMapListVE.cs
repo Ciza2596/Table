@@ -7,12 +7,11 @@ namespace CizaTable.Editor
 	public class DataMapListVE : MapListVE
 	{
 		[Preserve]
-		public DataMapListVE(string keyLabel, string valueLabel, SerializedProperty listProperty, bool isAutoRefresh) : 
-			base(keyLabel, valueLabel, listProperty, isAutoRefresh) { }
+		public DataMapListVE(SerializedProperty listProperty, bool isAutoRefresh, string keyLabel, string valueLabel) : base(listProperty, isAutoRefresh, keyLabel, valueLabel) { }
 
 		protected override ItemVE CreateItemVE(SerializedProperty itemProperty)
 		{
-			var itemVE = new DataMapItemVE(_keyLabel, _valueLabel, this, itemProperty);
+			var itemVE = new DataMapItemVE(this, itemProperty, _keyLabel, _valueLabel);
 			itemVE.Initialize();
 			return itemVE;
 		}

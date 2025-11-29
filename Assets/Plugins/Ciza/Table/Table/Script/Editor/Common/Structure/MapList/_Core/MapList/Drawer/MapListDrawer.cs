@@ -10,7 +10,7 @@ namespace CizaTable.Editor.MapListVisual
 
 		protected override BMapListVE CreateMapListVE(SerializedProperty property, BoxVE root)
 		{
-			var listVE = new MapListVE(KeyLabel, ValueLabel, property, false);
+			var listVE = new MapListVE(property, false, KeyLabel, ValueLabel);
 			listVE.Initialize();
 			return listVE;
 		}

@@ -13,7 +13,7 @@ namespace CizaTable.Editor.MapListVisual
 		// CONSTRUCTOR: --------------------------------------------------------------------- 
 
 		[Preserve]
-		public MapListVE(string keyLabel, string valueLabel, SerializedProperty listProperty, bool isAutoRefresh) : base(listProperty, isAutoRefresh)
+		public MapListVE(SerializedProperty listProperty, bool isAutoRefresh, string keyLabel, string valueLabel) : base(listProperty, isAutoRefresh)
 		{
 			_keyLabel = keyLabel;
 			_valueLabel = valueLabel;
@@ -21,15 +21,9 @@ namespace CizaTable.Editor.MapListVisual
 
 		// PROTECT METHOD: --------------------------------------------------------------------
 
-		protected override void DerivedInitialize()
-		{
-			base.DerivedInitialize();
-			Refresh();
-		}
-
 		protected override ItemVE CreateItemVE(SerializedProperty itemProperty)
 		{
-			var itemVE = new MapItemVE(_keyLabel, _valueLabel, this, itemProperty);
+			var itemVE = new MapItemVE(this, itemProperty, _keyLabel, _valueLabel);
 			itemVE.Initialize();
 			return itemVE;
 		}
