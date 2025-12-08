@@ -9,7 +9,7 @@ https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table.GoogleSprea
 ```
 ### Dependency:
 ```
-https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
+https://github.com/Ciza2596/UniTask.git?path=Assets/Plugins/Ciza/UniTask/UniTask
 ```
 
 # TableModule
@@ -18,7 +18,7 @@ https://github.com/Ciza2596/Table.git?path=Assets/Plugins/Ciza/Table.TableModule
 ```
 ### Dependency:
 ```
-https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
+https://github.com/Ciza2596/UniTask.git?path=Assets/Plugins/Ciza/UniTask/UniTask
 ```
 
 ## Info
