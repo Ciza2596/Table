@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using CizaUniTask;
+using UnityEngine;
 using UnityEngine.Scripting;
 
 namespace CizaTable
@@ -21,7 +21,7 @@ namespace CizaTable
 			_tableModuleConfig = tableModuleConfig;
 
 		//public method
-		public async UniTask InitializeAsync()
+		public async Awaitable InitializeAsync()
 		{
 			if (IsInitialized || IsInitializing)
 				return;

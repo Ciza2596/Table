@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using CizaUniTask;
+using UnityEngine;
 
 namespace CizaTable
 {
 	public interface ITableModuleConfig
 	{
-		public UniTask Install(Dictionary<Type, object> tables);
+		public Awaitable Install(Dictionary<Type, object> tables);
 	}
 }

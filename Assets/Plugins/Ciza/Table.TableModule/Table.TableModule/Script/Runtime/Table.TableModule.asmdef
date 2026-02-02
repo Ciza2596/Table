@@ -2,7 +2,7 @@
     "name": "Table.TableModule",
     "rootNamespace": "CizaTable",
     "references": [
-        "UniTask",
+        "Async",
         "Table",
         "Table.GoogleSpreadsheetLoader"
     ],

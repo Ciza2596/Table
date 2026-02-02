@@ -2,7 +2,7 @@
     "name": "Table.GoogleSpreadsheetLoader.Editor",
     "rootNamespace": "CizaTable.Editor",
     "references": [
-        "UniTask",
+        "Async",
         "Table",
         "Table.Editor",
         "Table.GoogleSpreadsheetLoader"

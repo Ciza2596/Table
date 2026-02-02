@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "com.ciza.unitask": {
-      "version": "https://github.com/Ciza2596/UniTask.git?path=Assets/Plugins/Ciza/UniTask/UniTask",
+    "com.ciza.async": {
+      "version": "https://github.com/Ciza2596/Async.git?path=Assets/Plugins/Ciza/Async/Async",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "d2be15e8a6f4b206439eca415ec28c26b7eed795"
+      "hash": "043ce4b0e34a7bf1ab557a92a9bfe2b0b3435ee4"
     },
     "com.unity.2d.animation": {
       "version": "12.0.2",
@@ -155,7 +155,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.38",
+      "version": "3.0.39",
       "depth": 0,
       "source": "registry",
       "dependencies": {

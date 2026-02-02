@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CizaUniTask;
+using CizaAsync;
 using UnityEngine;
 using UnityEngine.Scripting;
 
@@ -12,14 +12,14 @@ namespace CizaTable
 		protected IAssetProvider _assetProvider;
 		protected Dictionary<Type, object> _tables;
 
-		protected Func<UniTask> _initializeTable;
+		protected Func<Awaitable> _initializeTable;
 		protected List<string> _tableNames = new List<string>();
 
 		[Preserve]
 		protected BaseTableModuleConfig(IAssetProvider assetProvider) =>
 			_assetProvider = assetProvider;
 
-		public async UniTask Install(Dictionary<Type, object> tables)
+		public async Awaitable Install(Dictionary<Type, object> tables)
 		{
 			Debug.Log($"[{GetType().Name}::Install] Start to load table at time: {Time.time}.");
 
@@ -39,27 +39,27 @@ namespace CizaTable
 		protected void AddTable<TTableData>(Table<TTableData> table) where TTableData : TableData =>
 			_initializeTable += async () => { await InitializeTable(table); };
 
-		private async UniTask ExecuteInstallTasks()
+		private async Awaitable ExecuteInstallTasks()
 		{
 			if (_initializeTable == null)
 				return;
 
-			var installTasks = new List<UniTask>();
+			var awaitables = new List<Awaitable>();
 			foreach (var invocation in _initializeTable.GetInvocationList())
-				installTasks.Add(((Func<UniTask>)invocation).Invoke());
+				awaitables.Add(((Func<Awaitable>)invocation).Invoke());
 
-			await UniTask.WhenAll(installTasks);
+			await Async.AllAsync(awaitables);
 		}
 
 		private void ReleaseInitializeTable() =>
 			_initializeTable = null;
 
-		private async UniTask InitializeTable<TTableData>(Table<TTableData> table) where TTableData : TableData
+		private async Awaitable InitializeTable<TTableData>(Table<TTableData> table) where TTableData : TableData
 		{
 			var tableName = table.Name;
 			_tableNames.Add(tableName);
 
-			var sheetContent = await _assetProvider.LoadAssetAsync<SheetContent>(tableName, default);
+			var sheetContent = await _assetProvider.LoadAssetAsync<SheetContent>(tableName, AsyncToken.NONE);
 			var dataUnits = sheetContent.DataUnits.ToArray();
 			table.Initialize(dataUnits);
 
