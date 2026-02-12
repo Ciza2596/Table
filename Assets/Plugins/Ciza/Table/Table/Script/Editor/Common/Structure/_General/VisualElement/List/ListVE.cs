@@ -171,7 +171,7 @@ namespace CizaTable.Editor
 			for (int i = 0; i < itemsProperty.arraySize; i++)
 			{
 				var itemProperty = itemsProperty.GetArrayElementAtIndex(index);
-				if (itemProperty.GetValue() == null)
+				if (itemProperty.GetValue() == null && IsElementClass)
 					if (TypeUtils.TryCreateInstance(SerializationUtils.GetType(itemProperty, false), out var instance))
 						itemProperty.SetValue(instance);
 					else
