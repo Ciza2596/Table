@@ -8,6 +8,10 @@ namespace CizaTable
 	public class SheetContent : ScriptableObject
 	{
 		[SerializeField]
+		[HideInInspector]
+		protected string _csv;
+
+		[SerializeField]
 		private DataMapList _dataMapList;
 
 #if UNITY_EDITOR
@@ -18,11 +22,14 @@ namespace CizaTable
 #endif
 
 		//public variable
+		public string Csv => _csv;
+
 		public IReadOnlyList<IDataUnit> DataUnits => _dataMapList.ToDataUnits();
 
 		//public method
-		public void UpdateContent(DataMapList dataMapList, string[,] rawData)
+		public void UpdateContent(string csv, DataMapList dataMapList, string[,] rawData)
 		{
+			_csv = csv;
 			_dataMapList = dataMapList;
 #if UNITY_EDITOR
 			_rawData = new Array2D<string>(rawData);

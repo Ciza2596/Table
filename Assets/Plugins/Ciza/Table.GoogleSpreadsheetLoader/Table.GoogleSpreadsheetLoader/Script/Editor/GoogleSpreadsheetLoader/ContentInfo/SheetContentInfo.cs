@@ -71,7 +71,7 @@ namespace CizaTable.Editor
 			}
 
 			CreateDataUnitsAndRawData(csv, out var dataMapList, out var rawData);
-			_sheetContent.UpdateContent(dataMapList, rawData);
+			_sheetContent.UpdateContent(csv, dataMapList, rawData);
 			EditorUtility.SetDirty(_sheetContent);
 		}
 

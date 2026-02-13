@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CizaAsync;
 using UnityEngine;
 using UnityEngine.Scripting;
 
@@ -21,13 +22,13 @@ namespace CizaTable
 			_tableModuleConfig = tableModuleConfig;
 
 		//public method
-		public async Awaitable InitializeAsync()
+		public async Awaitable InitializeAsync(AsyncToken asyncToken)
 		{
 			if (IsInitialized || IsInitializing)
 				return;
 
 			IsInitializing = true;
-			await _tableModuleConfig.Install(_tables);
+			await _tableModuleConfig.InstallAsync(_tables, asyncToken);
 			IsInitializing = false;
 
 			_tableModuleConfig = null;
