@@ -176,7 +176,7 @@ namespace CizaTable.Editor
 						itemProperty.SetValue(instance);
 					else
 					{
-						itemProperty.DeleteArrayElementAtIndex(index);
+						itemsProperty.DeleteArrayElementAtIndex(index);
 						continue;
 					}
 
