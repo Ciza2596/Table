@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CizaTable.Editor
 {
-	[CreateAssetMenu(fileName = "GoogleSpreadsheetLoader", menuName = "Ciza/Table/GoogleSpreadsheetLoader")]
+	[CreateAssetMenu(fileName = "Tbl.GoogleSpreadsheetLoader.asset", menuName = "Ciza/Table/GoogleSpreadsheetLoader")]
 	public class GoogleSpreadsheetLoader : ScriptableObject, IZomeraphyPanel
 	{
 		//private variable

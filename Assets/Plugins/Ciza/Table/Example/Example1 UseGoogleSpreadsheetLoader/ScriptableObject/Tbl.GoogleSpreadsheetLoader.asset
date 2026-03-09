@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b02af40e448047dba4ff6d70f6ff9d5, type: 3}
-  m_Name: GoogleSpreadsheetLoader
+  m_Name: Tbl.GoogleSpreadsheetLoader
   m_EditorClassIdentifier: 
   _webAppUrl: https://script.google.com/macros/s/AKfycbxEaRBPzFpsVI6Dos2ZJXnar77KSv45OY1dNgv8JCJEQn2JJ93fOLVTnI0miTpoBob2/exec
   _spreadsheetInfos:
