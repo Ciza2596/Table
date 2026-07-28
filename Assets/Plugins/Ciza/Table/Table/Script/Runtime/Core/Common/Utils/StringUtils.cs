@@ -1,8 +1,8 @@
 namespace CizaTable
 {
-    public static class StringUtils
-    {
-        public static bool CheckHasValue(string str) =>
-            !string.IsNullOrEmpty(str) && !string.IsNullOrWhiteSpace(str);
-    }
+	public static class StringUtils
+	{
+		public static bool CheckHasValue(this string str) =>
+			!string.IsNullOrEmpty(str) && !string.IsNullOrWhiteSpace(str);
+	}
 }

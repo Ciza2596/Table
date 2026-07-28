@@ -8,8 +8,9 @@ namespace CizaTable.Editor
 {
 	public class SpreadsheetInfoVE : ItemVE
 	{
-		[field:NonSerialized]
+		[field: NonSerialized]
 		protected SheetInfosVE _sheetInfosVE;
+
 		protected virtual string SpreadsheetIdPath => "_spreadsheetId";
 		protected virtual string SheetContentPathPath => "_sheetContentPath";
 		protected virtual string SpreadsheetNamePath => "_spreadsheetName";
@@ -21,17 +22,19 @@ namespace CizaTable.Editor
 		protected virtual SerializedProperty SpreadsheetNameProperty => ItemProperty.FindPropertyRelative(SpreadsheetNamePath);
 
 		protected virtual SerializedProperty SheetInfosProperty => ItemProperty.FindPropertyRelative(SheetInfosPath);
-		public override string Title => SpreadsheetName;
 		
-
-		[Preserve]
-		public SpreadsheetInfoVE(SpreadsheetInfosVE root, SerializedProperty itemProperty) : base(root, itemProperty) { }
-
+		
 		public virtual string SpreadsheetName
 		{
 			get => SpreadsheetNameProperty.GetValue<string>();
 			protected set => SpreadsheetNameProperty.SetValue(value);
 		}
+		
+		public override string Title => SpreadsheetName;
+
+
+		[Preserve]
+		public SpreadsheetInfoVE(SpreadsheetInfosVE root, SerializedProperty itemProperty) : base(root, itemProperty) { }
 
 		protected override void CreateBodyContent()
 		{
@@ -40,7 +43,7 @@ namespace CizaTable.Editor
 			_body.Add(CreatePropertyField(SheetContentPathProperty));
 			_body.Add(new SmallSpaceVE());
 			_body.Add(new Button(() => WebUtils.OpenGoogleSpreadSheetUrl(SpreadsheetIdProperty.stringValue)) { text = "Open Spreadsheet Web", style = { flexGrow = 1, marginLeft = 3, marginRight = -2 } });
-			
+
 			_body.Add(new SmallSpaceVE());
 			_sheetInfosVE = new SheetInfosVE(SheetInfosProperty, true);
 			_sheetInfosVE.Initialize();
@@ -57,6 +60,8 @@ namespace CizaTable.Editor
 		public override void Refresh(int index, SerializedProperty itemProperty, bool isAllowReordering, bool isAllowDisable, bool isAllowDuplicate, bool isAllowDelete, bool isAllowCopyPaste)
 		{
 			base.Refresh(index, itemProperty, isAllowReordering, isAllowDisable, isAllowDuplicate, isAllowDelete, isAllowCopyPaste);
+			if (_sheetInfosVE == null)
+				return;
 			_sheetInfosVE.SetListProperty(SheetInfosProperty);
 			_sheetInfosVE.Refresh();
 		}

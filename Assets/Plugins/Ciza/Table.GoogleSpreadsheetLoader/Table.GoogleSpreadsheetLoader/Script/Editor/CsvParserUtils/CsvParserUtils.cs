@@ -14,7 +14,7 @@ namespace CizaTable.Editor
 
 
 			bool isInQuotation = false;
-			ParserState currentState = ParserState.LineStartState;
+			ParserState currentState = ParserState.LINE_START_STATE;
 
 			foreach (var line in lines)
 			{

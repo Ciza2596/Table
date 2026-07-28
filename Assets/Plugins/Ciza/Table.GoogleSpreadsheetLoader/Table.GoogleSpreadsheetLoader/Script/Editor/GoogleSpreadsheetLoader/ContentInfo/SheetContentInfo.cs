@@ -56,9 +56,7 @@ namespace CizaTable.Editor
 		public void Update(string sheetName, string folderPath, string csv)
 		{
 			_sheetContent.name = sheetName;
-			var instanceId = _sheetContent.GetInstanceID();
-			AssetDatabase.TryGetGUIDAndLocalFileIdentifier(instanceId, out string guid, out long localId);
-			var currentAssetPath = AssetDatabase.GUIDToAssetPath(guid);
+			var currentAssetPath = AssetDatabase.GetAssetPath(_sheetContent);
 
 			var assetPath = PathHelper.GetFullPath(folderPath, sheetName);
 

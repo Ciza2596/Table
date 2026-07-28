@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a7ecc11d1c14b3fb5c5b7a35d0a17f, type: 3}
   m_Name: Spreadsheet1-1
   m_EditorClassIdentifier: 
+  _csv: 'Key,Hp1_1,Mp1_1,Position
+
+    Player1-1_0,1100,100,"0,10"
+
+    Player1-1_1,1021,112,"10,11"'
   _dataMapList:
     _maps:
     - _isEnable: 1

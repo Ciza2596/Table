@@ -9,30 +9,34 @@ namespace CizaTable.Editor
 	[CustomEditor(typeof(GoogleSpreadsheetLoader))]
 	public class GoogleSpreadsheetLoaderEditor : UnityEditor.Editor
 	{
+		// VARIABLE: -----------------------------------------------------------------------------
+
 		[field: NonSerialized]
 		protected SpreadsheetInfosVE _spreadsheetInfosVE;
 
 		[field: NonSerialized]
 		protected SpreadsheetContentInfosVE _usedSpreadsheetContentInfosVE;
-		
+
 		[field: NonSerialized]
 		protected Button _updateSpreadsheetPreviewButton;
-		
+
 		[field: NonSerialized]
 		protected Button _updateUsedSpreadsheetContentButton;
 
 		protected virtual string WebAppUrlPath => "_webAppUrl";
 		protected virtual string SpreadsheetInfosPath => "_spreadsheetInfos";
 		protected virtual string UsedSpreadsheetContentInfosPath => "_usedSpreadsheetContentInfos";
-		
+
 		protected virtual string IsBusyPath => "_isBusy";
 
 		protected virtual SerializedProperty WebAppUrlProperty => serializedObject.FindProperty(WebAppUrlPath);
 		protected virtual SerializedProperty SpreadsheetInfosProperty => serializedObject.FindProperty(SpreadsheetInfosPath);
 		protected virtual SerializedProperty UsedSpreadsheetContentInfosProperty => serializedObject.FindProperty(UsedSpreadsheetContentInfosPath);
 		protected virtual SerializedProperty IsBusyProperty => serializedObject.FindProperty(IsBusyPath);
-		
+
 		protected virtual GoogleSpreadsheetLoader GoogleSpreadsheetLoader => target as GoogleSpreadsheetLoader;
+
+		// PUBLIC VARIABLE: ---------------------------------------------------------------------
 
 		public override VisualElement CreateInspectorGUI()
 		{
@@ -56,6 +60,9 @@ namespace CizaTable.Editor
 			_spreadsheetInfosVE = new SpreadsheetInfosVE(SpreadsheetInfosProperty, false);
 			_spreadsheetInfosVE.Initialize();
 			spreadsheetInfosBox.Initialize(SpreadsheetInfosProperty.displayName, _spreadsheetInfosVE);
+
+			spreadsheetInfosBox.TrackPropertyValue(SpreadsheetInfosProperty, _ => { spreadsheetInfosBox.ForceRefresh(); });
+
 			root.Add(spreadsheetInfosBox);
 			_updateSpreadsheetPreviewButton = CreateButton("Update Spreadsheet Preview", UpdateSpreadsheetPreview, Color.green);
 			root.Add(_updateSpreadsheetPreviewButton);
@@ -81,6 +88,8 @@ namespace CizaTable.Editor
 			return root;
 		}
 
+		// PROTECT METHOD: --------------------------------------------------------------------
+
 		protected virtual Button CreateButton(string text, Action onClick, Color color)
 		{
 			var button = new Button(onClick) { text = text, style = { flexGrow = 1 } };
@@ -96,7 +105,7 @@ namespace CizaTable.Editor
 			await GoogleSpreadsheetLoader.UpdateSpreadsheetPreview();
 			_spreadsheetInfosVE.Refresh();
 		}
-		
+
 		protected virtual async void UpdateUsedSpreadsheetContentInfos()
 		{
 			if (GoogleSpreadsheetLoader == null)
@@ -112,9 +121,7 @@ namespace CizaTable.Editor
 			_usedSpreadsheetContentInfosVE.SetListProperty(UsedSpreadsheetContentInfosProperty);
 			_usedSpreadsheetContentInfosVE.Refresh();
 		}
-		
+
 		protected virtual void ResetBusy() => GoogleSpreadsheetLoader?.ResetBusy();
-		
-		
 	}
 }

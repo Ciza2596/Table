@@ -5,9 +5,13 @@ namespace CizaTable.Editor
 {
 	internal class ParserContext
 	{
-		private readonly StringBuilder  _currentValue = new StringBuilder();
-		private readonly List<string[]> _lines        = new List<string[]>();
-		private readonly List<string>   _currentLine  = new List<string>();
+		// VARIABLE: -----------------------------------------------------------------------------
+
+		private readonly StringBuilder _currentValue = new StringBuilder();
+		private readonly List<string[]> _lines = new List<string[]>();
+		private readonly List<string> _currentLine = new List<string>();
+
+		// PUBLIC METHOD: ----------------------------------------------------------------------
 
 		public void AddChar(char ch) =>
 			_currentValue.Append(ch);

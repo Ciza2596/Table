@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -9,6 +8,7 @@ namespace CizaTable.Editor
 	public class OverrideDrawerDrawer : PropertyDrawer
 	{
 		// VARIABLE: -----------------------------------------------------------------------------
+		
 		protected virtual string CountText => "Count: ";
 
 		// PUBLIC METHOD: ----------------------------------------------------------------------
@@ -30,7 +30,7 @@ namespace CizaTable.Editor
 			label.TrackPropertyValue(property, property_ =>
 			{
 				label.text = CountText + property_.arraySize;
-				root.Refresh();
+				root.ForceRefresh();
 			});
 			return label;
 		}

@@ -76,19 +76,6 @@ namespace CizaTable.Editor
 			IsAllowCopyPaste = false;
 		}
 
-		// PUBLIC METHOD: ----------------------------------------------------------------------
-
-		public override void Refresh()
-		{
-			_headImage.image = IsExpand ? TriangleDownIcon : TriangleRightIcon;
-
-			_body.EnableInClassList(ActiveBodyClass, IsExpand);
-
-			if (!IsExpand) return;
-
-			Content?.Refresh();
-		}
-
 		// PROTECT METHOD: --------------------------------------------------------------------
 
 		protected override void DerivedInitialize(string title, IContent content, VisualElement headAdditional)
@@ -110,6 +97,15 @@ namespace CizaTable.Editor
 
 			_body.AddToClassList(ActiveBodyClass);
 			IsExpand = IsExpand;
+		}
+
+		protected override void DerivedRefresh(bool isForce)
+		{
+			_headImage.image = IsExpand ? TriangleDownIcon : TriangleRightIcon;
+			_body.EnableInClassList(ActiveBodyClass, IsExpand);
+
+			if (!IsExpand) return;
+			CheckAndRefreshContent();
 		}
 
 		protected override void OnHeadClick()

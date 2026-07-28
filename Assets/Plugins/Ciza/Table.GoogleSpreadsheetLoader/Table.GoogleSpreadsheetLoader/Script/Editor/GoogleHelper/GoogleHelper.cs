@@ -7,11 +7,17 @@ namespace CizaTable.Editor
 {
 	public class GoogleHelper
 	{
+		// PUBLIC VARIABLE: ---------------------------------------------------------------------
+
 		public virtual bool IsPrintLog { get; protected set; }
+
+		// CONSTRUCTOR: ------------------------------------------------------------------------
 
 		[Preserve]
 		public GoogleHelper(bool isPrintLog) =>
 			SetIsPrintLog(isPrintLog);
+
+		// PUBLIC METHOD: ----------------------------------------------------------------------
 
 		public virtual void SetIsPrintLog(bool isPrintLog) => IsPrintLog = isPrintLog;
 
@@ -25,7 +31,7 @@ namespace CizaTable.Editor
 				var getRequest = UnityWebRequest.Get(request);
 
 				PrintLog("[GoogleHelper::StartDownload] Start download data from google.");
-				
+
 				await getRequest.SendWebRequest();
 
 				if (getRequest.isDone)
@@ -56,6 +62,8 @@ namespace CizaTable.Editor
 
 			return result;
 		}
+
+		// PROTECT METHOD: --------------------------------------------------------------------
 
 		protected virtual void PrintLog(string message)
 		{

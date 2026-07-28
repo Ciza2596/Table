@@ -7,6 +7,6 @@ namespace CizaTable.Editor
 	{
 		[Preserve]
 		public SmallerSpaceVE() =>
-			style.height = 5;
+			style.height = new StyleLength(5);
 	}
 }
