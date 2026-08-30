@@ -3,7 +3,7 @@ using UnityEngine.Scripting;
 
 namespace CizaTable.Example1
 {
-	public class PlayerTable : Table<PlayerTable.Data>
+	public class PlayerTable : BTable<PlayerTable.Data>
 	{
 		public override string Name => "PlayerTable";
 		

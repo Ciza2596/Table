@@ -1,6 +1,6 @@
 using CizaTable;
 
-public class LongTable : Table<LongTable.Data>
+public class LongTable : BTable<LongTable.Data>
 {
 	public override string Name => "LongTable";
 	

@@ -7,6 +7,6 @@ namespace CizaTable
 {
 	public interface ITableModuleConfig
 	{
-		public Awaitable InstallAsync(Dictionary<Type, object> tables, AsyncToken asyncToken);
+		public Awaitable InstallAsync(IAssetProvider assetProvider, Dictionary<Type, BTable> tables, AsyncToken asyncToken);
 	}
 }

@@ -1,6 +1,6 @@
 using CizaTable;
 
-public class FloatTable : Table<FloatTable.Data>
+public class FloatTable : BTable<FloatTable.Data>
 {
 	public override string Name => "FloatTable";
 	

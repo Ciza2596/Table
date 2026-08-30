@@ -1,6 +1,6 @@
 using CizaTable;
 
-public class DoubleTable : Table<DoubleTable.Data>
+public class DoubleTable : BTable<DoubleTable.Data>
 {
 	public override string Name => "DoubleTable";
 	

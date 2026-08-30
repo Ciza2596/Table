@@ -11,39 +11,38 @@ namespace CizaTable
 	{
 		// VARIABLE: -----------------------------------------------------------------------------
 
-		protected readonly IAssetProvider _assetProvider;
 		protected readonly List<string> _tableNames = new List<string>();
-
-		protected Dictionary<Type, object> _tables;
 		protected Func<AsyncToken, Awaitable> _initializeTable;
+
+		protected IAssetProvider _assetProvider;
+		protected Dictionary<Type, BTable> _tables;
 
 		// CONSTRUCTOR: ------------------------------------------------------------------------
 
 		[Preserve]
-		protected BaseTableModuleConfig(IAssetProvider assetProvider) =>
-			_assetProvider = assetProvider;
+		protected BaseTableModuleConfig() { }
 
 		// PUBLIC METHOD: ----------------------------------------------------------------------
 
-		public virtual async Awaitable InstallAsync(Dictionary<Type, object> tables, AsyncToken asyncToken)
+		public virtual async Awaitable InstallAsync(IAssetProvider assetProvider, Dictionary<Type, BTable> tables, AsyncToken asyncToken)
 		{
-			Debug.Log($"[{GetType().Name}::Install] Start to load table at time: {Time.time}.");
+			Debug.Log($"[{GetType().Name}::InstallAsync] Start to load table at time: {Time.time}.");
 
+			_assetProvider = assetProvider;
 			_tables = tables;
 
 			await ExecuteInstallTasks(asyncToken);
-			ReleaseInitializeTable();
-
 			ReleaseSheetContents();
 
 			_tables = null;
+			_assetProvider = null;
 
-			Debug.Log($"[{GetType().Name}::Install] Table is loaded at time: {Time.time}.");
+			Debug.Log($"[{GetType().Name}::InstallAsync] Table is loaded at time: {Time.time}.");
 		}
 
 		// PROTECT METHOD: --------------------------------------------------------------------
 
-		protected virtual void AddTable<TTableData>(Table<TTableData> table) where TTableData : TableData =>
+		protected virtual void AddTable<TTableData>(BTable<TTableData> table) where TTableData : TableData =>
 			_initializeTable += async (asyncToken) => { await InitializeTable(table, asyncToken); };
 
 		protected virtual async Awaitable ExecuteInstallTasks(AsyncToken asyncToken)
@@ -58,10 +57,7 @@ namespace CizaTable
 			await Async.AllAsync(awaitables);
 		}
 
-		protected virtual void ReleaseInitializeTable() =>
-			_initializeTable = null;
-
-		protected virtual async Awaitable InitializeTable<TTableData>(Table<TTableData> table, AsyncToken asyncToken) where TTableData : TableData
+		protected virtual async Awaitable InitializeTable<TTableData>(BTable<TTableData> table, AsyncToken asyncToken) where TTableData : TableData
 		{
 			var tableName = table.Name;
 			_tableNames.Add(tableName);

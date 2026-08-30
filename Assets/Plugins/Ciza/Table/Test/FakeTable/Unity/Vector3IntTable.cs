@@ -1,7 +1,7 @@
 using CizaTable;
 using UnityEngine;
 
-public class Vector3IntTable: Table<Vector3IntTable.Data>
+public class Vector3IntTable: BTable<Vector3IntTable.Data>
 {
 	public override string Name => "Vector3IntTable";
 	

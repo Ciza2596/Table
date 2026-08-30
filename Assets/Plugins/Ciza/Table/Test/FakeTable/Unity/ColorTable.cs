@@ -1,7 +1,7 @@
 using CizaTable;
 using UnityEngine;
 
-public class ColorTable : Table<ColorTable.Data>
+public class ColorTable : BTable<ColorTable.Data>
 {
 	public override string Name => "ColorTable";
 	

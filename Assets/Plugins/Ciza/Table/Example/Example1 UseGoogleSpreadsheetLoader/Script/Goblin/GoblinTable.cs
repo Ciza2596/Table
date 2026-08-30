@@ -2,7 +2,7 @@ using UnityEngine.Scripting;
 
 namespace CizaTable.Example1
 {
-	public class GoblinTable : Table<GoblinTable.Data>
+	public class GoblinTable : BTable<GoblinTable.Data>
 	{
 		public override string Name => "GoblinTable";
 		

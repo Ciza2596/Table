@@ -1,7 +1,7 @@
 using CizaTable;
 using NUnit.Framework;
 
-public abstract class PrimitiveTableTest<TTable, TTableData> where TTable : Table<TTableData>, new() where TTableData : TableData
+public abstract class PrimitiveTableTest<TTable, TTableData> where TTable : BTable<TTableData>, new() where TTableData : TableData
 
 {
 	//private variable

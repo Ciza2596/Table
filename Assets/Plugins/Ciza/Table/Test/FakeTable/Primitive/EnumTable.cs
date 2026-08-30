@@ -1,6 +1,6 @@
 using CizaTable;
 
-public class EnumTable : Table<EnumTable.Data>
+public class EnumTable : BTable<EnumTable.Data>
 {
 	public class Data : TableData
 	{

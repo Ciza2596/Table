@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CizaTable.Example1
 {
-	public abstract class TableShower<TTable, TTableData> : MonoBehaviour where TTable : Table<TTableData>, new() where TTableData : TableData
+	public abstract class TableShower<TTable, TTableData> : MonoBehaviour where TTable : BTable<TTableData>, new() where TTableData : TableData
 	{
 		[SerializeField]
 		private string _key;

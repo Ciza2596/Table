@@ -1,7 +1,9 @@
 using CizaTable;
+using UnityEngine.Scripting;
 
 public class TableModuleConfigExample : BaseTableModuleConfig
 {
-	public TableModuleConfigExample(IAssetProvider assetProvider) : base(assetProvider) =>
+	[Preserve]
+	public TableModuleConfigExample() : base() =>
 		AddTable(new PlayerTable());
 }

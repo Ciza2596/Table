@@ -1,7 +1,7 @@
 using CizaTable;
 using UnityEngine;
 
-public class CharacterTable : Table<CharacterTable.Data>
+public class CharacterTable : BTable<CharacterTable.Data>
 {
 	public override string Name => "CharacterTable";
 	

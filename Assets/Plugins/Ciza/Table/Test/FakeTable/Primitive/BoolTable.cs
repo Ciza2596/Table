@@ -1,6 +1,6 @@
 using CizaTable;
 
-public class BoolTable : Table<BoolTable.Data>
+public class BoolTable : BTable<BoolTable.Data>
 {
 	public override string Name => "BoolTable";
 	

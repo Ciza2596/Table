@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CizaAsync;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -9,32 +10,47 @@ namespace CizaTable
 	public class TableModule
 	{
 		//private variable
-		protected readonly Dictionary<Type, object> _tables = new Dictionary<Type, object>();
+		protected readonly Dictionary<Type, BTable> _tables = new Dictionary<Type, BTable>();
 
-		protected ITableModuleConfig _tableModuleConfig;
+		protected readonly ITableModuleConfig _config;
+		protected readonly IAssetProvider _assetProvider;
 
-		public bool IsInitializing { get; private set; }
-		public bool IsInitialized => _tableModuleConfig == null;
+		public virtual bool IsInitializing { get; protected set; }
+		public virtual bool IsInitialized { get; protected set; }
 
 		//public constructor
 		[Preserve]
-		public TableModule(ITableModuleConfig tableModuleConfig) =>
-			_tableModuleConfig = tableModuleConfig;
+		public TableModule(ITableModuleConfig config, IAssetProvider assetProvider)
+		{
+			_config = config;
+			_assetProvider = assetProvider;
+		}
 
 		//public method
-		public async Awaitable InitializeAsync(AsyncToken asyncToken)
+		public virtual async Awaitable InitializeAsync(AsyncToken asyncToken)
 		{
 			if (IsInitialized || IsInitializing)
 				return;
 
 			IsInitializing = true;
-			await _tableModuleConfig.InstallAsync(_tables, asyncToken);
+			await _config.InstallAsync(_assetProvider, _tables, asyncToken);
 			IsInitializing = false;
-
-			_tableModuleConfig = null;
+			IsInitialized = true;
 		}
 
-		public bool TryGetTable<T>(out T table)
+		public virtual void Release()
+		{
+			if (!IsInitialized || IsInitializing)
+				return;
+
+			foreach (var table in _tables.Values.ToArray())
+				table.Release();
+
+			_tables.Clear();
+			IsInitialized = false;
+		}
+
+		public virtual bool TryGetTable<T>(out T table) where T : BTable
 		{
 			var type = typeof(T);
 			if (!_tables.ContainsKey(type))
@@ -47,7 +63,7 @@ namespace CizaTable
 			return true;
 		}
 
-		public bool TryGetKeys<TTable, TTableData>(out string[] keys) where TTable : Table<TTableData> where TTableData : TableData
+		public virtual bool TryGetKeys<TTable, TTableData>(out string[] keys) where TTable : BTable<TTableData> where TTableData : TableData
 		{
 			if (!TryGetTable<TTable>(out var dataTable))
 			{
@@ -58,7 +74,7 @@ namespace CizaTable
 			return dataTable.TryGetKeys(out keys);
 		}
 
-		public bool TryGetTableDatas<TTable, TTableData>(out TTableData[] tableDatas) where TTable : Table<TTableData> where TTableData : TableData
+		public virtual bool TryGetTableDatas<TTable, TTableData>(out TTableData[] tableDatas) where TTable : BTable<TTableData> where TTableData : TableData
 		{
 			if (!TryGetTable<TTable>(out var dataTable))
 			{
@@ -69,7 +85,7 @@ namespace CizaTable
 			return dataTable.TryGetTableDatas(out tableDatas);
 		}
 
-		public bool TryGetKeyValuePair<TTable, TTableData>(out KeyValuePair<string, TTableData>[] keyValuePairs) where TTable : Table<TTableData> where TTableData : TableData
+		public virtual bool TryGetKeyValuePair<TTable, TTableData>(out KeyValuePair<string, TTableData>[] keyValuePairs) where TTable : BTable<TTableData> where TTableData : TableData
 		{
 			if (!TryGetTable<TTable>(out var dataTable))
 			{
@@ -80,7 +96,7 @@ namespace CizaTable
 			return dataTable.TryGetKeyValuePair(out keyValuePairs);
 		}
 
-		public bool TryGetTableData<TTable, TTableData>(string key, out TTableData tableData) where TTable : Table<TTableData> where TTableData : TableData
+		public virtual bool TryGetTableData<TTable, TTableData>(string key, out TTableData tableData) where TTable : BTable<TTableData> where TTableData : TableData
 		{
 			if (!TryGetTable<TTable>(out var dataTable))
 			{
@@ -91,7 +107,7 @@ namespace CizaTable
 			return dataTable.TryGetTableData(key, out tableData);
 		}
 
-		public bool TryGetTableData<TTable, TTableData>(Predicate<TTableData> match, out TTableData tableData) where TTable : Table<TTableData> where TTableData : TableData
+		public virtual bool TryGetTableData<TTable, TTableData>(Predicate<TTableData> match, out TTableData tableData) where TTable : BTable<TTableData> where TTableData : TableData
 		{
 			if (!TryGetTable<TTable>(out var dataTable))
 			{
@@ -102,7 +118,7 @@ namespace CizaTable
 			return dataTable.TryGetTableData(match, out tableData);
 		}
 
-		public bool TryGetTableDatas<TTable, TTableData>(Predicate<TTableData> match, out TTableData[] tableDatas) where TTable : Table<TTableData> where TTableData : TableData
+		public virtual bool TryGetTableDatas<TTable, TTableData>(Predicate<TTableData> match, out TTableData[] tableDatas) where TTable : BTable<TTableData> where TTableData : TableData
 		{
 			if (!TryGetTable<TTable>(out var dataTable))
 			{

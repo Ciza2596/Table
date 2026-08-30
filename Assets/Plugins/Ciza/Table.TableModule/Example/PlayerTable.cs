@@ -1,6 +1,6 @@
 using CizaTable;
 
-public class PlayerTable : Table<PlayerTable.Data>
+public class PlayerTable : BTable<PlayerTable.Data>
 {
 	public override string Name => "PlayerTable";
 	
