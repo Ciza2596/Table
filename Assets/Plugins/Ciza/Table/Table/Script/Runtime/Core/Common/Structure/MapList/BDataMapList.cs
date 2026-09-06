@@ -8,6 +8,8 @@ namespace CizaTable
     [Serializable]
     public abstract class BDataMapList<TValue> : BMapList<BDataMapList<TValue>.Map, TValue> where TValue : IEnumerable<IDataValue>
     {
+        // CONSTRUCTOR: ------------------------------------------------------------------------
+
         [Preserve]
         protected BDataMapList() { }
         
