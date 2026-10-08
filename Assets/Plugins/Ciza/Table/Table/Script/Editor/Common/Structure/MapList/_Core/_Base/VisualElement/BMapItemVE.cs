@@ -17,14 +17,6 @@ namespace CizaTable.Editor.MapListVisual
 
 		// PUBLIC VARIABLE: ---------------------------------------------------------------------
 
-		public override string Title => Key;
-
-		public virtual string Key
-		{
-			get => KeyProperty.GetValue<string>();
-			protected set => KeyProperty.SetValue(value);
-		}
-
 		public override bool IsEnable
 		{
 			get => IsEnableProperty.GetValue<bool>();

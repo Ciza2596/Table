@@ -40,6 +40,9 @@ namespace CizaTable.Editor
         public override void Refresh(int index, SerializedProperty itemProperty, bool isAllowReordering, bool isAllowDisable, bool isAllowDuplicate, bool isAllowDelete, bool isAllowCopyPaste)
         {
             base.Refresh(index, itemProperty, isAllowReordering, isAllowDisable, isAllowDuplicate, isAllowDelete, isAllowCopyPaste);
+            if (_sheetContentInfosVE == null)
+                return;
+
             _sheetContentInfosVE.SetListProperty(SheetContentInfosProperty);
             _sheetContentInfosVE.Refresh();
         }

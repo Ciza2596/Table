@@ -5,6 +5,18 @@ namespace CizaTable.Editor
 {
 	public static class VisualElementUtils
 	{
+		public static void SetAnchoredPosition(this VisualElement element, AnchorKinds anchorKind, Vector2 anchoredPosition)
+		{
+			StyleLength left = anchorKind.HasFlag(AnchorKinds.Left) ? anchoredPosition.x : StyleKeyword.Auto;
+			StyleLength right = anchorKind.HasFlag(AnchorKinds.Right) ? anchoredPosition.x : StyleKeyword.Auto;
+			StyleLength top = anchorKind.HasFlag(AnchorKinds.Top) ? anchoredPosition.y : StyleKeyword.Auto;
+			StyleLength bottom = anchorKind.HasFlag(AnchorKinds.Bottom) ? anchoredPosition.y : StyleKeyword.Auto;
+			element.style.left = left;
+			element.style.right = right;
+			element.style.top = top;
+			element.style.bottom = bottom;
+		}
+
 		public static void SetIsVisible(this VisualElement visualElement, bool isVisible) => visualElement.style.display = isVisible ? DisplayStyle.Flex : DisplayStyle.None;
 
 		public static void SetPadding(this VisualElement element, float left, float right, float top, float bottom)

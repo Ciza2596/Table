@@ -6,10 +6,10 @@ namespace CizaTable.Editor
     {
         int GetItemIndexOf(VisualElement item);
 
-        int ClosestItemIndex(float cursorY);
+        bool TryGetClosestItemIndex(float cursorY, out int itemIndex);
 
         void RefreshItemDragUI(int sourceIndex, int targetIndex);
-        void MoveItems(int sourceIndex, int destinationIndex);
+        void MoveItem(int sourceIndex, int destinationIndex);
         
         void Refresh();
     }
